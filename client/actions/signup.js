@@ -30,4 +30,3 @@ export function signup () {
       .catch(err => dispatch(signupError(err.message)))
   }
 }
-

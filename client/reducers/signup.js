@@ -7,4 +7,3 @@ export default function signup (state = {}, action) {
       return state
   }
 }
-
