@@ -1,8 +1,8 @@
 {
-  "name": "foodlist",
+  "name": "langder",
   "version": "0.1.0",
   "description": "A list of food",
-  "repository": "https://github.com/dev-academy-challenges/foodlist.git",
+  "repository": "https://github.com/matai-2019/langder.git",
   "main": "server/index.js",
   "author": "EDA",
   "license": "ISC",
@@ -40,17 +40,12 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.18.3",
+    "npm-run-all": "^4.1.5",
+    "pg": "^7.11.0",
     "libsodium-wrappers-sumo": "^0.7.4",
     "moment": "^2.24.0",
     "passport": "^0.4.0",
-    "react-redux": "^7.1.0",
-    "react-router-dom": "^5.0.1",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.87.2",
-    "sqlite3": "^4.0.9",
-    "superagent": "^5.1.0"
+    "webpack": "^4.35.2"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
