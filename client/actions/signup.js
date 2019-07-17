@@ -20,14 +20,13 @@ export function signupError (message) {
   }
 }
 
-export function signup () {
-  return dispatch => {
-    dispatch(signupNew())
+// export function fetchSign () {
+//   return dispatch => {
+//     dispatch(signupNew())
 
-    request
-      .get('/api/users')
-      .then(res => dispatch(signupSuccess(res.body)))
-      .catch(err => dispatch(signupError(err.message)))
-  }
-}
-
+//     request
+//       .get('/api/users')
+//       .then(res => dispatch(signupSuccess(res.body)))
+//       .catch(err => dispatch(signupError(err.message)))
+//   }
+// }

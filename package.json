@@ -7,7 +7,7 @@
   "author": "EDA",
   "license": "ISC",
   "scripts": {
-    "build": "webpack --config client/webpack.config.js",
+    "build": "webpack -p && webpack-dev-server",
     "server": "node .",
     "start": "run-s build server",
     "test": "jest --watchAll",
