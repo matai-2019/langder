@@ -1,9 +1,15 @@
-export default function signup (state = {}, action) {
-  switch (action.type) {
-    case 'SIGNUP_SUCCESS':
-      return action.user
+import { SIGNUP } from '../../../client/actions/signup'
+import signup from '../../../client/reducers/signup'
 
-    default:
-      return state
-  }
-}
+describe('Tests given actions into signup', () => {
+  it('returns signup', () => {
+    const expected = SIGNUP
+    const currentState = {
+      sortType: ''
+    }
+    const action = {
+      type: SIGNUP_SUCCESS
+    }
+    const actual = signup(currentState, action)
+    expect(actual).toBe(expected)
+  })
