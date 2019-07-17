@@ -22,7 +22,7 @@ export function signupError (message) {
 
 export function signup () {
   return dispatch => {
-    dispatch(signupNew())
+    dispatch(signup())
 
     request
       .get('/api/users')

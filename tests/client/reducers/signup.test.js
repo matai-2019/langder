@@ -1,15 +1,15 @@
-import { SIGNUP } from '../../../client/actions/signup'
+import { SIGNUP, signup } from '../../../client/actions/signup'
 import signup from '../../../client/reducers/signup'
 
-describe('Tests given actions into signup', () => {
-  it('returns signup', () => {
-    const expected = SIGNUP
-    const currentState = {
-      sortType: ''
-    }
+
+describe('signup', () => {
+  it('returns the default state if no state or action given', () => {
+    const initialState = undefined
+    const expected = ''
     const action = {
-      type: SIGNUP_SUCCESS
+      type: undefined
     }
-    const actual = signup(currentState, action)
+    const actual = signup(initialState, action)
     expect(actual).toBe(expected)
   })
+})

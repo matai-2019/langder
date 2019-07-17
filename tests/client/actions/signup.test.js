@@ -1,33 +1,9 @@
-import request from 'superagent'
+import { signup, SIGNUP, SIGNUP_SUCCESS, SIGNUP_ERROR } from '../../../client/actions/signup'
 
-export function signup () {
-  return {
-    type: 'SIGNUP'
-  }
-}
+describe('Tests for signup actions', () => {
+  it(`signup() returns ${SIGNUP}`, () => {
+    const action = signup()
+    expect(action.type).toBe(SIGNUP)
+  })
 
-export function signupSuccess (user) {
-  return {
-    type: 'SIGNUP_SUCCESS',
-    user
-  }
-}
-
-export function signupError (message) {
-  return {
-    type: 'SIGNUP_ERROR',
-    message
-  }
-}
-
-export function signup () {
-  return dispatch => {
-    dispatch(signupNew())
-
-    request
-      .get('/api/users')
-      .then(res => dispatch(signupSuccess(res.body)))
-      .catch(err => dispatch(signupError(err.message)))
-  }
-}
-
+})
