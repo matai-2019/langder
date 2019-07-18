@@ -2,6 +2,7 @@
 import { ADDUSER_SUCCESS, ADDUSER_ERROR } from '../../../client/actions/signup'
 import addUser from '../../../client/reducers/signup'
 
+
 describe('addUser success', () => {
   it('returns success on addUser', () => {
     const initialState = { email: 'test', password: 'password'}
@@ -16,4 +17,5 @@ describe('addUser success', () => {
     expect(actual).toEqual(expected)
   })
 })
+
 

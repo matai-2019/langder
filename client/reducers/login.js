@@ -1,8 +1,16 @@
+import {
+  PENDING_LOGIN,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR
+} from '../actions/login'
+
+// put to the side 
 export default function login (state = {}, action) {
   switch (action.type) {
-    case LOGIN:
+    case PENDING_LOGIN:
       return {
-        loading: true
+        loading: true,
+        completed: false
       }
 
     case LOGIN_SUCCESS:
@@ -29,3 +37,5 @@ export default function login (state = {}, action) {
       return state
   }
 }
+
+
