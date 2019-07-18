@@ -43,5 +43,3 @@ test('GET /users returns a specific user', () => {
     })
     .catch(err => expect(err).toBe(err))
 })
-
-const server = require('../../../server/server')
