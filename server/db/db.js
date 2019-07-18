@@ -11,6 +11,5 @@ function addUser (user, db = connection) {
 
 module.exports = {
   getUsers,
-  getUser,
   addUser
 }
