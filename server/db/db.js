@@ -18,5 +18,6 @@ function addUser (user, db = connection) {
 
 module.exports = {
   getUsers,
-  addUser
+  addUser,
+  getUser
 }
