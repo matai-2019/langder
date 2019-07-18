@@ -6,13 +6,13 @@ import Login from './Login'
 import SignUp from './SignUp'
 
 class App extends React.Component {
-  render () {
+  render() {
     return (
       <Router>
         <>
           <Container style={{ marginTop: 75 }}>
             <Switch>
-              <Login/>
+              <Route component={Login} />
             </Switch>
           </Container>
         </>
