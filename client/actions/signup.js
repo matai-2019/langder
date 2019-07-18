@@ -2,20 +2,20 @@ import request from 'superagent'
 
 export function signup () {
   return {
-    type: 'SIGNUP'
+    type: SIGNUP
   }
 }
 
 export function signupSuccess (user) {
   return {
-    type: 'SIGNUP_SUCCESS',
+    type: SIGNUP_SUCCESS,
     user
   }
 }
 
 export function signupError (message) {
   return {
-    type: 'SIGNUP_ERROR',
+    type: SIGNUP_ERROR,
     message
   }
 }
@@ -23,8 +23,8 @@ export function signupError (message) {
 
 // export function fetchSign () {
 //   return dispatch => {
-//     dispatch(signupNew())
-
+//     dispatch(fetchSign())
+//     
 //     request
 //       .get('/api/users')
 //       .then(res => dispatch(signupSuccess(res.body)))

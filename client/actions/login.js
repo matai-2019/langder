@@ -2,27 +2,27 @@ import request from 'superagent'
 
 export function login () {
   return {
-    type: 'LOGIN'
+    type: LOGIN
   }
 }
 
 export function loginSuccess (user) {
   return {
-    type: 'LOGIN_SUCCESS',
+    type: LOGIN_SUCCESS,
     user
   }
 }
 
 export function loginError (message) {
   return {
-    type: 'LOGIN_ERROR',
+    type: LOGIN_ERROR,
     message
   }
 }
 
-export function login () {
+export function fetchLogin () {
   return dispatch => {
-    dispatch(login())
+    dispatch(fetchLogin())
 
     request
       .get('/api/users') //<<< Don't know the path
