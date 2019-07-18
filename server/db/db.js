@@ -16,6 +16,15 @@ function addUser (user, db = connection) {
     .insert({ email: user.email, password: user.password })
 }
 
+function addProfile(user, db = connection) {
+  return db('profiles')
+  .insert({
+    userId: user.userId,
+    name: user.name,
+    password: user.password
+  })
+}
+
 function login (loginData, db = connection) {
   return db('users')
     .select()
@@ -28,5 +37,7 @@ module.exports = {
   getUsers,
   getUser,
   addUser,
+  getUser,
+  addProfile,
   login
 }
