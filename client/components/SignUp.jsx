@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Grid } from 'semantic-ui-react'
 
-class Login extends Component {
+class SignUp extends Component {
   state = {
     email: '',
     password: ''
@@ -18,7 +18,7 @@ class Login extends Component {
     return (
       <Grid style={{ marginTop: '30vh' }} container centered columns={1}>
         <Grid.Row verticalAlign='middle' centered columns={1}>
-          <h1>Login</h1>
+          <h1>Sign up</h1>
           <Form onSubmit={this.handleSubmit}>
             <Form.Input
               style={inputStyle}
@@ -42,4 +42,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default SignUp
