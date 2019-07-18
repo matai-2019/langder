@@ -1,13 +1,15 @@
 const path = require('path')
 const express = require('express')
 
-const foods = require('./routes/foods')
+const users = require('./routes/users')
 
 const server = express()
 
 server.use(express.json())
-server.use('/api/v1/foods', foods)
 server.use(express.static(path.join(__dirname, './public')))
+
+// Routes Here
+server.use('/api/v1/users', users)
 
 server.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'))
