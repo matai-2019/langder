@@ -1,15 +1,19 @@
-import { SIGNUP } from '../../../client/actions/signup'
-import signup from '../../../client/reducers/signup'
 
-describe('Tests given actions into signup', () => {
-  it('returns signup', () => {
-    const expected = SIGNUP
-    const currentState = {
-      sortType: ''
+import { ADDUSER_SUCCESS, ADDUSER_ERROR } from '../../../client/actions/signup'
+import addUser from '../../../client/reducers/signup'
+
+describe('addUser success', () => {
+  it('returns success on addUser', () => {
+    const initialState = { email: 'test', password: 'password'}
+    const expected =  {
+      email: "test",
+      password: "password"
     }
     const action = {
-      type: SIGNUP_SUCCESS
+      item: initialState
     }
-    const actual = signup(currentState, action)
-    expect(actual).toBe(expected)
+    const actual = addUser(initialState, action)
+    expect(actual).toEqual(expected)
   })
+})
+
