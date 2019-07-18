@@ -1,4 +1,5 @@
 import request from 'supertest'
+const server = require('../../../server/server')
 
 jest.mock('../../../server/db/db.js', () => ({
   getUsers: () => Promise.resolve([
@@ -8,8 +9,19 @@ jest.mock('../../../server/db/db.js', () => ({
   ]),
   getUser: (id) => Promise.resolve(
     { id: 2, email: 'email2@email.com', password: 'password' }
-  )
+  ),
+  addUser: (user) => Promise.resolve(user)
 }))
+
+test('POST / adds a user', () => {
+  const testUser = { email: 'test@test.com', password: 'asdfas' }
+  return request(server)
+    .post('/api/v1/users')
+    .send(testUser)
+    .then(res => {
+      expect(res.status).toBe(201)
+    })
+})
 
 test('GET /users returns all of the users', () => {
   return request(server)

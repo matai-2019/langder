@@ -1,8 +1,12 @@
 import request from 'superagent'
 
+export const PENDING_LOGIN = 'PENDING_LOGIN'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_ERROR = 'LOGIN_ERROR'
+
 export function login () {
   return {
-    type: LOGIN
+    type: PENDING_LOGIN
   }
 }
 
@@ -25,7 +29,7 @@ export function fetchLogin () {
     dispatch(fetchLogin())
 
     request
-      .get('/api/users') //<<< Don't know the path
+      .get('/api/v1/users') //<<< Don't know the path
       .then(res => dispatch(loginSuccess(res.body)))
       .catch(err => dispatch(loginError(err.message)))
   }
