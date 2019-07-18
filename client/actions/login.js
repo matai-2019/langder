@@ -34,4 +34,3 @@ export function fetchLogin () {
       .catch(err => dispatch(loginError(err.message)))
   }
 }
-
