@@ -4,7 +4,6 @@ import {
   ADDUSER_ERROR
 } from '../actions/signup'
 
-
 export default function addUser (state = {}, action) {
   switch (action.type) {
     case PENDING_ADDUSER:
@@ -25,3 +24,4 @@ export default function addUser (state = {}, action) {
       return state
   }
 }
+
