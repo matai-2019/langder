@@ -7,6 +7,8 @@ class SignUp extends Component {
     password: ''
   }
 
+  inputStyle = {width: '60vw'}
+
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit = () => this.setState({ email: '', password: '' })
@@ -15,19 +17,19 @@ class SignUp extends Component {
     const { email, password } = this.state
 
     return (
-      <Grid verticalAlign='middle' centered columns={1}>
-        <Grid.Row centered columns={1}>
+      <Grid style={{marginTop: '30vh'}} container centered columns={1}>
+        <Grid.Row verticalAlign='middle' centered columns={1}>
           <h1>SignUp</h1>
           <Form onSubmit={this.handleSubmit}>
             <Form.Input
-              style={{width: '60vw'}}
+              style={this.inputStyle}
               value={email}
               onChange={this.handleChange}
               placeholder='Email'
               name='email'
             />
             <Form.Input
-              style={{width: '60vw'}}
+              style={this.inputStyle}
               onChange={this.handleChange}
               value={password}
               placeholder='Password'

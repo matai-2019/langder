@@ -7,7 +7,9 @@ class Login extends Component {
     password: ''
   }
 
-  handleChange = (e,{ name, value }) => this.setState({ [name]: value })
+  inputStyle = { width: '60vw' }
+
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit = () => this.setState({ email: '', password: '' })
 
@@ -19,14 +21,14 @@ class Login extends Component {
         <h1>Login</h1>
         <Form onSubmit={this.handleSubmit}>
           <Form.Input
-            fluid
+            style={inputStyle}
             value={email}
             onChange={this.handleChange}
             placeholder='Email'
             name='email'
           />
           <Form.Input
-            fluid
+            style={inputStyle}
             onChange={this.handleChange}
             value={password}
             placeholder='Password'
