@@ -6,7 +6,7 @@ const users = require('./routes/users')
 const server = express()
 
 server.use(express.json())
-server.use('/api/v1/users', foods)
+server.use('/api/v1/users', users)
 server.use(express.static(path.join(__dirname, './public')))
 
 server.get('*', (req, res) => {

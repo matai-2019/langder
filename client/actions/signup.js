@@ -1,29 +1,34 @@
 import request from 'superagent'
 
-export function signup () {
+export const PENDING_ADDUSER = 'PENDING_ADDUSER'
+export const ADDUSER_SUCCESS = 'ADDUSER_SUCCESS'
+export const ADDUSER_ERROR = 'ADDUSER_ERROR'
+
+export function addUser () {
   return {
-    type: 'SIGNUP'
+    type: PENDING_ADDUSER
   }
 }
 
-export function signupSuccess (user) {
+export function addUserSuccess (user) {
   return {
-    type: 'SIGNUP_SUCCESS',
+    type: ADDUSER_SUCCESS,
     user
   }
 }
 
-export function signupError (message) {
+export function addUserError (message) {
   return {
-    type: 'SIGNUP_ERROR',
+    type: ADDUSER_ERROR,
     message
   }
 }
 
+
 // export function fetchSign () {
 //   return dispatch => {
-//     dispatch(signupNew())
-
+//     dispatch(fetchSign())
+//     
 //     request
 //       .get('/api/users')
 //       .then(res => dispatch(signupSuccess(res.body)))
