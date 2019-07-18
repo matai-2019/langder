@@ -10,6 +10,9 @@ exports.up = function (knex) {
       .references('user.id')
       .onDelete('CASCADE')
       .onUpdate('CASCADE')
+    table.string('description')
+    table.integer('learnerRating')
+    table.integer('teacherRating')
   })
 }
 
