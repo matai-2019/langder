@@ -4,6 +4,13 @@ function getUsers (db = connection) {
   return db('users')
 }
 
+function getUser (id, db = connection) {
+  return db('users')
+  .where('users.id', id)
+  .first()
+  .select()
+}
+
 function addUser(user, db = connection) {
 
   return db('users')
@@ -13,5 +20,6 @@ function addUser(user, db = connection) {
 
 module.exports = {
   getUsers,
+  getUser,
   addUser
 }
