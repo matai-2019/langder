@@ -1,8 +1,8 @@
 import request from 'superagent'
 
-const login = 'api/v1/users'
+const url = 'api/v1/users'
 
 export function login (user) {
-  return request.get(`${login}/${user.id}`)
-    .send(user.id)
+  return request.post(`${url}/${user.id}`)
+    .send(user)
 }
