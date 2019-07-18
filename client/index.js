@@ -16,6 +16,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <App />
+    <h1>TESTING1</h1>
   </Provider>,
   document.getElementById('app')
 )

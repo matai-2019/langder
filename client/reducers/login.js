@@ -24,9 +24,8 @@ export default function login (state = {}, action) {
     //           : user
     //       )
     //     }
-    
+
     default:
       return state
   }
 }
-
