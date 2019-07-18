@@ -1,16 +1,15 @@
 exports.up = function (knex) {
-  return knex.schema.createTable('profiles', table => {
+  return knex.schema.createTable('languages', table => {
     table.increments('id').primary().unSigned()
-    table.string('name')
     table.integer('userId')
     table.foreign('userId')
       .references('user.id')
       .onDelete('CASCADE')
-      .onUpdate('CASCADE')
-      .unique()
+    table.string('name')
+    table.boolean('isKnown')
   })
 }
 
 exports.down = function (knex) {
-  return knex.schema.dropTable('profiles')
+  return knex.schema.dropTable('languages')
 }
