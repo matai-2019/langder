@@ -12,4 +12,3 @@ describe('actions', () => {
     expect(action).toEqual(expected)
   })
 })
-

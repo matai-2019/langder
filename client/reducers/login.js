@@ -2,9 +2,9 @@ import {
   PENDING_LOGIN,
   LOGIN_SUCCESS,
   LOGIN_ERROR
-} from '../actions/signup'
+} from '../actions/login'
 
-
+// put to the side 
 export default function login (state = {}, action) {
   switch (action.type) {
     case PENDING_LOGIN:

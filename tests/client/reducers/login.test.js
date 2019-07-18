@@ -1,19 +1,17 @@
 
 import { PENDING_LOGIN, LOGIN_SUCCESS, LOGIN_ERROR } from '../../../client/actions/login'
 import login from '../../../client/reducers/login'
-
-describe('login successful', () => {
-  it('returns success on a successful login', () => {
-    const initialState = { userName: '', password: ''}
-    const expected =  {
-      userName: 'Yeeti the 3rd',
-      password: 'password',
-      completed: true
+// put to the side 
+describe('login pending', () => {
+  it('returns pending login on a successful login', () => {
+    const initialState = { loading: false }
+    const expected = { 
+      loading: true,
+      completed: false 
     }
-    const action = {
-      item: initialState
-    }
+    const action = {type: PENDING_LOGIN, action: {}}
     const actual = login(initialState, action)
     expect(actual).toEqual(expected)
   })
 })
+
