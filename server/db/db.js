@@ -25,9 +25,19 @@ function addProfile(user, db = connection) {
   })
 }
 
+function login (loginData, db = connection) {
+  return db('users')
+    .select()
+    .where('password', loginData.password)
+    .where('email', loginData.email)
+    .first()
+}
+
 module.exports = {
   getUsers,
+  getUser,
   addUser,
   getUser,
-  addProfile
+  addProfile,
+  login
 }
