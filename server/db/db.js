@@ -16,8 +16,17 @@ function addUser (user, db = connection) {
     .insert({ email: user.email, password: user.password })
 }
 
+function login (loginData, db = connection) {
+  return db('users')
+    .select()
+    .where('password', loginData.password)
+    .where('email', loginData.email)
+    .first()
+}
+
 module.exports = {
   getUsers,
+  getUser,
   addUser,
-  getUser
+  login
 }
