@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Container, Label, Flag, Card, Image, Rating } from 'semantic-ui-react'
+import { Label, Flag, Card, Image, Rating } from 'semantic-ui-react'
 
 const props = {
   id: 1,
@@ -9,7 +9,7 @@ const props = {
     toKnow: [{ name: 'Japanese', country: 'jp' }],
     know: [{ name: 'Singhalise', country: 'lk' }]
   },
-  description: 'asdfasdfffffffffffassdfgggggggggggggggggasdfasdfasdfasdfasdfgggdfasfaf',
+  description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur possimus itaque commodi quibusdam magni. In velit, quisquam ipsa, doloremque recusandae voluptatem dolor veniam incidunt eos, dolores maxime facere quis ullam.',
   email: 'test@test.com',
   ratingLearner: 4,
   ratingTeacher: 5
@@ -18,7 +18,7 @@ const props = {
 function Profile () {
   return (
     <>
-        <Card fluid centered style={{ borderRadius: '10px', maxWidth: '660', margin: '0' }}>
+        <Card fluid centered style={{ borderRadius: '10px', maxWidth: '543px' }}>
           <Card.Header content={props.name} as="h2" textAlign="center"/>
           <Card.Content>
             {
@@ -40,7 +40,6 @@ function Profile () {
               ))
             }
           </Card.Content>
-          <Card.Content content={props.description} style={{ wordWrap: 'break-word', flex: 'inherit' }}/>
           <Card.Content extra>
             Learner: <Rating icon="star" defaultRating={props.ratingLearner} maxRating={5} disabled/>
           </Card.Content>
@@ -48,6 +47,7 @@ function Profile () {
             Teacher: <Rating icon="star" defaultRating={props.ratingTeacher} maxRating={5} disabled/>
           </Card.Content>
           <Image src="https://ohgodmywifeisgerman.files.wordpress.com/2016/10/donttrusttherabbit-photo-04.jpg?w=507&h=321" />
+          <Card.Content content={props.description} style={{ wordWrap: 'break-word', flex: 'inherit' }}/>
         </Card>
     </>
   )
