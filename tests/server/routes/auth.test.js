@@ -1,29 +1,19 @@
 import request from 'supertest'
 const server = require('../../../server/server')
 
-const expectedToken = 'FA12342134SDF@213471asdfASD123'
-const expectedEmail = 'test@test.com'
-const expectedPassword = 'password'
-
 jest.mock('../../../server/db/db', () => ({
-  login: (loginData) => {
-    if (loginData.password === expectedPassword &&
-    loginData.email === expectedEmail) {
-      return Promise.resolve(expectedToken)
-    } else {
-      Promise.resolve({ code: 401, message: 'Username or email is inncorrect' })
-    }
-  }
+  login: (loginData) => Promise.resolve(loginData)
 }))
 
 describe('Tests for authorization', () => {
-  it('Succesfull login should return a auth token', () => {
-    const testLogin = { email: 'test@test.com', password: 'password' }
+  it('Succesfull login should return a auth token', done => {
     request(server)
       .post('/api/v1/login')
-      .send(testLogin)
+      .send({ password: 'password', email: 'test@test.com' })
       .then(res => {
-        expect(res.body).toBe(expectedToken)
+        expect(res.body.token).not.toBeNull()
+        expect(res.status).toBe(200)
+        done()
       })
   })
 })
