@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 
 import Login from './Login'
+import SignUp from './SignUp'
 
 class App extends React.Component {
   render () {
@@ -11,6 +12,7 @@ class App extends React.Component {
         <>
           <Container style={{ marginTop: 75 }}>
             <Switch>
+              <SignUp/>
             </Switch>
           </Container>
         </>
