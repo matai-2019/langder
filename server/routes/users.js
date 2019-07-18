@@ -9,4 +9,12 @@ router.get('/', (req, res) => {
     .then(users => res.status(200).json(users))
 })
 
+router.post('/', (req, res) => {
+  db.addUser(req.body)
+    .then(user => res.status(201).json(user))
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
+
 module.exports = router
