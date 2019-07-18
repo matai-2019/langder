@@ -18,8 +18,7 @@ const props = {
 function Profile () {
   return (
     <>
-      <Container>
-        <Card fluid centered>
+        <Card fluid centered style={{ borderRadius: '10px', maxWidth: '660', margin: '0' }}>
           <Card.Header content={props.name} as="h2" textAlign="center"/>
           <Card.Content>
             {
@@ -41,16 +40,15 @@ function Profile () {
               ))
             }
           </Card.Content>
-          <Card.Content content={props.description} />
+          <Card.Content content={props.description} style={{ wordWrap: 'break-word', flex: 'inherit' }}/>
           <Card.Content extra>
-            Learner: <Rating icon="star" defaultRating={props.ratingLearner} maxRating={5} clearable />
+            Learner: <Rating icon="star" defaultRating={props.ratingLearner} maxRating={5} disabled/>
           </Card.Content>
           <Card.Content extra>
-            Teacher: <Rating icon="star" defaultRating={props.ratingTeacher} maxRating={5} clearable />
+            Teacher: <Rating icon="star" defaultRating={props.ratingTeacher} maxRating={5} disabled/>
           </Card.Content>
           <Image src="https://ohgodmywifeisgerman.files.wordpress.com/2016/10/donttrusttherabbit-photo-04.jpg?w=507&h=321" />
         </Card>
-      </Container>
     </>
   )
 }
