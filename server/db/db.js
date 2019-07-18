@@ -5,10 +5,10 @@ function getUsers (db = connection) {
 }
 
 function getUser (id, db = connection) {
-  return db('users')	
-  .where('users.id', id)	
-  .first()	
-  .select()	
+  return db('users')
+    .where('users.id', id)
+    .first()
+    .select()
 }
 
 function addUser (user, db = connection) {
