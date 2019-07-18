@@ -12,7 +12,7 @@ class App extends React.Component {
         <>
           <Container style={{ marginTop: 75 }}>
             <Switch>
-              <SignUp/>
+              <Login/>
             </Switch>
           </Container>
         </>
