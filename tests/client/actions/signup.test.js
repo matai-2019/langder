@@ -1,33 +1,24 @@
-import request from 'superagent'
 
-export function signup () {
-  return {
-    type: 'SIGNUP'
-  }
-}
+import { addUserSuccess, ADDUSER_SUCCESS } from '../../../client/actions/signup'
 
-export function signupSuccess (user) {
-  return {
-    type: 'SIGNUP_SUCCESS',
-    user
-  }
-}
+describe('actions', () => {
+  it('should create a success action', () => {
+    const testUser = { email: 'test', password: 'password'}
+    const action = addUserSuccess(testUser)
+    const expected = {
+      type: ADDUSER_SUCCESS,
+      user: { email: 'test', password: 'password'}
+    }
+    expect(action).toEqual(expected)
+  })
+})
 
-export function signupError (message) {
-  return {
-    type: 'SIGNUP_ERROR',
-    message
-  }
-}
 
-export function signup () {
-  return dispatch => {
-    dispatch(signupNew())
+// describe('Tests for signupSuccess actions', () => {
+//   it(`signup() returns ${SIGNUP_SUCCESS}`, () => {
+//     const action = 
+//     const expected = signup()
+//     expect(user).toBe(ADDUSER_SUCCESS)
+//   })
 
-    request
-      .get('/api/users')
-      .then(res => dispatch(signupSuccess(res.body)))
-      .catch(err => dispatch(signupError(err.message)))
-  }
-}
-
+// })
