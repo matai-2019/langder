@@ -1,6 +1,13 @@
+import {
+  PENDING_SIGNUP,
+  SIGNUP_SUCCESS,
+  SIGNUP_ERROR
+} from '../actions/signup'
+
+
 export default function signup (state = {}, action) {
   switch (action.type) {
-    case SIGNUP:
+    case PENDING_SIGNUP:
       return {
         loading: true
       }

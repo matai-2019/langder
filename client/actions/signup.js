@@ -1,8 +1,12 @@
 import request from 'superagent'
 
+export const PENDING_SIGNUP = 'PENDING_SIGNUP'
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS'
+export const SIGNUP_ERROR = 'SIGNUP_ERROR'
+
 export function signup () {
   return {
-    type: SIGNUP
+    type: PENDING_SIGNUP
   }
 }
 
@@ -31,4 +35,3 @@ export function signupError (message) {
 //       .catch(err => dispatch(signupError(err.message)))
 //   }
 // }
-

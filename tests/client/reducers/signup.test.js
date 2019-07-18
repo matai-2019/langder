@@ -1,15 +1,19 @@
-import { SIGNUP, signup } from '../../../client/actions/signup'
+
+import { SIGNUP_SUCCESS, SIGNUP_ERROR } from '../../../client/actions/signup'
 import signup from '../../../client/reducers/signup'
 
-
-describe('signup', () => {
-  it('returns the default state if no state or action given', () => {
-    const initialState = undefined
-    const expected = ''
+describe('signup success', () => {
+  it('returns success on signup', () => {
+    const initialState = { email: 'test', password: 'password'}
+    const expected =  {
+      email: "test",
+      password: "password"
+    }
     const action = {
-      type: undefined
+      item: initialState
     }
     const actual = signup(initialState, action)
-    expect(actual).toBe(expected)
+    expect(actual).toEqual(expected)
   })
 })
+
