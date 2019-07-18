@@ -18,7 +18,7 @@ class SignUp extends Component {
     return (
       <Grid style={{ marginTop: '30vh' }} container centered columns={1}>
         <Grid.Row verticalAlign='middle' centered columns={1}>
-          <h1>SignUp</h1>
+          <h1>Sign up</h1>
           <Form onSubmit={this.handleSubmit}>
             <Form.Input
               style={inputStyle}

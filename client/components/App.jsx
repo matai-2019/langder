@@ -12,7 +12,9 @@ class App extends React.Component {
         <>
           <Container style={{ marginTop: 75 }}>
             <Switch>
-              <Route component={Login} />
+              {/* <Route exact path='/' component={welcome}/> */}
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/signup' component={SignUp} />
             </Switch>
           </Container>
         </>
