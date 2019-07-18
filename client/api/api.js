@@ -6,3 +6,5 @@ export function login (user) {
   return request.post(`${url}/${user.id}`)
     .send(user)
 }
+
+
