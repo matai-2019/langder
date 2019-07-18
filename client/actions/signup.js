@@ -1,25 +1,25 @@
 import request from 'superagent'
 
-export const PENDING_SIGNUP = 'PENDING_SIGNUP'
-export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS'
-export const SIGNUP_ERROR = 'SIGNUP_ERROR'
+export const PENDING_ADDUSER = 'PENDING_ADDUSER'
+export const ADDUSER_SUCCESS = 'ADDUSER_SUCCESS'
+export const ADDUSER_ERROR = 'ADDUSER_ERROR'
 
-export function signup () {
+export function addUser () {
   return {
-    type: PENDING_SIGNUP
+    type: PENDING_ADDUSER
   }
 }
 
-export function signupSuccess (user) {
+export function addUserSuccess (user) {
   return {
-    type: SIGNUP_SUCCESS,
+    type: ADDUSER_SUCCESS,
     user
   }
 }
 
-export function signupError (message) {
+export function addUserError (message) {
   return {
-    type: SIGNUP_ERROR,
+    type: ADDUSER_ERROR,
     message
   }
 }

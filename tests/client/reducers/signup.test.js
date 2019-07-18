@@ -1,9 +1,9 @@
 
-import { SIGNUP_SUCCESS, SIGNUP_ERROR } from '../../../client/actions/signup'
-import signup from '../../../client/reducers/signup'
+import { ADDUSER_SUCCESS, ADDUSER_ERROR } from '../../../client/actions/signup'
+import addUser from '../../../client/reducers/signup'
 
-describe('signup success', () => {
-  it('returns success on signup', () => {
+describe('addUser success', () => {
+  it('returns success on addUser', () => {
     const initialState = { email: 'test', password: 'password'}
     const expected =  {
       email: "test",
@@ -12,7 +12,7 @@ describe('signup success', () => {
     const action = {
       item: initialState
     }
-    const actual = signup(initialState, action)
+    const actual = addUser(initialState, action)
     expect(actual).toEqual(expected)
   })
 })

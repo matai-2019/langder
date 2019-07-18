@@ -1,22 +1,22 @@
 import {
-  PENDING_SIGNUP,
-  SIGNUP_SUCCESS,
-  SIGNUP_ERROR
+  PENDING_ADDUSER,
+  ADDUSER_SUCCESS,
+  ADDUSER_ERROR
 } from '../actions/signup'
 
 
-export default function signup (state = {}, action) {
+export default function addUser (state = {}, action) {
   switch (action.type) {
-    case PENDING_SIGNUP:
+    case PENDING_ADDUSER:
       return {
         loading: true
       }
-    case SIGNUP_SUCCESS:
+    case ADDUSER_SUCCESS:
       return { 
         item: action.user 
       }
 
-    case SIGNUP_ERROR:
+    case ADDUSER_ERROR:
       return {
           error: action.error
         }  
