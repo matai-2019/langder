@@ -11,3 +11,8 @@ export const getUser = (user) => {
   return request(url)
     .get(`${url}/${user}`)
 }
+
+export const updateUser = (user) => {
+  return request.put(`${url}/${user.id}`)
+    .send(user)
+}
