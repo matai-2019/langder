@@ -5,8 +5,8 @@ const db = require('../db/db')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  db.getFoods()
-    .then(foods => res.status(200).json(foods))
+  db.getUsers()
+    .then(users => res.status(200).json(users))
 })
 
 module.exports = router
