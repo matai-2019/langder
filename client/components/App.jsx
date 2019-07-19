@@ -5,13 +5,15 @@ import { Container } from 'semantic-ui-react'
 import Login from './Login'
 import SignUp from './SignUp'
 import Profile from './Profile'
+import AddProfile from './AddProfile'
 
 class App extends React.Component {
   render () {
     return (
       <Router>
         <>
-          <Container style={{ marginTop: 75 }}>
+          <AddProfile/>
+          <Container >
             <Switch>
               {/* <Route exact path='/' component={welcome}/> */}
               <Route exact path='/login' component={Login} />
