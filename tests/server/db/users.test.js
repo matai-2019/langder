@@ -27,12 +27,17 @@ test('db.addUser adds user to users table', () => {
     email: 'ergoman@coffeepancakewafflebacon.com',
     password: 'Pa$$w0rd'
   }
-
   return db.addUser(user, testDb)
     .then(users => {
-      const expected = users[0]
-      const actual = 4
-      expect(expected).toBe(actual)
+      expect(users[0]).toBe(4)
     })
 })
 
+test('db.deleteUser runs a successful delete', () => {
+  return db.deleteUser(1, testDb)
+    .then(
+      db.getUsers()
+        .then(users => {
+          expect(users.length).toBe(2)
+        }))
+})
