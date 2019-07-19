@@ -4,6 +4,7 @@ function getUsers (db = connection) {
   return db('users')
     .join('profiles', 'users.id', 'profiles.userId')
     .join('language', 'user.id', 'language.userId')
+    .select()
 }
 
 function getUser (id, db = connection) {
