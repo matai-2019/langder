@@ -6,15 +6,13 @@ const props = {
   id: 1,
   name: 'Trixie',
   image: 'https://ohgodmywifeisgerman.files.wordpress.com/2016/10/donttrusttherabbit-photo-04.jpg?w=507&h=321',
-  languages: {
-    toKnow: [
-      { name: 'Japanese', country: 'jp' },
-      { name: 'Creole', country: 'jm' },
-      { name: 'Chinese', country: 'cn' },
-      { name: 'German', country: 'de' }
-    ],
-    know: [{ name: 'Singhalise', country: 'lk' }]
-  },
+  toKnow: [
+    { name: 'Japanese', country: 'jp' },
+    { name: 'Creole', country: 'jm' },
+    { name: 'Chinese', country: 'cn' },
+    { name: 'German', country: 'de' }
+  ],
+  know: [{ name: 'Singhalise', country: 'lk' }],
   description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur possimus itaque commodi quibusdam magni. In velit, quisquam ipsa, doloremque recusandae voluptatem dolor veniam incidunt eos, dolores maxime facere quis ullam.',
   email: 'test@test.com',
   ratingLearner: 4,
@@ -80,14 +78,13 @@ function Profile () {
   const mapLanguage = (languages, color) => {
     if (!color) color = 'grey'
     return languages.map((lang, index) => {
-      if (index <= 10) {
-        return (
+      return languages && index <= 10
+        ? (
           <Label key={index} color={color} style={theme.tag} size="large">
             <Flag name={lang.country} />
             {lang.name}
           </Label>
-        )
-      }
+        ) : null
     })
   }
 
@@ -104,14 +101,14 @@ function Profile () {
             <span style={theme.span}>Teaching</span>
             <Rating icon="star" defaultRating={props.ratingTeacher} maxRating={5} size="large" style={theme.icon} disabled />
           </Card.Header>
-          {mapLanguage(props.languages.toKnow, 'teal')}
+          {mapLanguage(props.toKnow, 'teal')}
         </Card.Content>
         <Card.Content>
           <Card.Header style={theme.header}>
             <span style={theme.span}>Learning</span>
             <Rating icon="star" defaultRating={props.ratingLearner} maxRating={5} size="large" style={theme.icon} disabled />
           </Card.Header>
-          {mapLanguage(props.languages.know)}
+          {mapLanguage(props.know)}
         </Card.Content>
         <Card.Content content={props.description} style={theme.description} />
         <div className="buttonControls" style={theme.controls}>
