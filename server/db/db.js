@@ -13,16 +13,16 @@ function getUser (id, db = connection) {
 
 function addUser (user, db = connection) {
   return db('users')
-    .insert({ email: user.email, password: user.password })
+    .insert(user)
 }
 
-function addProfile(user, db = connection) {
+function addProfile (user, db = connection) {
   return db('profiles')
-  .insert({
-    userId: user.userId,
-    name: user.name,
-    password: user.password
-  })
+    .insert({
+      userId: user.userId,
+      name: user.name,
+      password: user.password
+    })
 }
 
 function login (loginData, db = connection) {
@@ -33,11 +33,17 @@ function login (loginData, db = connection) {
     .first()
 }
 
+function deleteUser (id, db = connection) {
+  return db('users')
+    .where('id', id)
+    .del()
+}
+
 module.exports = {
   getUsers,
   getUser,
   addUser,
-  getUser,
   addProfile,
-  login
+  login,
+  deleteUser
 }

@@ -4,19 +4,20 @@ import { Container } from 'semantic-ui-react'
 
 import Login from './Login'
 import SignUp from './SignUp'
-import AddProfile from './AddProfile'
+import UpdateProfile from './UpdateProfile'
+import Profile from './Profile'
 
 class App extends React.Component {
   render () {
     return (
       <Router>
         <>
-          <AddProfile/>
           <Container >
             <Switch>
               {/* <Route exact path='/' component={welcome}/> */}
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={SignUp} />
+              <Route exact path='/user/:id/profile' component={Profile} />
             </Switch>
           </Container>
         </>

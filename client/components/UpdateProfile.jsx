@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Grid, Dropdown, Card, TextArea } from 'semantic-ui-react'
 
-class AddProfile extends Component {
+class UpdateProfile extends Component {
   state = {
     id: '',
     profileId: '',
@@ -92,4 +92,4 @@ class AddProfile extends Component {
   }
 }
 
-export default AddProfile
+export default UpdateProfile
