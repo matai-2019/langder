@@ -38,7 +38,6 @@ test('GET /users returns a specific user', () => {
     .expect(200)
     .then(res => {
       const actual = res.body.email
-      console.log(actual)
       expect(actual).toMatch('email2@email.com')
     })
     .catch(err => expect(err).toBe(err))
