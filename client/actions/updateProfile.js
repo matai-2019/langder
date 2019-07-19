@@ -4,7 +4,7 @@ export const PENDING_UPDATE_PROFILE = 'PENDING_UPDATE_PROFILE'
 export const UPDATE_PROFILE_SUCCESS = 'UPDATE_PROFILE_SUCCESS'
 export const UPDATE_PROFILE_ERROR = 'UPDATE_PROFILE_ERROR'
 
-export function updateProfile () {
+export function pendingUpdateProfile () {
   return {
     type: PENDING_UPDATE_PROFILE
   }
@@ -24,9 +24,9 @@ export function updateProfileError (message) {
   }
 }
 
-export function updateProfilePending (profileId) {
+export function updateProfile (profileId) {
   return dispatch => {
-    dispatch(updateProfile())
+    dispatch(pendingUpdateProfile())
 
     request.put(`/api/v1/user/${profileId}`)
       .then(res => dispatch(updateProfileSuccess(res.body)))
