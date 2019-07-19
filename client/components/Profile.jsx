@@ -102,14 +102,14 @@ function Profile () {
         <Card.Content>
           <Card.Header style={theme.header}>
             <span style={theme.span}>Teaching</span>
-            <Rating icon="star" defaultRating={props.ratingTeacher} maxRating={5} size="huge" style={theme.icon} disabled />
+            <Rating icon="star" defaultRating={props.ratingTeacher} maxRating={5} size="large" style={theme.icon} disabled />
           </Card.Header>
           {mapLanguage(props.languages.toKnow, 'teal')}
         </Card.Content>
         <Card.Content>
           <Card.Header style={theme.header}>
             <span style={theme.span}>Learning</span>
-            <Rating icon="star" defaultRating={props.ratingLearner} maxRating={5} size="huge" style={theme.icon} disabled />
+            <Rating icon="star" defaultRating={props.ratingLearner} maxRating={5} size="large" style={theme.icon} disabled />
           </Card.Header>
           {mapLanguage(props.languages.know)}
         </Card.Content>
