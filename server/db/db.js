@@ -36,17 +36,17 @@ async function addUser (user, db = connection) {
     })
 }
 
-function addUserLanguage (userId, langIds, db = connection) {
-  async () => {
-    const data = langIds.map(langId => { userId, langId })
+function getUsersLanguages (db = connection) {
+  return db('userLanguages')
+}
 
-    await db('users').insert(data)
-  }
+async function addUserLanguage (userId, langIds, db = connection) {
+  const data = langIds.map(langId => {
+    return { userId: userId, langId: langId }
+  })
 
-  // langIds.forEach(langId => {
-  // return db('userLanguages')
-  // .insert({ userId, langId })
-  // })
+  const result = await db('userLanguages').insert(data)
+  return result
 }
 
 function updateProfile (profile, db = connection) {
@@ -76,6 +76,7 @@ module.exports = {
   getUsers,
   getUser,
   addUser,
+  getUsersLanguages,
   addUserLanguage,
   updateProfile,
   login,
