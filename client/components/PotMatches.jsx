@@ -6,8 +6,7 @@ import Profile from './Profile'
 import { potentialMatches } from '../actions/potentialMatches'
 // import { getusers from the API when possible } from '../api/api'
 
-
-class GetPotentialMatches extends React.Component {
+class PotMatches extends React.Component {
   state = {
     profileId: '',
     name: '',
@@ -24,7 +23,7 @@ class GetPotentialMatches extends React.Component {
     languages: []
   })
 
-  render() {
+  render () {
     const testarray = ['4', 'strings', 'another', 'string']
     const { name, description, languages } = this.state
     return (
@@ -32,19 +31,19 @@ class GetPotentialMatches extends React.Component {
         <Container className='matches'>
           <h1>Your Matches are all Trixie. sorry.</h1>
           {testarray.map(user =>
-        <Profile key={user.id} user={potentialMatches} />)}
-              <Button name='next' /><Icon name="pencil" />
+            <Profile key={user} user={potentialMatches} />)}
+          <Button name='next' /><Icon name="pencil" />
         </Container>
 
       </>
-        )
-      }
-    }
-    
+    )
+  }
+}
+
 const mapStateToProps = state => {
   return {
-          users: state.users
-      }
-    }
-    
-    export default connect(mapStateToProps)(GetPotentialMatches)
+    users: state.users
+  }
+}
+
+export default connect(mapStateToProps)(PotMatches)
