@@ -1,3 +1,4 @@
+require('babel-polyfill')
 const env = require('./test-environment')
 const db = require('../../../server/db/db')
 
@@ -27,10 +28,12 @@ test('db.addUser adds user to users table', () => {
     email: 'ergoman@coffeepancakewafflebacon.com',
     password: 'Pa$$w0rd'
   }
-  return db.addUser(user, testDb)
-    .then(users => {
-      expect(users[0]).toBe(4)
-    })
+  const expected = 4
+
+  return db.addUser(user, testDb).then(async () => {
+    const actual = await db.getUsers(testDb)
+    expect(actual.length).toBe(expected)
+  })
 })
 
 test('db.deleteUser runs a successful delete', () => {
