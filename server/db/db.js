@@ -15,15 +15,25 @@ function getUsers (db = connection) {
 
 function getUser (id, db = connection) {
   return db('users')
+    .join('profiles', 'users.id', 'profiles.userId')
     .where('users.id', id)
     .first()
-    .select()
+    .select('users.id',
+      'profiles.id AS profileId',
+      'users.email',
+      'profiles.name',
+      'profiles.description')
 }
 
 async function addUser (user, db = connection) {
   const hashedUser = { ...user, password: await hashPassword(user.password) }
   return db('users')
     .insert(hashedUser)
+    .then(idArray => {
+      const userId = idArray[0]
+      return db('profiles')
+        .insert({ userId })
+    })
 }
 
 function addUserLanguage (userId, langIds, db = connection) {

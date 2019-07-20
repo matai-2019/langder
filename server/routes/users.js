@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   db.addUser(req.body)
-    .then(user => res.status(201).json(user))
+    .then(() => res.status(201).send())
     .catch(err => {
       res.status(500).json(err)
     })
