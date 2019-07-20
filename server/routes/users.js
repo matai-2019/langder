@@ -5,9 +5,10 @@ const db = require('../db/db')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  const info = req.body
-  db.getUser(info)
-    .then(user => res.status(200).json(user))
+  // const info = req.body
+  // db.getUser(info)
+  db.addUserLanguage(1, [2, 4, 6, 3])
+    .then(user => console.log(user))
 })
 
 router.get('/:id', (req, res) => {

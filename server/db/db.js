@@ -16,6 +16,13 @@ function addUser (user, db = connection) {
     .insert(user)
 }
 
+function addUserLanguage (id, langIds, db = connection) {
+  langIds.forEach(lang => {
+    return db('UserLanguages')
+      .insert({ userId: id, langId: lang })
+  })
+}
+
 function addProfile (user, db = connection) {
   return db('profiles')
     .insert({
@@ -43,6 +50,7 @@ module.exports = {
   getUsers,
   getUser,
   addUser,
+  addUserLanguage,
   addProfile,
   login,
   deleteUser
