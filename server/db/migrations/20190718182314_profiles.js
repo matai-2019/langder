@@ -11,8 +11,6 @@ exports.up = function (knex) {
       .onDelete('CASCADE')
       .onUpdate('CASCADE')
     table.string('description')
-    table.integer('learnerRating')
-    table.integer('teacherRating')
   })
 }
 
