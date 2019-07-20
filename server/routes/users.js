@@ -7,6 +7,7 @@ const router = express.Router()
 router.get('/', (req, res) => {
   const info = req.body
   db.getUser(info)
+    .then(user => res.status(200).json(user))
 })
 
 router.get('/:id', (req, res) => {
