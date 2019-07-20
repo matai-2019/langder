@@ -6,6 +6,7 @@ function getUsers (db = connection) {
 
 function getUser (id, db = connection) {
   return db('users')
+    .join('profiles', 'users.id', 'profiles.userId')
     .where('users.id', id)
     .first()
     .select()
