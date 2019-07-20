@@ -4,12 +4,7 @@ const db = require('../db/db')
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  const info = req.body
-  db.getUser(info)
-    .then(user => res.status(200).json(user))
-})
-
+// get '/:id' route should call:
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id)
   db.getUser(id)
@@ -28,5 +23,9 @@ router.post('/', (req, res) => {
       res.status(500).json(err)
     })
 })
+
+// put route to update user
+
+// put route to update profile
 
 module.exports = router

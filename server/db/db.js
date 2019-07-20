@@ -9,6 +9,14 @@ function hashPassword (plainPassword) {
     })
 }
 
+function login (loginData, db = connection) {
+  return db('users')
+    .select()
+    .where('password', loginData.password)
+    .where('email', loginData.email)
+    .first()
+}
+
 function getUsers (db = connection) {
   return db('users')
 }
@@ -46,7 +54,13 @@ function getAllUsersLanguages (db = connection) {
   return db('userLanguages')
 }
 
-// get a user's languages
+// add a language => stretch
+
+// update language => stretch
+
+// delete language => stretch
+
+// get a user's languages (has ticket)
 
 async function addUserLanguage (userId, langIds, db = connection) {
   const data = langIds.map(langId => {
@@ -56,9 +70,13 @@ async function addUserLanguage (userId, langIds, db = connection) {
   return result
 }
 
-// update user language
+// update user language (has ticket)
 
-// delete user language
+// delete user language (has ticket)
+
+// get profile (has ticket)
+
+// add profile (has ticket)
 
 function updateProfile (profile, db = connection) {
   return db('profiles')
@@ -69,22 +87,16 @@ function updateProfile (profile, db = connection) {
     })
 }
 
-function login (loginData, db = connection) {
-  return db('users')
-    .select()
-    .where('password', loginData.password)
-    .where('email', loginData.email)
-    .first()
-}
+// delete profile (has ticket)
 
 module.exports = {
-  getUsers,
+  hashPassword,
+  login,
   getUser,
-  addUser,
+  getUsers,
   getAllUsersLanguages,
+  addUser,
   addUserLanguage,
   updateProfile,
-  login,
-  deleteUser,
-  hashPassword
+  deleteUser
 }
