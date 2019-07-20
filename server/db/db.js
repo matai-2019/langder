@@ -15,9 +15,14 @@ function getUsers (db = connection) {
 
 function getUser (id, db = connection) {
   return db('users')
+    .join('profiles', 'users.id', 'profiles.userId')
     .where('users.id', id)
     .first()
-    .select()
+    .select('users.id',
+      'profiles.id AS profileId',
+      'users.email',
+      'profiles.name',
+      'profiles.description')
 }
 
 async function addUser (user, db = connection) {
