@@ -1,4 +1,13 @@
 const connection = require('./connection')
+const bcrypt = require('bcrypt')
+const saltRounds = 10
+
+function hashPassword (plainPassword) {
+  return bcrypt.hash(plainPassword, saltRounds)
+    .then(function (hash) {
+      return hash
+    })
+}
 
 function getUsers (db = connection) {
   return db('users')
@@ -12,17 +21,18 @@ function getUser (id, db = connection) {
     .select()
 }
 
-function addUser (user, db = connection) {
+async function addUser (user, db = connection) {
+  const hashedUser = { ...user, password: await hashPassword(user.password) }
   return db('users')
-    .insert(user)
+    .insert(hashedUser)
 }
 
-function addProfile (user, db = connection) {
+function updateProfile (profile, db = connection) {
   return db('profiles')
-    .insert({
-      userId: user.userId,
-      name: user.name,
-      password: user.password
+    .where('id', profile.id)
+    .update({
+      name: profile.name,
+      description: profile.description
     })
 }
 
@@ -44,7 +54,8 @@ module.exports = {
   getUsers,
   getUser,
   addUser,
-  addProfile,
+  updateProfile,
   login,
-  deleteUser
+  deleteUser,
+  hashPassword
 }
