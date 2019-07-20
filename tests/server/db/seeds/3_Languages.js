@@ -4,9 +4,9 @@ exports.seed = function (knex) {
     .then(function () {
       // Inserts seed entries
       return knex('languages').insert([
-        { id: 1, userId: 1, name: 'Mandarin' },
-        { id: 2, userId: 2, name: 'Korean' },
-        { id: 3, userId: 2, name: 'Maori' }
+        { id: 1, name: 'japanese', countryCode: 'jp' },
+        { id: 2, name: 'chinese', countryCode: 'ch' },
+        { id: 3, name: 'english', countryCode: 'en' }
       ])
     })
 }

@@ -10,7 +10,7 @@ beforeEach(() => {
 
 afterEach(() => env.cleanup(testDb))
 
-test('db.getUsers returns an array of 3 users', () => {
+test.skip('db.getUsers returns an array of 3 users', () => {
   expect.assertions(1)
 
   const expected = 3
@@ -22,7 +22,7 @@ test('db.getUsers returns an array of 3 users', () => {
     })
 })
 
-test('db.addUser adds user to users table', () => {
+test.skip('db.addUser adds user to users table', () => {
   const user = {
     email: 'ergoman@coffeepancakewafflebacon.com',
     password: 'Pa$$w0rd'
@@ -33,11 +33,20 @@ test('db.addUser adds user to users table', () => {
     })
 })
 
-test('db.deleteUser runs a successful delete', () => {
+test.skip('db.deleteUser runs a successful delete', () => {
   return db.deleteUser(1, testDb)
     .then(
       db.getUsers()
         .then(users => {
           expect(users.length).toBe(2)
         }))
+})
+
+test('db.addUserLanguage adds languages to userLanguages table', () => {
+  const user = 3
+  const languages = [2, 3]
+  return db.addUserLanguage(user, languages, testDb)
+    .then(userLanguages => {
+      expect(userLanguages.length).toBe(6)
+    })
 })
