@@ -4,7 +4,6 @@ const db = require('../db/db')
 
 const router = express.Router()
 
-// get '/:id' route should call:
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id)
   db.getUser(id)
@@ -26,6 +25,12 @@ router.post('/', (req, res) => {
 
 // put route to update user
 
-// put route to update profile
+// delete route to delete user
+
+// get route to get user languages
+
+// post route to add user languages
+
+// del route tto delete user languages
 
 module.exports = router
