@@ -26,12 +26,17 @@ async function addUser (user, db = connection) {
     .insert(hashedUser)
 }
 
-function addUserLanguage (id, langIds, db = connection) {
-  langIds.forEach(lang => {
-    console.log('db langId:', lang, 'id:', id)
-    return db('UserLanguages')
-      .insert({ userId: id, langId: lang })
-  })
+function addUserLanguage (userId, langIds, db = connection) {
+  async () => {
+    const data = langIds.map(langId => { userId, langId })
+
+    await db('users').insert(data)
+  }
+
+  // langIds.forEach(langId => {
+  // return db('userLanguages')
+  // .insert({ userId, langId })
+  // })
 }
 
 function updateProfile (profile, db = connection) {

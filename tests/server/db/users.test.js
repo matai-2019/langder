@@ -43,10 +43,10 @@ test.skip('db.deleteUser runs a successful delete', () => {
 })
 
 test('db.addUserLanguage adds languages to userLanguages table', () => {
-  const user = 3
+  const user = 2
   const languages = [2, 3]
   return db.addUserLanguage(user, languages, testDb)
-    .then(userLanguages => {
-      expect(userLanguages.length).toBe(6)
+    .then(data => {
+      expect(data[0]).toBe(2)
     })
 })
