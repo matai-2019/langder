@@ -39,11 +39,23 @@ function deleteUser (id, db = connection) {
     .del()
 }
 
+function updateuser (users, db = connection) {
+  return db('users')
+    .where('users', users.id)
+    .update({
+    users: user.id,
+    password: user.password
+
+    })
+}
+
+
 module.exports = {
   getUsers,
   getUser,
   addUser,
   addProfile,
   login,
-  deleteUser
+  deleteUser,
+  updateuser
 }
