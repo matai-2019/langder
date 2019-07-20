@@ -2,18 +2,24 @@ import React from 'react'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 
-import FoodList from './FoodList'
-import TopMenu from './TopMenu'
+import Login from './Login'
+import SignUp from './SignUp'
+import UpdateProfile from './UpdateProfile'
+import Profile from './Profile'
+import GetPotentialMatches from './GetPotentialMatches'
 
 class App extends React.Component {
   render () {
     return (
       <Router>
         <>
-          <Route path='/' component={TopMenu} />
-          <Container style={{ marginTop: 75 }}>
+          <Container >
             <Switch>
-              <Route exact path='/' component={FoodList} />
+              {/* <Route exact path='/' component={welcome}/> */}
+              <Route exact path='/GetPotentialMatches' component={GetPotentialMatches}/>
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/signup' component={SignUp} />
+              <Route exact path='/user/:id/profile' component={Profile} />
             </Switch>
           </Container>
         </>
@@ -23,4 +29,3 @@ class App extends React.Component {
 }
 
 export default App
-
