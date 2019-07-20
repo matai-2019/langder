@@ -59,6 +59,12 @@ function updateuser (users, db = connection) {
     })
 }
 
+function deleteProfile (id, db = connection) {
+  return db('profiles')
+    .where('id', id)
+    .del()
+}
+
 module.exports = {
   getUsers,
   getUser,
@@ -67,5 +73,6 @@ module.exports = {
   login,
   deleteUser,
   hashPassword,
-  updateuser
+  updateuser,
+  deleteProfile
 }
