@@ -36,3 +36,14 @@ test('db.addUser adds user to users table', () => {
     })
 })
 
+test('db.getUsers returns an array of 3 users but values from other tables', () => {
+  expect.assertions(1)
+
+  const expected = 3
+
+  return db.getUsers(testDb)
+    .then(users => {
+      const actual = users.length
+      expect(actual).toBe(expected)
+    })
+})

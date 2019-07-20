@@ -1,7 +1,14 @@
 const connection = require('./connection')
 
-function getUsers (db = connection) {
-  return db('users')
+// function getUsers (db = connection) {
+//   return db('users')
+// }
+
+function getPotentialMatches (id, db = connection) {
+  return db('users_Ln')
+    .where('users.id', id)
+    .first()
+    .select()
 }
 
 function getUser (id, db = connection) {
@@ -16,13 +23,13 @@ function addUser (user, db = connection) {
     .insert({ email: user.email, password: user.password })
 }
 
-function addProfile(user, db = connection) {
+function addProfile (user, db = connection) {
   return db('profiles')
-  .insert({
-    userId: user.userId,
-    name: user.name,
-    password: user.password
-  })
+    .insert({
+      userId: user.userId,
+      name: user.name,
+      password: user.password
+    })
 }
 
 function login (loginData, db = connection) {
@@ -34,10 +41,9 @@ function login (loginData, db = connection) {
 }
 
 module.exports = {
-  getUsers,
+  getPotentialMatches,
   getUser,
   addUser,
-  getUser,
   addProfile,
   login
 }
