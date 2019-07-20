@@ -31,12 +31,12 @@ async function addUser (user, db = connection) {
     })
 }
 
-function addProfile (user, db = connection) {
+function updateProfile (profile, db = connection) {
   return db('profiles')
-    .insert({
-      userId: user.userId,
-      name: user.name,
-      password: user.password
+    .where('id', profile.id)
+    .update({
+      name: profile.name,
+      description: profile.description
     })
 }
 
@@ -58,7 +58,7 @@ module.exports = {
   getUsers,
   getUser,
   addUser,
-  addProfile,
+  updateProfile,
   login,
   deleteUser,
   hashPassword
