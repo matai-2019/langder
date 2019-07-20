@@ -4,9 +4,11 @@ exports.seed = function (knex) {
     .then(function () {
       // Inserts seed entries
       return knex('languages').insert([
-        { id: 1, userId: 1, name: 'Mandarin' },
-        { id: 2, userId: 2, name: 'Korean' },
-        { id: 3, userId: 2, name: 'Maori' }
+        { id: 1, name: 'Mandarin', countryCode: 'cn' },
+        { id: 2, name: 'Korean', countryCode: 'kr' },
+        { id: 3, name: 'Maori', countryCode: 'nz' },
+        { id: 4, name: 'Japanese', countryCode: 'jp' },
+        { id: 5, name: 'Spanish', countryCode: 'es' }
       ])
     })
 }

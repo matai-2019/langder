@@ -34,12 +34,12 @@ function addUserLanguage (id, langIds, db = connection) {
   })
 }
 
-function addProfile (user, db = connection) {
+function updateProfile (profile, db = connection) {
   return db('profiles')
-    .insert({
-      userId: user.userId,
-      name: user.name,
-      password: user.password
+    .where('id', profile.id)
+    .update({
+      name: profile.name,
+      description: profile.description
     })
 }
 
@@ -62,7 +62,7 @@ module.exports = {
   getUser,
   addUser,
   addUserLanguage,
-  addProfile,
+  updateProfile,
   login,
   deleteUser,
   hashPassword
