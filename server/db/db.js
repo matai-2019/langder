@@ -18,11 +18,11 @@ function getUser (id, db = connection) {
     .join('profiles', 'users.id', 'profiles.userId')
     .where('users.id', id)
     .first()
-    .select('id',
-      'profile.id AS profileId',
+    .select('users.id',
+      'profiles.id AS profileId',
       'users.email',
-      'profile.name',
-      'profile.description')
+      'profiles.name',
+      'profiles.description')
 }
 
 async function addUser (user, db = connection) {
