@@ -4,7 +4,7 @@ export const PENDING_ADDUSER = 'PENDING_ADDUSER'
 export const ADDUSER_SUCCESS = 'ADDUSER_SUCCESS'
 export const ADDUSER_ERROR = 'ADDUSER_ERROR'
 
-export function addUser () {
+export function addUserPending () {
   return {
     type: PENDING_ADDUSER
   }
@@ -24,13 +24,12 @@ export function addUserError (message) {
   }
 }
 
-// export function fetchSign () {
+// export function addUser () {
 //   return dispatch => {
-//     dispatch(fetchSign())
-    
+//     dispatch(addUserPending())
 //     request
-//       .get('/api/users')
-//       .then(res => dispatch(signupSuccess(res.body)))
-//       .catch(err => dispatch(signupError(err.message)))
+//       .post('/api/v1/users')
+//       .then(res => dispatch(addUserSuccess(res.body)))
+//       .catch(err => dispatch(addUserError(err.message)))
 //   }
 // }
