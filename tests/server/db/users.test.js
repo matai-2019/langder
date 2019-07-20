@@ -11,9 +11,6 @@ beforeEach(() => {
 
 afterEach(() => env.cleanup(testDb))
 
-<<<<<<< HEAD
-test.skip('db.getUsers returns an array of 3 users', () => {
-=======
 test('db.getUser returns a single user', () => {
   const expected = 'test1'
   const id = 1
@@ -25,7 +22,6 @@ test('db.getUser returns a single user', () => {
 })
 
 test('db.getUsers returns an array of 3 users', () => {
->>>>>>> e5c4bd3e768bb698450466b0e8a41d2759ab8954
   expect.assertions(1)
 
   const expected = 3
