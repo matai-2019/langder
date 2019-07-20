@@ -27,15 +27,13 @@ test('db.addUser adds user to users table', () => {
     email: 'ergoman@coffeepancakewafflebacon.com',
     password: 'Pa$$w0rd'
   }
-
   return db.addUser(user, testDb)
     .then(users => {
-      const expected = users[0]
-      const actual = 4
-      expect(expected).toBe(actual)
+      expect(users[0]).toBe(4)
     })
 })
 
+<<<<<<< HEAD
 test('db.getUsers returns an array of 3 users but values from other tables', () => {
   expect.assertions(1)
 
@@ -46,4 +44,13 @@ test('db.getUsers returns an array of 3 users but values from other tables', () 
       const actual = users.length
       expect(actual).toBe(expected)
     })
+=======
+test('db.deleteUser runs a successful delete', () => {
+  return db.deleteUser(1, testDb)
+    .then(
+      db.getUsers()
+        .then(users => {
+          expect(users.length).toBe(2)
+        }))
+>>>>>>> a857560d4ce73926a127339aa845441d2e77df6d
 })

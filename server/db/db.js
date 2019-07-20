@@ -20,7 +20,7 @@ function getUser (id, db = connection) {
 
 function addUser (user, db = connection) {
   return db('users')
-    .insert({ email: user.email, password: user.password })
+    .insert(user)
 }
 
 function addProfile (user, db = connection) {
@@ -40,10 +40,17 @@ function login (loginData, db = connection) {
     .first()
 }
 
+function deleteUser (id, db = connection) {
+  return db('users')
+    .where('id', id)
+    .del()
+}
+
 module.exports = {
   getPotentialMatches,
   getUser,
   addUser,
   addProfile,
-  login
+  login,
+  deleteUser
 }
