@@ -5,6 +5,7 @@ import { Container } from 'semantic-ui-react'
 import Login from './Login'
 import SignUp from './SignUp'
 import Profile from './Profile'
+import PotMatches from './PotMatches'
 import Navbar from './Navbar'
 
 class App extends React.Component {
@@ -16,6 +17,7 @@ class App extends React.Component {
           <Container >
             <Switch>
               {/* <Route exact path='/' component={welcome}/> */}
+              <Route exact path='/pot' component={PotMatches}/>
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={SignUp} />
               <Route exact path='/profile' component={Profile} />

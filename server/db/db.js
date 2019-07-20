@@ -50,6 +50,15 @@ function deleteUser (id, db = connection) {
     .del()
 }
 
+// function updateuser (user, db = connection) {
+//   return db('users')
+//     .where('users', user.id)
+//     .update({
+//       users: user.id,
+//       password: user.password
+//     })
+// }
+
 function getAllUsersLanguages (db = connection) {
   return db('userLanguages')
 }
