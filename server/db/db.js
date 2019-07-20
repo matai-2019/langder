@@ -70,12 +70,12 @@ function deleteUserLanguage (langId, db = connection) {
     .where('id', langId)
     .del()
 }
-          //stretch for users to add language to languages table in DB
-// function addLanguage (langId, db = connection) {
-//   return db('userLanguages')
-//     .where('users', users.id)
+//           //stretch for users to add language to languages table in DB
+// function addLanguage (name, db = connection) {
+//   return db('Languages')
+//     .where('languages', languages.id)
 //     .insert({
-//       UserId: userLanguages.langId,
+//      languages: name
 //     })
 // }
 
