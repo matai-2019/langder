@@ -46,11 +46,16 @@ function deleteUser (id, db = connection) {
     .del()
 }
 
+function getLanguages (db = connection) {
+  return db('languages').select()
+}
+
 module.exports = {
   getPotentialMatches,
   getUser,
   addUser,
   addProfile,
   login,
-  deleteUser
+  deleteUser,
+  getLanguages
 }
