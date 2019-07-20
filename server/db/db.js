@@ -28,6 +28,7 @@ async function addUser (user, db = connection) {
 
 function addUserLanguage (id, langIds, db = connection) {
   langIds.forEach(lang => {
+    console.log('db', lang)
     return db('UserLanguages')
       .insert({ userId: id, langId: lang })
   })
