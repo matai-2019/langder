@@ -49,7 +49,6 @@ function updateuser (users, db = connection) {
     })
 }
 
-
 module.exports = {
   getUsers,
   getUser,
