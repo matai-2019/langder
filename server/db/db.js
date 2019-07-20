@@ -65,6 +65,20 @@ function deleteProfile (id, db = connection) {
     .del()
 }
 
+function deleteUserLanguage (langId, db = connection) {
+  return db('userLanguages')
+    .where('id', langId)
+    .del()
+}
+          //stretch for users to add language to languages table in DB
+// function addLanguage (langId, db = connection) {
+//   return db('userLanguages')
+//     .where('users', users.id)
+//     .insert({
+//       UserId: userLanguages.langId,
+//     })
+// }
+
 module.exports = {
   getUsers,
   getUser,
@@ -74,6 +88,6 @@ module.exports = {
   deleteUser,
   hashPassword,
   updateuser,
-  deleteProfile
+  deleteProfile,
+  deleteUserLanguage
 }
-
