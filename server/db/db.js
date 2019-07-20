@@ -29,6 +29,11 @@ async function addUser (user, db = connection) {
   const hashedUser = { ...user, password: await hashPassword(user.password) }
   return db('users')
     .insert(hashedUser)
+    .then(idArray => {
+      const userId = idArray[0]
+      return db('profiles')
+        .insert({ userId })
+    })
 }
 
 function updateProfile (profile, db = connection) {
