@@ -36,6 +36,19 @@ async function addUser (user, db = connection) {
     })
 }
 
+function getUsersLanguages (db = connection) {
+  return db('userLanguages')
+}
+
+async function addUserLanguage (userId, langIds, db = connection) {
+  const data = langIds.map(langId => {
+    return { userId: userId, langId: langId }
+  })
+
+  const result = await db('userLanguages').insert(data)
+  return result
+}
+
 function updateProfile (profile, db = connection) {
   return db('profiles')
     .where('id', profile.id)
@@ -63,6 +76,8 @@ module.exports = {
   getUsers,
   getUser,
   addUser,
+  getUsersLanguages,
+  addUserLanguage,
   updateProfile,
   login,
   deleteUser,
