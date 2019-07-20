@@ -1,3 +1,4 @@
+require('babel-polyfill')
 const env = require('./test-environment')
 const db = require('../../../server/db/db')
 
@@ -9,6 +10,16 @@ beforeEach(() => {
 })
 
 afterEach(() => env.cleanup(testDb))
+
+test('db.getUser returns a single user', () => {
+  const expected = 'test1'
+  const id = 1
+  return db.getUser(id, testDb)
+    .then(user => {
+      const actual = user.name
+      expect(actual).toBe(expected)
+    })
+})
 
 test('db.getUsers returns an array of 3 users', () => {
   expect.assertions(1)
@@ -27,10 +38,12 @@ test('db.addUser adds user to users table', () => {
     email: 'ergoman@coffeepancakewafflebacon.com',
     password: 'Pa$$w0rd'
   }
-  return db.addUser(user, testDb)
-    .then(users => {
-      expect(users[0]).toBe(4)
-    })
+  const expected = 4
+
+  return db.addUser(user, testDb).then(async () => {
+    const actual = await db.getUsers(testDb)
+    expect(actual.length).toBe(expected)
+  })
 })
 
 test('db.deleteUser runs a successful delete', () => {

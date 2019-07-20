@@ -10,7 +10,7 @@
     "build": "webpack -p && webpack-dev-server",
     "server": "node .",
     "start": "run-s build server",
-    "test": "jest --watchAll",
+    "test": "jest --watchAll --verbose",
     "dev": "run-p dev:server dev:client",
     "dev:server": "nodemon .",
     "dev:client": "webpack --config client/webpack.config.js --watch",
