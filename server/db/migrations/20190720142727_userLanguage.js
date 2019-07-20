@@ -1,9 +1,9 @@
 exports.up = function (knex) {
   return knex.schema.createTable('userLanguages', table => {
     table.increments('id').primary()
-    table.integer('profileId').unsigned().notNull()
-    table.foreign('profileId')
-      .references('profile.id')
+    table.integer('userId').unsigned().notNull()
+    table.foreign('userId')
+      .references('users.id')
       .onDelete('CASCADE')
     table.integer('langId').unsigned().notNull()
     table.foreign('langId')
