@@ -6,7 +6,7 @@ export default class Navbar extends Component {
   render () {
     return (
       <Menu fluid widths={3} compact icon='labeled'>
-        <Menu.Item as={Link} to="/profile/">
+        <Menu.Item as={Link} to="/profile">
           <Icon name='id card outline' />
           Profile
         </Menu.Item>
