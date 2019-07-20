@@ -20,7 +20,7 @@ test('db.addUserLanguage adds 3 rows to userLanguages table', () => {
 
   return db.addUserLanguage(userId, languagesArray, testDb)
     .then(async () => {
-      const actual = await db.getUsersLanguages(testDb)
+      const actual = await db.getAllUsersLanguages(testDb)
       expect(actual.length).toBe(expected)
     })
 })

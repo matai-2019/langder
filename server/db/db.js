@@ -36,18 +36,29 @@ async function addUser (user, db = connection) {
     })
 }
 
-function getUsersLanguages (db = connection) {
+function deleteUser (id, db = connection) {
+  return db('users')
+    .where('id', id)
+    .del()
+}
+
+function getAllUsersLanguages (db = connection) {
   return db('userLanguages')
 }
+
+// get a user's languages
 
 async function addUserLanguage (userId, langIds, db = connection) {
   const data = langIds.map(langId => {
     return { userId: userId, langId: langId }
   })
-
   const result = await db('userLanguages').insert(data)
   return result
 }
+
+// update user language
+
+// delete user language
 
 function updateProfile (profile, db = connection) {
   return db('profiles')
@@ -66,17 +77,11 @@ function login (loginData, db = connection) {
     .first()
 }
 
-function deleteUser (id, db = connection) {
-  return db('users')
-    .where('id', id)
-    .del()
-}
-
 module.exports = {
   getUsers,
   getUser,
   addUser,
-  getUsersLanguages,
+  getAllUsersLanguages,
   addUserLanguage,
   updateProfile,
   login,
