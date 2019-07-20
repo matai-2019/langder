@@ -11,6 +11,16 @@ beforeEach(() => {
 
 afterEach(() => env.cleanup(testDb))
 
+test('db.getUser returns a single user', () => {
+  const expected = 'test1'
+  const id = 1
+  return db.getUser(id, testDb)
+    .then(user => {
+      const actual = user.name
+      expect(actual).toBe(expected)
+    })
+})
+
 test('db.getUsers returns an array of 3 users', () => {
   expect.assertions(1)
 
