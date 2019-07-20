@@ -87,9 +87,9 @@ async function addUserLanguage (userId, langIds, db = connection) {
 
 // add profile (has ticket)
 
-function updateProfile (profile, db = connection) {
+function updateProfile (profileId, profile, db = connection) {
   return db('profiles')
-    .where('id', profile.id)
+    .where('id', profileId)
     .update({
       name: profile.name,
       description: profile.description
