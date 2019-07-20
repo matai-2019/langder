@@ -12,7 +12,7 @@ export default function addUser (state = {}, action) {
       }
     case ADDUSER_SUCCESS:
       return { 
-        item: action.user 
+        user: action.user 
       }
 
     case ADDUSER_ERROR:

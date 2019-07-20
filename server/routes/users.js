@@ -5,8 +5,9 @@ const db = require('../db/db')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  db.getUsers()
-    .then(users => res.status(200).json(users))
+  const info = req.body
+  db.getUser(info)
+    .then(user => res.status(200).json(user))
 })
 
 router.get('/:id', (req, res) => {

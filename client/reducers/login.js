@@ -15,7 +15,7 @@ export default function login (state = {}, action) {
 
     case LOGIN_SUCCESS:
       return {
-        item: action.user
+        user: action.user
       }
 
     case LOGIN_ERROR:

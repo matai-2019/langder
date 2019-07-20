@@ -13,7 +13,7 @@ export default function createProfile (state = {}, action) {
       }
     case CREATE_PROFILE_SUCCESS:
       return { 
-        item: action.profile
+        user: action.profile
       }
 
     case CREATE_PROFILE_ERROR:

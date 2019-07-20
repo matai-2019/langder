@@ -12,8 +12,7 @@ class GetPotentialMatches extends React.Component {
     profileId: '',
     name: '',
     description: '',
-    toKnow: [],
-    know: []
+    languages: []
   }
 
   handleChange = (e, { id, user }) => this.setState({ [id]: user })
@@ -22,13 +21,12 @@ class GetPotentialMatches extends React.Component {
     profileId: '',
     name: '',
     description: '',
-    toKnow: [],
-    know: []
+    languages: []
   })
 
   render() {
-    const testarray = ['3', 'strings', 'another', '']
-    const { name, description, toKnow, know } = this.state
+    const testarray = ['4', 'strings', 'another', 'string']
+    const { name, description, languages } = this.state
     return (
       <>
         <Container className='matches'>

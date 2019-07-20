@@ -13,7 +13,7 @@ export default function updateProfile (state = {}, action) {
       }
     case UPDATE_PROFILE_SUCCESS:
       return { 
-        item: action.profile
+        user: action.profile
       }
 
     case UPDATE_PROFILE_ERROR:
