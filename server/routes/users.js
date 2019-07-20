@@ -5,7 +5,7 @@ const db = require('../db/db')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  db.getUsers()
+  db.getUser()
     .then(users => res.status(200).json(users))
 })
 
