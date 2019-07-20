@@ -23,14 +23,14 @@ router.post('/', (req, res) => {
     })
 })
 
-// put route to update user
+// put route to update user (has ticket)
 
-// delete route to delete user
+// delete route to delete user (has ticket)
 
-// get route to get user languages
+// get route to get user languages (has ticket)
 
-// post route to add user languages
+// post route to add user languages (has ticket)
 
-// del route tto delete user languages
+// del route to delete user languages (has ticket)
 
 module.exports = router
