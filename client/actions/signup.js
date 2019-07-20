@@ -24,11 +24,10 @@ export function addUserError (message) {
   }
 }
 
-
 // export function fetchSign () {
 //   return dispatch => {
 //     dispatch(fetchSign())
-//     
+    
 //     request
 //       .get('/api/users')
 //       .then(res => dispatch(signupSuccess(res.body)))
