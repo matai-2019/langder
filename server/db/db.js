@@ -83,7 +83,12 @@ async function addUserLanguage (userId, langIds, db = connection) {
 
 // delete user language (has ticket)
 
-// get profile (has ticket)
+function getProfile (profileId, db = connection) {
+  return db('profiles')
+    .select()
+    .where('id', profileId)
+    .first()
+}
 
 // add profile (has ticket)
 
@@ -106,6 +111,7 @@ module.exports = {
   getAllUsersLanguages,
   addUser,
   addUserLanguage,
+  getProfile,
   updateProfile,
   deleteUser
 }
