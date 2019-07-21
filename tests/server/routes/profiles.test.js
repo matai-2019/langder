@@ -3,8 +3,15 @@ require('babel-polyfill')
 const server = require('../../../server/server')
 
 const mockError500 = new Error({ code: 500, message: 'Sever error' })
+
 jest.mock('../../../server/db/db', () => ({
-  updateProfile: (profileId, profile) => Promise.resolve()
+  updateProfile: (profileId, profile) => {
+    if (profileId === 1) {
+      return Promise.resolve(profileId, profile)
+    }
+    return Promise.reject(mockError500)
+  },
+  getProfile: () => Promise.resolve({ id: 1, name: 'A', userId: 1, description: 'I am A' })
 }))
 
 describe('Tests for profiles', () => {
