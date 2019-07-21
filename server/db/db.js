@@ -79,14 +79,14 @@ function getAllLanguages (db = connection) {
 }
 
 // get a language => stretch
-/*
-function getALanguage (languageId, db = connection) {
-  return db('languages')
-    .select()
-    .where('id', languageId)
-    .first()
-}
-*/
+// /*
+// function getALanguage (languageId, db = connection) {
+//   return db('languages')
+//     .select()
+//     .where('id', languageId)
+//     .first()
+// }
+// */
 
 // update language => stretch
 
