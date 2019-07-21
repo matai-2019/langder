@@ -93,6 +93,6 @@ test('GET /users/:id/likes returns user likes', () => {
     .get(`/api/v1/users/${userId}/likes`)
     .expect(200)
     .then(res => {
-      expect(res.body.length).toBe(2)
+      expect(res.body.length).toBe(3)
     })
 })
