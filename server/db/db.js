@@ -139,7 +139,7 @@ function updateProfile (profileId, profile, db = connection) {
 }
 
 function deleteProfile (id, db = connection) {
-  return db('Profiles')
+  return db('profiles')
     .where('id', id)
     .del()
 }
@@ -152,6 +152,22 @@ function addUserLike (userLike, db = connection) {
 function getAllLikes (db = connection) {
   return db('likes')
 }
+
+function getAllMatches (db = connection) {
+  return db('matches')
+}
+
+function addUserMatch (match, db = connection) {
+  return db('matches')
+    .insert(match)
+}
+
+function getUserLikes (userId, db = connection) {
+  return db('likes')
+    .where('userId', 'like', userId)
+    .select()
+}
+
 module.exports = {
   hashPassword,
   login,
@@ -170,5 +186,8 @@ module.exports = {
   getAllLanguages,
   updateLanguage,
   addUserLike,
-  getAllLikes
+  getAllLikes,
+  getAllMatches,
+  addUserMatch,
+  getUserLikes
 }
