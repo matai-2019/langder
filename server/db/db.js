@@ -144,6 +144,12 @@ function deleteProfile (id, db = connection) {
     .del()
 }
 
+function getUserLikes (userId, db = connection) {
+  return db('likes')
+    .where('userId', 'like', userId)
+    .select()
+}
+
 module.exports = {
   hashPassword,
   login,
@@ -160,5 +166,6 @@ module.exports = {
   getUserLanguages,
   deleteProfile,
   getAllLanguages,
-  updateLanguage
+  updateLanguage,
+  getUserLikes
 }
