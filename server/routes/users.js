@@ -43,4 +43,17 @@ router.post('/', (req, res) => {
 
 // del route to delete user languages (has ticket)
 
+router.delete('/:id/languages', (req, res) => {
+  const userId = Number(req.params.id)
+  const languages = req.body
+  db.deleteUserLanguage(userId, languages)  
+    .then(() => {
+      //db.addUserLanguages(UserId, languages) <<<< how to add languages server side from client side pass down
+      res.status(200).json({ Okay: true })
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
+
 module.exports = router

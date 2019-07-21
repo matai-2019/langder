@@ -10,6 +10,7 @@ jest.mock('../../../server/db/db.js', () => ({
   getUser: (id) => Promise.resolve(
     { id: 2, email: 'email2@email.com', password: 'password' }
   ),
+  deleteUserLanguage: (id) => Promise.resolve({ Okay: true }),
   addUser: (user) => Promise.resolve(user)
 }))
 
@@ -41,4 +42,14 @@ test('GET /users/:id returns a specific user', () => {
       expect(actual).toMatch('email2@email.com')
     })
     .catch(err => expect(err).toBe(err))
+})
+
+test('DELETE /:language id deletes a specific language from users list', () => {
+  return request(server)
+    .delete('/api/v1/users/1/languages')
+    .then(res => {
+      expect(res.status).toBe(200)
+      expect(res.body.Okay).toBe(true)
+    })
+    .catch(err => expect(err).toBeNull())
 })
