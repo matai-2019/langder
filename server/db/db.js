@@ -63,7 +63,6 @@ function getAllUsersLanguages (db = connection) {
   return db('userLanguages')
 }
 
-// get a language
 function getUserLanguages (userId, db = connection) {
   return db('userlanguages')
     .where({ userId: userId })
