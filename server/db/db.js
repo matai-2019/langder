@@ -50,15 +50,6 @@ function deleteUser (id, db = connection) {
     .del()
 }
 
-// function updateuser (user, db = connection) {
-//   return db('users')
-//     .where('users', user.id)
-//     .update({
-//       users: user.id,
-//       password: user.password
-//     })
-// }
-
 function getAllUsersLanguages (db = connection) {
   return db('userLanguages')
 }
@@ -98,6 +89,12 @@ function updateProfile (profile, db = connection) {
 
 // delete profile (has ticket)
 
+function deleteProfile (id, db = connection) {
+  return db('Profiles')
+    .where('id', id)
+    .del()
+}
+
 module.exports = {
   hashPassword,
   login,
@@ -107,5 +104,6 @@ module.exports = {
   addUser,
   addUserLanguage,
   updateProfile,
-  deleteUser
+  deleteUser,
+  deleteProfile
 }

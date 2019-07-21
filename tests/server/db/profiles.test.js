@@ -9,3 +9,11 @@ beforeEach(() => {
 })
 
 afterEach(() => env.cleanup(testDb))
+
+
+test('db.deleteProfile runs a successful delete', () => {
+  return db.deleteProfile(1, testDb)
+    .then(wasDeleteSuccessful => {
+      expect(wasDeleteSuccessful).toBeTruthy()
+    })
+})
