@@ -4,6 +4,16 @@ const db = require('../db/db')
 
 const router = express.Router()
 
+router.get('/:id/pot', (req, res) => {
+  // TODO Stretch Add query params in requests for filtering
+  db.getPotentialMatches()
+    .then(potMatches => {
+      res.status(200).json(potMatches)
+    }).catch(err => {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
 router.get('/', (req, res) => {
   db.getUsers()
     .then(users => {
