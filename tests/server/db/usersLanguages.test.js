@@ -25,6 +25,16 @@ test('db.addUserLanguage adds 3 rows to userLanguages table', () => {
     })
 })
 
+test('db.getUserLanguages get a specific users languages', (done) => {
+  const userId = 1
+
+  db.getUserLanguages(userId, testDb)
+    .then(userlanguages => {
+      expect(userlanguages.length).toBe(1)
+      done()
+    })
+})
+
 test('db.deleteUserLanguage deletes 1 row from userLanguages table', () => {
   expect.assertions(1)
 
