@@ -10,7 +10,8 @@ jest.mock('../../../server/db/db.js', () => ({
   getUser: (id) => Promise.resolve(
     { id: 2, email: 'email2@email.com', password: 'password' }
   ),
-  addUser: (user) => Promise.resolve(user)
+  addUser: (user) => Promise.resolve(user),
+  addUserLanguage: (id, languages) => Promise.resolve(languages)
 }))
 
 test('POST / adds a user', () => {
@@ -41,4 +42,15 @@ test('GET /users/:id returns a specific user', () => {
       expect(actual).toMatch('email2@email.com')
     })
     .catch(err => expect(err).toBe(err))
+})
+
+test('POST / adds a user language', () => {
+  const testUL = [{ langId: 1 }, { langId: 3 }]
+  return request(server)
+    .post('/api/v1/users/3')
+    .send(testUL)
+    .then(res => {
+      expect(res.status).toBe(201)
+      expect(res.body).toStrictEqual(testUL)
+    })
 })
