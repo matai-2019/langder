@@ -15,7 +15,7 @@ test('db.getProfile function should get a user of given id', () => {
   db.getProfile(profileId, testDb)
     .then(profile => {
       const actual = profile.name
-      expected(actual).toBe(expected)
+      expect(actual).toBe(expected)
     })
 })
 
