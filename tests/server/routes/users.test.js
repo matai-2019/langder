@@ -26,6 +26,11 @@ jest.mock('../../../server/db/db.js', () => ({
     { id: 1, userId: 1, langId: 1 },
     { id: 1, userId: 1, langId: 2 },
     { id: 1, userId: 1, langId: 5 }
+  ]),
+  deleteUser: () => Promise.resolve([
+    { id: 1, email: 'email@email.com', password: 'password' },
+    { id: 2, email: 'email2@email.com', password: 'password' },
+    { id: 3, email: 'email3@email.com', password: 'password' }
   ])
 }))
 
@@ -78,5 +83,15 @@ test('GET /users/:id/languages returns user languages', () => {
     .expect(200)
     .then(res => {
       expect(res.body.length).toBe(3)
+    })
+})
+
+test('DELETE /:id deletes a specific user', done => {
+  const userId = 2
+  return request(server)
+    .delete(`/api/v1/users/${userId}`)
+    .then(res => {
+      expect(res.status).toBe(204)
+      done()
     })
 })

@@ -53,7 +53,7 @@ router.delete('/:id', (req, res) => {
 
   db.deleteUser(userId)
     .then(() => {
-      res.status(200).json({ Okay: true })
+      res.status(204).json()
     })
     .catch(err => {
       res.status(500).json(err)
