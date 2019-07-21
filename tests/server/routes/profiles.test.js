@@ -1,4 +1,5 @@
 import request from 'supertest'
+require('babel-polyfill')
 const server = require('../../../server/server')
 
 jest.mock('../../../server/db/db', () => ({
