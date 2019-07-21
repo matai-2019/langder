@@ -73,6 +73,15 @@ function getALanguage (languageId, db = connection) {
 
 // update language => stretch
 
+function updateLanguage (language, db = connection) {
+  return db('languages')
+    .where('id', language.id)
+    .update({
+      name: profile.name,
+      description: profile.description
+    })
+}
+
 // delete language => stretch
 
 // get a user's languages (has ticket)
@@ -113,8 +122,6 @@ function updateProfile (profile, db = connection) {
       description: profile.description
     })
 }
-
-// delete profile (has ticket)
 
 function deleteProfile (id, db = connection) {
   return db('Profiles')
