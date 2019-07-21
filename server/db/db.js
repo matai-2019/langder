@@ -144,6 +144,15 @@ function deleteProfile (id, db = connection) {
     .del()
 }
 
+function addUserLike (userLike, db = connection) {
+  return db('likes')
+    .insert(userLike)
+}
+
+function getAllLikes (db = connection) {
+  return db('likes')
+}
+
 function getAllMatches (db = connection) {
   return db('matches')
 }
@@ -176,6 +185,8 @@ module.exports = {
   deleteProfile,
   getAllLanguages,
   updateLanguage,
+  addUserLike,
+  getAllLikes,
   getAllMatches,
   addUserMatch,
   getUserLikes
