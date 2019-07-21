@@ -139,9 +139,18 @@ function updateProfile (profileId, profile, db = connection) {
 }
 
 function deleteProfile (id, db = connection) {
-  return db('Profiles')
+  return db('profiles')
     .where('id', id)
     .del()
+}
+
+function getAllMatches (db = connection) {
+  return db('matches')
+}
+
+function addUserMatch (match, db = connection) {
+  return db('matches')
+    .insert(match)
 }
 
 module.exports = {
@@ -160,5 +169,7 @@ module.exports = {
   getUserLanguages,
   deleteProfile,
   getAllLanguages,
-  updateLanguage
+  updateLanguage,
+  getAllMatches,
+  addUserMatch
 }
