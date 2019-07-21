@@ -82,6 +82,15 @@ function getALanguage (languageId, db = connection) {
 
 // update language => stretch
 
+function updateLanguage (language, db = connection) {
+  return db('languages')
+    .where('id', language.id)
+    .update({
+      name: profile.name,
+      description: profile.description
+    })
+}
+
 // delete language => stretch
 
 // get a user's languages (has ticket)
@@ -123,7 +132,11 @@ function updateProfile (profileId, profile, db = connection) {
     })
 }
 
-// delete profile (has ticket)
+function deleteProfile (id, db = connection) {
+  return db('Profiles')
+    .where('id', id)
+    .del()
+}
 
 module.exports = {
   hashPassword,
@@ -138,5 +151,6 @@ module.exports = {
   updateProfile,
   updateUser,
   deleteUser,
+  deleteProfile,
   getAllLanguages
 }
