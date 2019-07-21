@@ -13,6 +13,7 @@ jest.mock('../../../server/db/db.js', () => ({
     { id: 2, email: 'email2@email.com', password: 'password' }
   ),
   addUser: (user) => Promise.resolve(user),
+  addUserLanguage: (id, languages) => Promise.resolve(languages),
   getPotentialMatches: async userId => {
     const list = [
       { id: 1, name: 'A', userId: 1, description: 'I am A' },
@@ -57,6 +58,17 @@ test('GET /users/:id returns a specific user', () => {
       expect(actual).toMatch('email2@email.com')
     })
     .catch(err => expect(err).toBe(err))
+})
+
+test('POST / adds a user language', () => {
+  const testUL = [{ langId: 1 }, { langId: 3 }]
+  return request(server)
+    .post('/api/v1/users/3')
+    .send(testUL)
+    .then(res => {
+      expect(res.status).toBe(201)
+      expect(res.body).toStrictEqual(testUL)
+    })
 })
 
 test('GET /users/3/pot returns a users potential matches', done => {
