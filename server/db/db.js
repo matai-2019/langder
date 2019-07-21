@@ -83,6 +83,13 @@ async function addUserLanguage (userId, langIds, db = connection) {
 
 // delete user language (has ticket)
 
+async function deleteUserLanguage (userId, langId, db = connection) {
+  return db('userLanguages')
+    .where('userId', userId)
+    .where('langId', langId)
+    .del()
+}
+
 function getProfile (profileId, db = connection) {
   return db('profiles')
     .select()
@@ -109,6 +116,7 @@ module.exports = {
   getUser,
   getUsers,
   getAllUsersLanguages,
+  deleteUserLanguage,
   addUser,
   addUserLanguage,
   getProfile,
