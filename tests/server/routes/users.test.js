@@ -12,7 +12,9 @@ jest.mock('../../../server/db/db.js', () => ({
   getUser: (id) => Promise.resolve(
     { id: 2, email: 'email2@email.com', password: 'password' }
   ),
-  deleteUserLanguage: (id) => Promise.resolve({ Okay: true }),
+  deleteUserLanguages: (id) => Promise.resolve({ Okay: true }),
+
+  addUserLanguages: (userId) => Promise.resolve([1,3]),
 
   addUser: (user) => Promise.resolve(user),
 
@@ -62,12 +64,13 @@ test('GET /users/:id returns a specific user', () => {
     .catch(err => expect(err).toBe(err))
 })
 
-test('DELETE /:language id deletes a specific language from users list', () => {
+test('refresh /:language id refreshes user languages', () => {
   return request(server)
-    .delete('/api/v1/users/1/languages')
+    .put('/api/v1/users/1/languages')
     .then(res => {
       expect(res.status).toBe(200)
       expect(res.body.Okay).toBe(true)
+      expect(res.body.langIds.length).toBe(2)
     })
     .catch(err => expect(err).toBeNull())
   })
