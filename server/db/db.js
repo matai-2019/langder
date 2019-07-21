@@ -44,6 +44,15 @@ async function addUser (user, db = connection) {
     })
 }
 
+function updateUser (user, db = connection) {
+  return db('users')
+    .where('id', user.id)
+    .update({
+      email: user.email,
+      password: user.password
+    })
+}
+
 function deleteUser (id, db = connection) {
   return db('users')
     .where('id', id)
@@ -148,6 +157,7 @@ module.exports = {
   addUserLanguage,
   getProfile,
   updateProfile,
+  updateUser,
   deleteUser,
   getUserLanguage,
   deleteProfile,
