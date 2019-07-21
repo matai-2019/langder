@@ -12,7 +12,7 @@ afterEach(() => env.cleanup(testDb))
 
 test('db.getProfile function should get a user of given id', () => {
   const profileId = 1
-  const expected = 'test1'
+  const expected = 'A'
 
   db.getProfile(profileId, testDb)
     .then(profile => {

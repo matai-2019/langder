@@ -22,7 +22,6 @@ test('db.getUserLikes returns all a users likes', () => {
   const userId = 1
   return db.getUserLikes(userId, testDb)
     .then(likes => {
-      console.log(likes)
       const actual = likes.length
       expect(actual).toBe(2)
     })
