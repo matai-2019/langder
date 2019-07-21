@@ -20,3 +20,10 @@ test('db.getProfile function should get a user of given id', () => {
 })
 
 afterEach(() => env.cleanup(testDb))
+
+test('db.deleteProfile runs a successful delete', () => {
+  return db.deleteProfile(1, testDb)
+    .then(wasDeleteSuccessful => {
+      expect(wasDeleteSuccessful).toBeTruthy()
+    })
+})
