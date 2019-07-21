@@ -159,9 +159,33 @@ function updateProfile (profileId, profile, db = connection) {
 }
 
 function deleteProfile (id, db = connection) {
-  return db('Profiles')
+  return db('profiles')
     .where('id', id)
     .del()
+}
+
+function addUserLike (userLike, db = connection) {
+  return db('likes')
+    .insert(userLike)
+}
+
+function getAllLikes (db = connection) {
+  return db('likes')
+}
+
+function getAllMatches (db = connection) {
+  return db('matches')
+}
+
+function addUserMatch (match, db = connection) {
+  return db('matches')
+    .insert(match)
+}
+
+function getUserLikes (userId, db = connection) {
+  return db('likes')
+    .where('userId', 'like', userId)
+    .select()
 }
 
 module.exports = {
@@ -181,5 +205,10 @@ module.exports = {
   getUserLanguages,
   deleteProfile,
   getAllLanguages,
-  updateLanguage
+  updateLanguage,
+  addUserLike,
+  getAllLikes,
+  getAllMatches,
+  addUserMatch,
+  getUserLikes
 }
