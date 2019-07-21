@@ -24,3 +24,17 @@ test('db.addUserLanguage adds 3 rows to userLanguages table', () => {
       expect(actual.length).toBe(expected)
     })
 })
+
+test('db.deleteUserLanguage deletes 1 row from userLanguages table', () => {
+  expect.assertions(1)
+
+  const expected = 2
+  const userId = 1
+  const langId = 2
+
+  return db.deleteUserLanguage(userId, langId, testDb)
+    .then(async () => {
+      const actual = await db.getAllUsersLanguages(testDb)
+      expect(actual.length).toBe(expected)
+    })
+})
