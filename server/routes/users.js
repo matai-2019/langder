@@ -4,11 +4,6 @@ const db = require('../db/db')
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  db.getAllLanguages()
-  .then()
-})
-
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id)
   db.getUser(id)
