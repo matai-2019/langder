@@ -21,7 +21,12 @@ jest.mock('../../../server/db/db.js', () => ({
     ]
     const filteredList = await list.filter(profile => profile.userId !== userId)
     return Promise.resolve(filteredList)
-  }
+  },
+  getUserLanguages: (id) => Promise.resolve([
+    { id: 1, userId: 1, langId: 1 },
+    { id: 1, userId: 1, langId: 2 },
+    { id: 1, userId: 1, langId: 5 }
+  ])
 }))
 
 test('POST / adds a user', () => {
@@ -64,5 +69,14 @@ test('GET /users/3/pot returns a users potential matches', done => {
       const actual = res.body
       expect(actual).toHaveLength(expectedLen)
       done()
+    })
+})
+
+test('GET /users/:id/languages returns user languages', () => {
+  return request(server)
+    .get('/api/v1/users/1/languages')
+    .expect(200)
+    .then(res => {
+      expect(res.body.length).toBe(3)
     })
 })
