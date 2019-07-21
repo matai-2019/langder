@@ -8,6 +8,8 @@ beforeEach(() => {
   return env.initialise(testDb)
 })
 
+afterEach(() => env.cleanup(testDb))
+
 test('db.getProfile function should get a user of given id', () => {
   const profileId = 1
   const expected = 'test1'
@@ -18,8 +20,6 @@ test('db.getProfile function should get a user of given id', () => {
       expect(actual).toBe(expected)
     })
 })
-
-afterEach(() => env.cleanup(testDb))
 
 test('db.deleteProfile runs a successful delete', () => {
   return db.deleteProfile(1, testDb)

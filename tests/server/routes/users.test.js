@@ -32,7 +32,7 @@ test('GET /users returns all of the users', () => {
     })
 })
 
-test('GET /users returns a specific user', () => {
+test('GET /users/:id returns a specific user', () => {
   return request(server)
     .get('/api/v1/users/2')
     .expect(200)

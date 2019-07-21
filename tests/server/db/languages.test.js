@@ -8,6 +8,8 @@ beforeEach(() => {
   return env.initialise(testDb)
 })
 
+afterEach(() => env.cleanup(testDb))
+
 test('db.getAllLanguages returns array of 5', () => {
   const expected = 5
 
