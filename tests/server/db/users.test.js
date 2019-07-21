@@ -54,11 +54,3 @@ test('db.deleteUser runs a successful delete', () => {
           expect(users.length).toBe(2)
         }))
 })
-
-test('db.updateUser updates a users info', () => {
-  const user = { id: 3, email: 'updated@email.com', password: 'newPassword' }
-  return db.updateUser(user, testDb)
-    .then(data => {
-      expect(data).toBe(3)
-    })
-})
