@@ -12,11 +12,11 @@ beforeEach(() => {
 afterEach(() => env.cleanup(testDb))
 
 test('db.getUser returns a single user', () => {
-  const expected = 'test1'
+  const expected = 'email@email.com'
   const id = 1
   return db.getUser(id, testDb)
     .then(user => {
-      const actual = user.name
+      const actual = user.email
       expect(actual).toBe(expected)
     })
 })
