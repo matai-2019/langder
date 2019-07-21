@@ -14,12 +14,32 @@ jest.mock('../../../server/db/db', () => ({
   getProfile: () => Promise.resolve({ id: 1, name: 'A', userId: 1, description: 'I am A' })
 }))
 
-describe('Tests for profiles', () => {
-  it('/api/v1/profiles/1 should update profile 1', done => {
+describe('Tests for PUT /api/v1/profiles/1', () => {
+  const newProfile = { id: 1, name: 'AA', userId: 1, description: 'I am AA' }
+
+  it('should update profile 1 given id', done => {
+    const expected = 200
+    expect.assertions(2)
+
     request(server)
       .put('/api/v1/profiles/1')
-      .then(() => {
+      .send(newProfile)
+      .then((res) => {
+        expect(res.status).toBe(expected)
+        expect(res.body).toEqual({})
+        done()
+      })
+  })
+  it('should return 500 error given non existent id', done => {
+    const expected = 500
 
+    expect.assertions(1)
+    request(server)
+      .put('/api/v1/profiles/99')
+      .send(newProfile)
+      .then((res) => {
+        expect(res.status).toBe(expected)
+        done()
       })
   })
 })
