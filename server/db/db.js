@@ -21,7 +21,7 @@ function getUsers (db = connection) {
   return db('users')
 }
 
-function getPotentialMatches (db = connection) {
+function getPotentialMatches (userId, db = connection) {
   return db.select(
     'p.id as profileId',
     'p.name',
@@ -30,6 +30,7 @@ function getPotentialMatches (db = connection) {
     .leftJoin('userLanguages AS uLang', 'uLang.userId', 'p.userId')
     .from('profiles AS p')
     .options({ nestTables: true })
+    .whereNot('p.userId', userId)
     .map(profile => {
       return db('userLanguages AS uLang')
         .where('uLang.id', profile.userId)

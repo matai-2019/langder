@@ -1,4 +1,6 @@
 import request from 'supertest'
+
+require('babel-polyfill')
 const server = require('../../../server/server')
 
 jest.mock('../../../server/db/db.js', () => ({
@@ -11,7 +13,21 @@ jest.mock('../../../server/db/db.js', () => ({
     { id: 2, email: 'email2@email.com', password: 'password' }
   ),
   addUser: (user) => Promise.resolve(user),
-  addUserLanguage: (id, languages) => Promise.resolve(languages)
+  addUserLanguage: (id, languages) => Promise.resolve(languages),
+  getPotentialMatches: async userId => {
+    const list = [
+      { id: 1, name: 'A', userId: 1, description: 'I am A' },
+      { id: 2, name: 'B', userId: 2, description: 'I am B' },
+      { id: 3, name: 'C', userId: 3, description: 'I am C' }
+    ]
+    const filteredList = await list.filter(profile => profile.userId !== userId)
+    return Promise.resolve(filteredList)
+  },
+  getUserLanguages: (id) => Promise.resolve([
+    { id: 1, userId: 1, langId: 1 },
+    { id: 1, userId: 1, langId: 2 },
+    { id: 1, userId: 1, langId: 5 }
+  ])
 }))
 
 test('POST / adds a user', () => {
@@ -52,5 +68,27 @@ test('POST / adds a user language', () => {
     .then(res => {
       expect(res.status).toBe(201)
       expect(res.body).toStrictEqual(testUL)
+    })
+})
+
+test('GET /users/3/pot returns a users potential matches', done => {
+  const expectedLen = 2
+  const userId = 3
+
+  return request(server)
+    .get(`/api/v1/users/${userId}/pot`)
+    .then(res => {
+      const actual = res.body
+      expect(actual).toHaveLength(expectedLen)
+      done()
+    })
+})
+
+test('GET /users/:id/languages returns user languages', () => {
+  return request(server)
+    .get('/api/v1/users/1/languages')
+    .expect(200)
+    .then(res => {
+      expect(res.body.length).toBe(3)
     })
 })
