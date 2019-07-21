@@ -2,6 +2,7 @@ import request from 'supertest'
 require('babel-polyfill')
 const server = require('../../../server/server')
 
+const mockError500 = new Error({ code: 500, message: 'Sever error' })
 jest.mock('../../../server/db/db', () => ({
   updateProfile: (profileId, profile) => Promise.resolve()
 }))
