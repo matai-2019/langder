@@ -64,14 +64,29 @@ function getAllUsersLanguages (db = connection) {
 }
 
 // get a language
-function getLanguage (languageId, db = connection) {
+function getUserLanguage (userlanguageId, db = connection) {
+  return db('userlanguages')
+    .select()
+    .where('id', userlanguageId)
+    .first()
+}
+
+// add a language => stretch
+
+// get languages => stretch
+function getAllLanguages (db = connection) {
+  return db('languages')
+}
+
+// get a language => stretch
+/*
+function getALanguage (languageId, db = connection) {
   return db('languages')
     .select()
     .where('id', languageId)
     .first()
 }
-
-// add a language => stretch
+*/
 
 // update language => stretch
 
@@ -90,6 +105,13 @@ async function addUserLanguage (userId, langIds, db = connection) {
 // update user language (has ticket)
 
 // delete user language (has ticket)
+
+async function deleteUserLanguage (userId, langId, db = connection) {
+  return db('userLanguages')
+    .where('userId', userId)
+    .where('langId', langId)
+    .del()
+}
 
 function getProfile (profileId, db = connection) {
   return db('profiles')
@@ -117,10 +139,12 @@ module.exports = {
   getUser,
   getUsers,
   getAllUsersLanguages,
+  deleteUserLanguage,
   addUser,
   addUserLanguage,
   getProfile,
   updateProfile,
   deleteUser,
-  getLanguage
+  getUserLanguage,
+  getAllLanguages
 }
