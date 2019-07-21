@@ -15,8 +15,15 @@ test('db.getProfile function should get a user of given id', () => {
   db.getProfile(profileId, testDb)
     .then(profile => {
       const actual = profile.name
-      expected(actual).toBe(expected)
+      expect(actual).toBe(expected)
     })
 })
 
 afterEach(() => env.cleanup(testDb))
+
+test('db.deleteProfile runs a successful delete', () => {
+  return db.deleteProfile(1, testDb)
+    .then(wasDeleteSuccessful => {
+      expect(wasDeleteSuccessful).toBeTruthy()
+    })
+})
