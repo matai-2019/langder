@@ -37,7 +37,12 @@ router.post('/', (req, res) => {
 
 // delete route to delete user (has ticket)
 
-// get route to get user languages (has ticket)
+router.get('/:id/languages', (req, res) => {
+  db.getUserLanguages(req.params.id)
+    .then(langs => {
+      res.status(200).json(langs)
+    })
+})
 
 // post route to add user languages (has ticket)
 
