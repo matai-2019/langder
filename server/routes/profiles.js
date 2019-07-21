@@ -8,7 +8,13 @@ const router = express.Router()
 router.get('/:id', (req, res) => {
   const profileId = Number(req.params.id)
   db.getProfile(profileId)
-    .then(profile => res.status(200).json(profile))
+    .then(profile => {
+      if (profile) {
+        res.status(200).json(profile)
+      } else {
+        res.status(404).send()
+      }
+    })
     .catch(err => res.status(500).json(err))
 })
 
