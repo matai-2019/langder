@@ -32,5 +32,15 @@ router.put('/:id', (req, res) => {
 })
 
 // delete route to delete profile (has ticket)
+router.delete('/:id', (req, res) => {
+  const profileId = Number(req.params.id)
+  db.deleteProfile(profileId)
+    .then(() => {
+      res.status(200).json({ Okay: true })
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
 
 module.exports = router

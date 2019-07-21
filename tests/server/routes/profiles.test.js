@@ -11,7 +11,8 @@ jest.mock('../../../server/db/db', () => ({
     }
     return Promise.reject(mockError500)
   },
-  getProfile: () => Promise.resolve({ id: 1, name: 'A', userId: 1, description: 'I am A' })
+  getProfile: () => Promise.resolve({ id: 1, name: 'A', userId: 1, description: 'I am A' }),
+  deleteProfile: () => Promise.resolve({ id: 1 })
 }))
 
 describe('Tests for GET /api/v1/profiles/:id', () => {
@@ -59,4 +60,14 @@ describe('Tests for PUT /api/v1/profiles/1', () => {
         done()
       })
   })
+})
+
+test('DELETE /:id deletes a specific profile', done => {
+  return request(server)
+    .delete('/api/v1/profiles/1')
+    .then(res => {
+      expect(res.status).toBe(200)
+      expect(res.body.Okay).toBe(true)
+      done()
+    })
 })
