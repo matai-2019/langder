@@ -5,6 +5,7 @@ const db = require('../db/db')
 const router = express.Router()
 
 router.get('/:id/pot', (req, res) => {
+  const userId = Number(req.params.id)
   // TODO Stretch Add query params in requests for filtering
   db.getPotentialMatches()
     .then(potMatches => {

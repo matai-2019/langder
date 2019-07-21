@@ -10,7 +10,12 @@ jest.mock('../../../server/db/db.js', () => ({
   getUser: (id) => Promise.resolve(
     { id: 2, email: 'email2@email.com', password: 'password' }
   ),
-  addUser: (user) => Promise.resolve(user)
+  addUser: (user) => Promise.resolve(user),
+  getPotentialMatches: () => Promise.resolve([
+    { id: 1, email: 'email@email.com', password: 'password' },
+    { id: 2, email: 'email2@email.com', password: 'password' },
+    { id: 3, email: 'email3@email.com', password: 'password' }
+  ])
 }))
 
 test('POST / adds a user', () => {
@@ -41,4 +46,16 @@ test('GET /users/:id returns a specific user', () => {
       expect(actual).toMatch('email2@email.com')
     })
     .catch(err => expect(err).toBe(err))
+})
+
+test('GET /users/3/pot returns a users potential matches', (req, res) => {
+  const expectedLen = 2
+  const userId = 3
+
+  return request(server)
+    .get(`/api/v1/users/${userId}/pot`)
+    .then(res => {
+      const actual = res.body
+      expect(actual).toHaveLength(expectedLen)
+    })
 })
