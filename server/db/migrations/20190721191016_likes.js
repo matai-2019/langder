@@ -3,8 +3,12 @@ exports.up = (knex, Promise) => {
     table.increments('id').primary()
     table.integer('userId').unsigned()
     table.integer('likedId').unsigned()
-    table.foreign('userId').references('users.id')
-    table.foreign('likedId').references('users.id')
+    table.foreign('userId')
+      .references('users.id')
+      .onDelete('CASCADE')
+    table.foreign('likedId')
+      .references('users.id')
+      .onDelete('CASCADE')
   })
 }
 
