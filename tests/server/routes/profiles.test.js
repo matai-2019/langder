@@ -1,4 +1,5 @@
 import request from 'supertest'
+import { promises } from 'fs'
 require('babel-polyfill')
 const server = require('../../../server/server')
 
@@ -13,6 +14,23 @@ jest.mock('../../../server/db/db', () => ({
   },
   getProfile: () => Promise.resolve({ id: 1, name: 'A', userId: 1, description: 'I am A' })
 }))
+
+describe('Tests for GET /api/v1/profiles/:id', () => {
+  it('should get profile 1 given id', done => {
+    const expected = { id: 1, name: 'A', userId: 1, description: 'I am A' }
+    const profileId = 1
+
+    expect.assertions(2)
+
+    request(server)
+      .get(`/api/v1/profiles/${profileId}`)
+      .then((res) => {
+        expect(res.status).toBe(200)
+        expect(res.body).toEqual(expected)
+        done()
+      })
+  })
+})
 
 describe('Tests for PUT /api/v1/profiles/1', () => {
   const newProfile = { id: 1, name: 'AA', userId: 1, description: 'I am AA' }
