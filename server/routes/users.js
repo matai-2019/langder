@@ -4,6 +4,17 @@ const db = require('../db/db')
 
 const router = express.Router()
 
+router.get('/:id/pot', (req, res) => {
+  const userId = Number(req.params.id)
+  // TODO Stretch Add query params in requests for filtering
+  db.getPotentialMatches(userId)
+    .then(potMatches => {
+      res.status(200).json(potMatches)
+    }).catch(err => {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
 router.get('/', (req, res) => {
   db.getUsers()
     .then(users => {
@@ -37,7 +48,12 @@ router.post('/', (req, res) => {
 
 // delete route to delete user (has ticket)
 
-// get route to get user languages (has ticket)
+router.get('/:id/languages', (req, res) => {
+  db.getUserLanguages(req.params.id)
+    .then(langs => {
+      res.status(200).json(langs)
+    })
+})
 
 // post route to add user languages (has ticket)
 
