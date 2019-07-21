@@ -21,6 +21,26 @@ function getUsers (db = connection) {
   return db('users')
 }
 
+function getPotentialMatches (db = connection) {
+  return db.select(
+    'p.id as profileId',
+    'p.name',
+    'p.description',
+    'p.userId')
+    .leftJoin('userLanguages AS uLang', 'uLang.userId', 'p.userId')
+    .from('profiles AS p')
+    .options({ nestTables: true })
+    .map(profile => {
+      return db('userLanguages AS uLang')
+        .where('uLang.id', profile.userId)
+        .select('langId', 'languages.name', 'languages.countryCode')
+        .join('languages', 'uLang.langId', 'languages.id')
+        .then(languages => {
+          return { ...profile, languages: [...languages] }
+        })
+    })
+}
+
 function getUser (id, db = connection) {
   return db('users')
     .join('profiles', 'users.id', 'profiles.userId')
@@ -173,6 +193,7 @@ module.exports = {
   login,
   getUser,
   getUsers,
+  getPotentialMatches,
   getAllUsersLanguages,
   deleteUserLanguage,
   addUser,
