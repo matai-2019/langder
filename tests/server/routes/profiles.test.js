@@ -1,5 +1,4 @@
 import request from 'supertest'
-import { promises } from 'fs'
 require('babel-polyfill')
 const server = require('../../../server/server')
 
