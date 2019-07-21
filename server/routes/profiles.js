@@ -4,9 +4,7 @@ const db = require('../db/db')
 
 const router = express.Router()
 
-// get route to get profile (has ticket)
-
-// post route to add profile (has ticket)
+// post route to get profile (has ticket)
 router.get('/:id', (req, res) => {
   const profileId = Number(req.params.id)
   db.getProfile(profileId)
@@ -14,7 +12,18 @@ router.get('/:id', (req, res) => {
     .catch(err => res.status(500).json(err))
 })
 
-// put route to update profile (has ticket)
+// post route to add profile (has ticket)
+router.put('/:id', (req, res) => {
+  const newProfile = req.body
+  const profileId = Number(req.params.id)
+  db.updateProfile(profileId, newProfile)
+    .then(() => {
+      res.status(200).send()
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
 
 // delete route to delete profile (has ticket)
 
