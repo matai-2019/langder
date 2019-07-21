@@ -11,9 +11,10 @@ beforeEach(() => {
 
 afterEach(() => env.cleanup(testDb))
 
-test('', () => {
+test('db.getPotentialMatches should return 3 potential matches', () => {
+  const expected = 3
   return db.getPotentialMatches(testDb)
     .then(results => {
-      console.log(results)
+      expect(results).toHaveLength(expected)
     })
 })

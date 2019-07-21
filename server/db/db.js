@@ -30,13 +30,13 @@ function getPotentialMatches (db = connection) {
     .leftJoin('userLanguages AS uLang', 'uLang.userId', 'p.userId')
     .from('profiles AS p')
     .options({ nestTables: true })
-    .map(row => {
+    .map(profile => {
       return db('userLanguages AS uLang')
-        .where('uLang.id', row.userId)
+        .where('uLang.id', profile.userId)
         .select('langId', 'languages.name', 'languages.countryCode')
         .join('languages', 'uLang.langId', 'languages.id')
         .then(languages => {
-          return { ...row, languages: [...languages] }
+          return { ...profile, languages: [...languages] }
         })
     })
 }
