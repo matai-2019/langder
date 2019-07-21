@@ -153,6 +153,12 @@ function addUserMatch (match, db = connection) {
     .insert(match)
 }
 
+function getUserLikes (userId, db = connection) {
+  return db('likes')
+    .where('userId', 'like', userId)
+    .select()
+}
+
 module.exports = {
   hashPassword,
   login,
@@ -171,5 +177,6 @@ module.exports = {
   getAllLanguages,
   updateLanguage,
   getAllMatches,
-  addUserMatch
+  addUserMatch,
+  getUserLikes
 }
