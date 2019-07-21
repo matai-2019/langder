@@ -66,7 +66,14 @@ function getAllUsersLanguages (db = connection) {
 // add a language => stretch
 
 // update language => stretch
-
+function updateLanguage (language, db = connection) {
+  return db('languages')
+    .where('languages.id', language.id)
+    .update({
+      name: language.name,
+      countryCode: language.countryCode
+    })
+}
 // delete language => stretch
 
 // get a user's languages (has ticket)
@@ -107,5 +114,6 @@ module.exports = {
   addUser,
   addUserLanguage,
   updateProfile,
-  deleteUser
+  deleteUser,
+  updateLanguage
 }
