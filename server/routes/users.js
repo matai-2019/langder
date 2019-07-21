@@ -5,9 +5,13 @@ const db = require('../db/db')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  const info = req.body
-  db.getUser(info)
-    .then(user => res.status(200).json(user))
+  db.getUsers()
+    .then(users => {
+      res.status(200).json(users)
+    })
+    .catch(err => {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
 })
 
 router.get('/:id', (req, res) => {
@@ -23,10 +27,20 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   db.addUser(req.body)
-    .then(user => res.status(201).json(user))
+    .then(() => res.status(201).send())
     .catch(err => {
       res.status(500).json(err)
     })
 })
+
+// put route to update user (has ticket)
+
+// delete route to delete user (has ticket)
+
+// get route to get user languages (has ticket)
+
+// post route to add user languages (has ticket)
+
+// del route to delete user languages (has ticket)
 
 module.exports = router

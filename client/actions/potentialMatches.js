@@ -24,11 +24,11 @@ export function potentialMatchesError (message) {
   }
 }
 
-export function potentialMatches (users) {
-  return dispatch => {
-    dispatch(pendingPotentialMatches())
-    request.get(`/api/v1/users/${Users}`)
-      .then(res => dispatch(potentialMatchesSuccess(res.body)))
-      .catch(err => dispatch(potentialMatchesError(err.message)))
-  }
-}
+// export function potentialMatches (users) {
+//   return dispatch => {
+//     dispatch(pendingPotentialMatches())
+//     request.get(`/api/v1/users/${users}`)
+//       .then(res => dispatch(potentialMatchesSuccess(res.body)))
+//       .catch(err => dispatch(potentialMatchesError(err.message)))
+//   }
+// }
