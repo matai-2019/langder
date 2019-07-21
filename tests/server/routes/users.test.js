@@ -78,8 +78,9 @@ test('GET /users/3/pot returns a users potential matches', done => {
 })
 
 test('GET /users/:id/languages returns user languages', () => {
+  const userId = 1
   return request(server)
-    .get('/api/v1/users/1/languages')
+    .get(`/api/v1/users/${userId}/languages`)
     .expect(200)
     .then(res => {
       expect(res.body.length).toBe(3)
@@ -87,10 +88,11 @@ test('GET /users/:id/languages returns user languages', () => {
 })
 
 test('GET /users/:id/likes returns user likes', () => {
+  const userId = 1
   return request(server)
-    .get('/api/v1/users/1/likes')
+    .get(`/api/v1/users/${userId}/likes`)
     .expect(200)
-    .then(likes => {
-      expect(likes.length).toBe(3)
+    .then(res => {
+      expect(res.body.length).toBe(2)
     })
 })
