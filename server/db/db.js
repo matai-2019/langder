@@ -174,6 +174,38 @@ function getAllLikes (db = connection) {
   return db('likes')
 }
 
+function getUserMatches (userId, db = connection) {
+  return db
+    .from('matches AS m')
+    .where(function () {
+      this
+        .where('user1Id', userId)
+        .orWhere('user2Id', userId)
+    })
+    .join('profiles AS p1', 'm.user1Id', 'p1.userId')
+    .join('profiles AS p2', 'm.user2Id', 'p2.userId')
+    .select(
+      'p1.userId AS p1UserId',
+      'p1.name as p1Name',
+      'p1.description as p1Description',
+      'p2.userId AS p2UserId',
+      'p2.name as p2Name',
+      'p2.description as p2Description')
+    .map(profile => {
+      if (profile.p1UserId === userId) {
+        delete profile.p1UserId
+        delete profile.p1Name
+        delete profile.p1Description
+      } else {
+        delete profile.p2UserId
+        delete profile.p2Name
+        delete profile.p2Description
+      }
+      console.log(profile)
+      return profile
+    })
+}
+
 function getAllMatches (db = connection) {
   return db('matches')
 }
@@ -209,6 +241,7 @@ module.exports = {
   updateLanguage,
   addUserLike,
   getAllLikes,
+  getUserMatches,
   getAllMatches,
   addUserMatch,
   getUserLikes

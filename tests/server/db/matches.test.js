@@ -28,3 +28,8 @@ test('db.addUserMatch adds a match to matches table', () => {
       expect(matches.length).toBe(4)
     })
 })
+
+test('db.getUserMatches list all user matches', () => {
+  return db.getUserMatches(3, testDb)
+    .then(console.log)
+})
