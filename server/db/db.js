@@ -41,13 +41,6 @@ function getPotentialMatches (db = connection) {
     })
 }
 
-async function helper1 (userId, db = connection) {
-  const data = await db('userLanguages')
-    .join('languages', 'userLanguages.id', 'languages.langId')
-    .where('userLanguages.userId', userId)
-  if (data) console.log(data)
-}
-
 function getUser (id, db = connection) {
   return db('users')
     .join('profiles', 'users.id', 'profiles.userId')
