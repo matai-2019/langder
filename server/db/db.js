@@ -44,20 +44,20 @@ async function addUser (user, db = connection) {
     })
 }
 
+function updateUser (user, db = connection) {
+  return db('users')
+    .where('id', user.id)
+    .update({
+      email: user.email,
+      password: user.password
+    })
+}
+
 function deleteUser (id, db = connection) {
   return db('users')
     .where('id', id)
     .del()
 }
-
-// function updateuser (user, db = connection) {
-//   return db('users')
-//     .where('users', user.id)
-//     .update({
-//       users: user.id,
-//       password: user.password
-//     })
-// }
 
 function getAllUsersLanguages (db = connection) {
   return db('userLanguages')
@@ -136,6 +136,7 @@ module.exports = {
   addUserLanguage,
   getProfile,
   updateProfile,
+  updateUser,
   deleteUser,
   getAllLanguages
 }
