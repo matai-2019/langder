@@ -63,6 +63,14 @@ function getAllUsersLanguages (db = connection) {
   return db('userLanguages')
 }
 
+// get a language
+function getLanguage (languageId, db = connection) {
+  return db('languages')
+    .select()
+    .where('id', languageId)
+    .first()
+}
+
 // add a language => stretch
 
 // update language => stretch
@@ -113,5 +121,6 @@ module.exports = {
   addUserLanguage,
   getProfile,
   updateProfile,
-  deleteUser
+  deleteUser,
+  getLanguage
 }
