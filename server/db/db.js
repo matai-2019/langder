@@ -174,6 +174,31 @@ function getAllLikes (db = connection) {
   return db('likes')
 }
 
+function getMatchesFirstCol (userId, db = connection) {
+  return db
+    .from('matches as m')
+    .where('user1Id', userId)
+    .join('profiles AS p', 'm.user2Id', 'p.userId')
+    .select('p.userId', 'p.id AS profileId', 'p.name', 'p.description')
+}
+
+function getMatchesSecondCol (userId, db = connection) {
+  return db
+    .from('matches as m')
+    .where('user2Id', userId)
+    .join('profiles AS p', 'm.user1Id', 'p.userId')
+    .select('p.userId', 'p.id AS profileId', 'p.name', 'p.description')
+}
+
+async function getUserMatches (userId, db = connection) {
+  const data = await getMatchesFirstCol(userId, db)
+  const data2 = await getMatchesSecondCol(userId, db)
+
+  if (data || data2) {
+    return [...data, ...data2]
+  }
+}
+
 function getAllMatches (db = connection) {
   return db('matches')
 }
@@ -209,6 +234,7 @@ module.exports = {
   updateLanguage,
   addUserLike,
   getAllLikes,
+  getUserMatches,
   getAllMatches,
   addUserMatch,
   getUserLikes

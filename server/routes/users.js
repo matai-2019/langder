@@ -48,10 +48,35 @@ router.post('/', (req, res) => {
 
 // delete route to delete user (has ticket)
 
+router.delete('/:id', (req, res) => {
+  const userId = Number(req.params.id)
+
+  db.deleteUser(userId)
+    .then(() => {
+      res.status(200).json({ Okay: true })
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
+
+router.get('/:id/matches', (req, res) => {
+  const userId = Number(req.params.id)
+  db.getUserMatches(userId)
+    .then(matches => {
+      res.status(200).json(matches)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
+
 router.get('/:id/languages', (req, res) => {
   db.getUserLanguages(req.params.id)
     .then(langs => {
       res.status(200).json(langs)
+    }).catch(err => {
+      res.status(500).json(err)
     })
 })
 
@@ -77,6 +102,17 @@ router.put('/:id/languages', (req, res) => {
     })
     .then((langIds) => {
       res.status(200).json({ Okay: true, langIds })
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
+
+router.get('/:id/likes', (req, res) => {
+  const id = req.params.id
+  db.getUserLikes(id)
+    .then(likes => {
+      res.status(200).json(likes)
     })
     .catch(err => {
       res.status(500).json(err)
