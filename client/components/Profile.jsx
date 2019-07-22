@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import UpdateProfile from './UpdateProfile'
 import { Label, Flag, Card, Image, Rating, Button } from 'semantic-ui-react'
 
@@ -75,11 +76,15 @@ const theme = {
 }
 
 const handleUpdate = () => {
-  UpdateProfile(this.props.id)
-    .then(() => this.setState({
-      redirect: true
-    }))
-    .catch(err => this.props.UpdateProfileError(err.message))
+  this.setState({
+    redirect: true
+  })
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/updateProfile' />
+    }
+  }
 }
 
 // This function doesn't exist at that time
