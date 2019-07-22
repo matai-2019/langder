@@ -24,12 +24,12 @@ export function addUserError (message) {
   }
 }
 
-// export function addUser () {
-//   return dispatch => {
-//     dispatch(addUserPending())
-//     request
-//       .post('/api/v1/users')
-//       .then(res => dispatch(addUserSuccess(res.body)))
-//       .catch(err => dispatch(addUserError(err.message)))
-//   }
-// }
+export function addUser () {
+  return dispatch => {
+    dispatch(addUserPending())
+    request
+      .post('/api/v1/users')
+      .then(res => dispatch(addUserSuccess(res.body)))
+      .catch(err => dispatch(addUserError(err.message)))
+  }
+}

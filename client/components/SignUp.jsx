@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Form, Button, Grid } from 'semantic-ui-react'
 
 class SignUp extends Component {
@@ -11,7 +12,7 @@ class SignUp extends Component {
 
   handleSubmit = () => this.setState({ email: '', password: '' })
 
-  render() {
+  render () {
     const { email, password } = this.state
     const inputStyle = { width: '60vw' }
 
@@ -42,4 +43,6 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp
+const mapStateToProps = () => {}
+
+export default connect(mapStateToProps)(SignUp)
