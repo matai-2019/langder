@@ -2,18 +2,32 @@ import '../mocks/api'
 // import '../mocks/save-auth-token'
 
 import {
-  PotentialMatchesSuccess,
-  POTENTIAL_MATCHES_SUCCESS,
-  rejectPotMatch,
-  REJECT_POTENTIAL_MATCH
+  NEXT_POTENTIAL_MATCH,
+  ADD_LIKE_ERROR,
+  nextPotMatch,
+  addLikeError
 } from '../../../client/actions/potMatches'
 
-test('Rejecting pot match dispatches the correct action', () => {
-  const action = rejectPotMatch()
-  const expected = {
-    type: REJECT_POTENTIAL_MATCH
-  }
-  expect(action).toEqual(expected)
+describe('like potential match', () => {
+  it('dispatch correct action', () => {
+    const error = ('testing')
+    const action = addLikeError(error)
+    const expected = {
+      error,
+      type: ADD_LIKE_ERROR
+    }
+    expect(action).toEqual(expected)
+  })
+})
+
+describe('next potential match', () => {
+  it('dispatches the correct action', () => {
+    const action = nextPotMatch()
+    const expected = {
+      type: NEXT_POTENTIAL_MATCH
+    }
+    expect(action).toEqual(expected)
+  })
 })
 
 // describe('actioins', () => {
