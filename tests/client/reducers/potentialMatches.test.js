@@ -1,5 +1,9 @@
-// import { PENDING_POTENTIAL_MATCHES, POTENTIAL_MATCHES_SUCCESS, POTENTIAL_MATCHES_ERROR } from '../../../client/reducers/potentialMatches'
-// import { potentialMatches, potentialMatchesSuccess } from '../../../client/actions/potentialMatches'
+import { PENDING_POTENTIAL_MATCHES, POTENTIAL_MATCHES_SUCCESS, POTENTIAL_MATCHES_ERROR } from '../../../client/reducers/potentialMatches'
+import {
+  potentialMatches,
+  potentialMatchesSuccess,
+  likePotentialMatch
+} from '../../../client/actions/potentialMatches'
 
 // // Need Mock store?
 
@@ -14,3 +18,14 @@
 //     expect(actual).toEqual(expected)
 //   })
 // })
+
+describe('like potential match success', () => {
+  it('returns potential profileMatches on a successful profile get', () => {
+    const expected = {
+
+    }
+    const action = { type: POTENTIAL_MATCHES_SUCCESS, action: {} }
+    const actual = potentialMatchesSuccess(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+})
