@@ -14,7 +14,7 @@ afterEach(() => env.cleanup(testDb))
 test('db.addUserLanguage adds 3 rows to userLanguages table', () => {
   expect.assertions(1)
 
-  const expected = 6
+  const expected = 7
   const userId = 1
   const languagesArray = [1, 2, 3]
 
@@ -30,19 +30,19 @@ test('db.getUserLanguages get a specific users languages', (done) => {
 
   db.getUserLanguages(userId, testDb)
     .then(userlanguages => {
-      expect(userlanguages.length).toBe(1)
+      expect(userlanguages.length).toBe(2)
       done()
     })
 })
 
-test('db.deleteUserLanguage deletes 1 row from userLanguages table', () => {
+test('db.deleteUserLanguage deletes expected rows from userLanguages table', () => {
   expect.assertions(1)
 
   const expected = 2
   const userId = 1
-  const langId = 2
+  const langIds = [2, 3]
 
-  return db.deleteUserLanguage(userId, langId, testDb)
+  return db.deleteUserLanguage(userId, langIds, testDb)
     .then(async () => {
       const actual = await db.getAllUsersLanguages(testDb)
       expect(actual.length).toBe(expected)

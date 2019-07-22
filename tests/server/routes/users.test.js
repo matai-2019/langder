@@ -12,13 +12,11 @@ jest.mock('../../../server/db/db.js', () => ({
   getUser: (id) => Promise.resolve(
     { id: 2, email: 'email2@email.com', password: 'password' }
   ),
-  deleteUserLanguages: (id) => Promise.resolve({ Okay: true }),
-
-  addUserLanguages: (userId) => Promise.resolve([1,3]),
+  deleteUserLanguage: (id) => Promise.resolve({ id }),
 
   addUser: (user) => Promise.resolve(user),
 
-  addUserLanguage: (id, languages) => Promise.resolve(languages),
+  addUserLanguage: (id, languages) => Promise.resolve([{ langId: 1 }, { langId: 3 }]),
   getPotentialMatches: async userId => {
     const list = [
       { id: 1, name: 'A', userId: 1, description: 'I am A' },
@@ -71,9 +69,12 @@ test('GET /users/:id returns a specific user', () => {
     .catch(err => expect(err).toBe(err))
 })
 
-test('refresh /:language id refreshes user languages', () => {
+test('PUT /:id/languages refreshes user languages', () => {
+  const userId = 1
+  const languages = [1, 2, 3]
   return request(server)
-    .put('/api/v1/users/1/languages')
+    .put(`/api/v1/users/${userId}/languages`)
+    .send(languages)
     .then(res => {
       expect(res.status).toBe(200)
       expect(res.body.Okay).toBe(true)
