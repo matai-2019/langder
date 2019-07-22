@@ -26,15 +26,24 @@ class PotMatches extends React.Component {
   render () {
     const testarray = ['4', 'strings', 'another', 'string']
     const { name, description, languages } = this.state
+    const { dispatch } = this.props
     return (
       <>
         <Container className='matches'>
           <h1>Your Matches are all Trixie. sorry.</h1>
           {testarray.map(user =>
             <Profile key={user} user={potentialMatches} />)}
-          <Button name='next' /><Icon name="pencil" />
+          <Button
+            name='like'
+            onClick={() => dispatch(likePotMatch(activeUser))}
+          />
+          <Icon name="pencil" />
+          <Button
+            name='reject'
+            onClick={() => dispatch(nextPotMatch())}
+          />
+          <Icon name="pencil" />
         </Container>
-
       </>
     )
   }
