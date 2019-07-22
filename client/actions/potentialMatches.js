@@ -3,6 +3,13 @@ import request from 'superagent'
 export const PENDING_POTENTIAL_MATCHES = 'PENDING_POTENTIAL_MATCHES'
 export const POTENTIAL_MATCHES_SUCCESS = 'POTENTIAL_MATCHES_SUCCESS'
 export const POTENTIAL_MATCHES_ERROR = 'POTENTIAL_MATCHES_ERROR'
+export const LIKE_POTENTIAL_MATCH = 'LIKE_POTENTIAL_MATCH'
+
+export function likePotentialMatch () {
+  return {
+    type: LIKE_POTENTIAL_MATCH
+  }
+}
 
 export function pendingPotentialMatches () {
   return {
