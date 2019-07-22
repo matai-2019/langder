@@ -6,13 +6,13 @@ import {
   POTENTIAL_MATCHES_SUCCESS,
   rejectPotMatch,
   REJECT_POTENTIAL_MATCH,
-  likePotMatch,
+  addlike,
   LIKE_POTENTIAL_MATCH
 } from '../../../client/actions/potentialMatches'
 
 describe('like potential match', () => {
   it('dispatch correct action', () => {
-    const action = likePotMatch()
+    const action = addlike()
     const expected = {
       type: LIKE_POTENTIAL_MATCH
     }
