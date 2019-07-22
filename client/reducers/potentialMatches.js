@@ -6,6 +6,7 @@ import {
 } from '../actions/potentialMatches'
 
 export default function potentialMatches (state = {}, action) {
+  let poppedPotMatches = []
   switch (action.type) {
     case PENDING_POTENTIAL_MATCHES:
       return {
@@ -21,8 +22,10 @@ export default function potentialMatches (state = {}, action) {
         error: action.error
       }
     case REJECT_POTENTIAL_MATCH:
+      poppedPotMatches = state.potentialMatches
+      poppedPotMatches.pop()
       return {
-        potentialMatches: state.potentialMatches.pop()
+        potentialMatches: poppedPotMatches
       }
     default:
       return state

@@ -1,7 +1,20 @@
-// import '../mocks/api'
+import '../mocks/api'
 // import '../mocks/save-auth-token'
 
-// import { PotentialMatchesSuccess, POTENTIAL_MATCHES_SUCCESS } from '../../../client/actions/potentialMatches'
+import {
+  PotentialMatchesSuccess,
+  POTENTIAL_MATCHES_SUCCESS,
+  rejectPotMatch,
+  REJECT_POTENTIAL_MATCH
+} from '../../../client/actions/potentialMatches'
+
+test('Rejecting potential match dispatches the correct action', () => {
+  const action = rejectPotMatch()
+  const expected = {
+    type: REJECT_POTENTIAL_MATCH
+  }
+  expect(action).toEqual(expected)
+})
 
 // describe('actioins', () => {
 //   it.skip('create successful potentialMatches get action', () => {
@@ -15,7 +28,7 @@
 //   })
 // })
 
-    //Can't test matches without mocked apis and auth keys/tokens
+// Can't test matches without mocked apis and auth keys/tokens
 
 // test.skip('registering for an event dispatches the correct actions', () => {
 //   const dispatch = jest.fn()

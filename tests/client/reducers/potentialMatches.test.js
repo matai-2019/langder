@@ -1,10 +1,8 @@
 import {
-  REJECT_POTENTIAL_MATCH
-} from '../actions/potentialMatches'
-
-import {
   rejectPotMatch
 } from '../../../client/actions/potentialMatches'
+
+import potMatches from '../../../client/reducers/potentialMatches'
 
 // Need Mock store?
 
@@ -21,5 +19,20 @@ import {
 // })
 
 test('reject potential match removes a user from potentialMatches', () => {
-  const 
+  const initialState = {
+    potentialMatches: [
+      { name: 'keith' },
+      { name: 'noel' },
+      { name: 'ruslan' }
+    ]
+  }
+  const expected = {
+    potentialMatches: [
+      { name: 'keith' },
+      { name: 'noel' }
+    ]
+  }
+  const actual = potMatches(initialState, rejectPotMatch())
+  expect(actual).toStrictEqual(expected)
+  expect(actual.potentialMatches.length).toBe(2)
 })
