@@ -4,7 +4,7 @@ export const PENDING_LOGIN = 'PENDING_LOGIN'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_ERROR = 'LOGIN_ERROR'
 
-export function login () {
+export function loginPending () {
   return {
     type: PENDING_LOGIN
   }
@@ -24,14 +24,13 @@ export function loginError (message) {
   }
 }
 
-export function fetchLogin () {
+export function login (user) {
   return dispatch => {
-    dispatch(fetchLogin())
-
+    dispatch(loginPending())
     request
-      .get('/api/v1/users') //<<< Don't know the path
+      .get('/api/v1/auth/login')
+      .send(user)
       .then(res => dispatch(loginSuccess(res.body)))
       .catch(err => dispatch(loginError(err.message)))
   }
 }
-
