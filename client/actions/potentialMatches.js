@@ -6,7 +6,7 @@ export const POTENTIAL_MATCHES_ERROR = 'POTENTIAL_MATCHES_ERROR'
 export const REJECT_POTENTIAL_MATCH = 'REJECT_POTENTIAL_MATCH'
 export const LIKE_POTENTIAL_MATCH = 'LIKE_POTENTIAL_MATCH'
 
-export function likePotentialMatch () {
+export function likePotMatch () {
   return {
     type: LIKE_POTENTIAL_MATCH
   }
