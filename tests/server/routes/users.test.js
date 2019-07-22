@@ -28,11 +28,7 @@ jest.mock('../../../server/db/db.js', () => ({
     { id: 1, userId: 1, langId: 2 },
     { id: 1, userId: 1, langId: 5 }
   ]),
-  deleteUser: () => Promise.resolve([
-    { id: 1, email: 'email@email.com', password: 'password' },
-    { id: 2, email: 'email2@email.com', password: 'password' },
-    { id: 3, email: 'email3@email.com', password: 'password' }
-  ])
+  deleteUser: (id) => Promise.resolve({ id })
 }))
 
 test('POST / adds a user', () => {
@@ -103,7 +99,8 @@ test('DELETE /:id deletes a specific user', done => {
   return request(server)
     .delete(`/api/v1/users/${userId}`)
     .then(res => {
-      expect(res.status).toBe(204)
+      expect(res.status).toBe(200)
+      expect(res.body.Okay).toBe(true)
       done()
     })
 })
