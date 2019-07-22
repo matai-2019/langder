@@ -11,17 +11,16 @@ export default function addUser (state = {}, action) {
         loading: true
       }
     case ADDUSER_SUCCESS:
-      return { 
-        user: action.user 
+      return {
+        user: action.user
       }
 
     case ADDUSER_ERROR:
       return {
-          error: action.error
-        }  
+        error: action.error
+      }
 
     default:
       return state
   }
 }
-
