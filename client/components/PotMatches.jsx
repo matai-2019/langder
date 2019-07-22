@@ -4,7 +4,6 @@ import { Container, Button, Icon } from 'semantic-ui-react'
 import Profile from './Profile'
 
 import { potentialMatches } from '../actions/potentialMatches'
-// import { getusers from the API when possible } from '../api/api'
 
 class PotMatches extends React.Component {
   state = {
@@ -12,6 +11,10 @@ class PotMatches extends React.Component {
     name: '',
     description: '',
     languages: []
+  }
+
+  componentDidMount () {
+    this.props.dispatch(potentialMatches())
   }
 
   handleChange = (e, { id, user }) => this.setState({ [id]: user })
@@ -42,7 +45,8 @@ class PotMatches extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.users
+    users: state.users,
+    potMatches: state.potMatches
   }
 }
 
