@@ -1,6 +1,6 @@
 import { PENDING_POTENTIAL_MATCHES, POTENTIAL_MATCHES_SUCCESS, POTENTIAL_MATCHES_ERROR } from '../actions/potMatches'
 
-export default function potMatches (state = [], action) {
+export default function potMatches(state = [], action) {
   switch (action.type) {
     case PENDING_POTENTIAL_MATCHES:
       return {
@@ -21,6 +21,7 @@ export default function potMatches (state = [], action) {
       return {
         potMatches: poppedPotMatches
       }
+
     default:
       return state
   }
