@@ -15,6 +15,12 @@ export default function potMatches (state = [], action) {
       return {
         error: action.error
       }
+    case REJECT_POTENTIAL_MATCH:
+      poppedPotMatches = state.potMatches
+      poppedPotMatches.pop()
+      return {
+        potMatches: poppedPotMatches
+      }
     default:
       return state
   }
