@@ -2,28 +2,28 @@ import {
   potentialMatchesSuccess,
   addLikeError,
   nextPotMatch
-} from '../../../client/actions/potentialMatches'
+} from '../../../client/actions/potMatches'
 
-import potMatches from '../../../client/reducers/potentialMatches'
+import potMatches from '../../../client/reducers/potMatches'
 
 describe('next potential match', () => {
   it('removes one person from pot matches', () => {
     const initialState = {
-      potentialMatches: [
+      potMatches: [
         { name: 'keith' },
         { name: 'noel' },
         { name: 'ruslan' }
       ]
     }
     const expected = {
-      potentialMatches: [
+      potMatches: [
         { name: 'keith' },
         { name: 'noel' }
       ]
     }
     const actual = potMatches(initialState, nextPotMatch())
     expect(actual).toStrictEqual(expected)
-    expect(actual.potentialMatches.length).toBe(2)
+    expect(actual.potMatches.length).toBe(2)
   })
 })
 

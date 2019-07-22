@@ -1,7 +1,7 @@
 import {
   ADD_LIKE,
   ADD_LIKE_ERROR
-} from '../actions/potentialMatches'
+} from '../actions/potMatches'
 
 export default function likes (state = [], action) {
   switch (action.type) {
