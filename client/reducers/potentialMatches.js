@@ -1,4 +1,9 @@
-import { PENDING_POTENTIAL_MATCHES, POTENTIAL_MATCHES_SUCCESS, POTENTIAL_MATCHES_ERROR } from '../actions/potentialMatches'
+import {
+  REJECT_POTENTIAL_MATCH,
+  PENDING_POTENTIAL_MATCHES,
+  POTENTIAL_MATCHES_SUCCESS,
+  POTENTIAL_MATCHES_ERROR
+} from '../actions/potentialMatches'
 
 export default function potentialMatches (state = {}, action) {
   switch (action.type) {
@@ -14,6 +19,10 @@ export default function potentialMatches (state = {}, action) {
     case POTENTIAL_MATCHES_ERROR:
       return {
         error: action.error
+      }
+    case REJECT_POTENTIAL_MATCH:
+      return {
+        potentialMatches: state.potentialMatches.pop()
       }
     default:
       return state

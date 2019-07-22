@@ -1,7 +1,12 @@
-// import { PENDING_POTENTIAL_MATCHES, POTENTIAL_MATCHES_SUCCESS, POTENTIAL_MATCHES_ERROR } from '../../../client/reducers/potentialMatches'
-// import { potentialMatches, potentialMatchesSuccess } from '../../../client/actions/potentialMatches'
+import {
+  REJECT_POTENTIAL_MATCH
+} from '../actions/potentialMatches'
 
-// // Need Mock store?
+import {
+  rejectPotMatch
+} from '../../../client/actions/potentialMatches'
+
+// Need Mock store?
 
 // describe('potentialMatchesSuccess', () => {
 //   it('returns potential profileMatches on a successful profile get', () => {
