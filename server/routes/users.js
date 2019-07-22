@@ -60,6 +60,17 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+router.get('/:id/matches', (req, res) => {
+  const userId = Number(req.params.id)
+  db.getUserMatches(userId)
+    .then(matches => {
+      res.status(200).json(matches)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
+
 router.get('/:id/languages', (req, res) => {
   db.getUserLanguages(req.params.id)
     .then(langs => {
