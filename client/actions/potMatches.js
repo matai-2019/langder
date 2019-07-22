@@ -35,10 +35,10 @@ export function pendingPotentialMatches () {
   }
 }
 
-export function potentialMatchesSuccess (users) {
+export function potentialMatchesSuccess (potMatches) {
   return {
     type: POTENTIAL_MATCHES_SUCCESS,
-    users: potentialMatchesSuccess
+    potMatches
   }
 }
 
@@ -49,11 +49,10 @@ export function potentialMatchesError (message) {
   }
 }
 
-export function potentialMatches (users) {
+export function fetchPotMatches (userId) {
   return dispatch => {
     dispatch(pendingPotentialMatches())
-    request
-      .get(`/api/v1/users/${users}`)
+    request.get(`/api/v1/users/${userId}/matches`)
       .then(res => dispatch(potentialMatchesSuccess(res.body)))
       .catch(err => dispatch(potentialMatchesError(err.message)))
   }
