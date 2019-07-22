@@ -52,6 +52,8 @@ router.get('/:id/languages', (req, res) => {
   db.getUserLanguages(req.params.id)
     .then(langs => {
       res.status(200).json(langs)
+    }).catch(err => {
+      res.status(500).json(err)
     })
 })
 
@@ -67,5 +69,16 @@ router.post('/:id', (req, res) => {
 })
 
 // del route to delete user languages (has ticket)
+
+router.get('/:id/likes', (req, res) => {
+  const id = req.params.id
+  db.getUserLikes(id)
+    .then(likes => {
+      res.status(200).json(likes)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
 
 module.exports = router

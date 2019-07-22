@@ -24,9 +24,14 @@ jest.mock('../../../server/db/db.js', () => ({
     return Promise.resolve(filteredList)
   },
   getUserLanguages: (id) => Promise.resolve([
-    { id: 1, userId: 1, langId: 1 },
-    { id: 1, userId: 1, langId: 2 },
-    { id: 1, userId: 1, langId: 5 }
+    { id: 1, userId: id, langId: 1 },
+    { id: 2, userId: id, langId: 2 },
+    { id: 3, userId: id, langId: 5 }
+  ]),
+  getUserLikes: (id) => Promise.resolve([
+    { id: 1, userId: id, likeId: 2 },
+    { id: 2, userId: id, likeId: 3 },
+    { id: 3, userId: id, likeId: 5 }
   ])
 }))
 
@@ -85,8 +90,19 @@ test('GET /users/3/pot returns a users potential matches', done => {
 })
 
 test('GET /users/:id/languages returns user languages', () => {
+  const userId = 1
   return request(server)
-    .get('/api/v1/users/1/languages')
+    .get(`/api/v1/users/${userId}/languages`)
+    .expect(200)
+    .then(res => {
+      expect(res.body.length).toBe(3)
+    })
+})
+
+test('GET /users/:id/likes returns user likes', () => {
+  const userId = 1
+  return request(server)
+    .get(`/api/v1/users/${userId}/likes`)
     .expect(200)
     .then(res => {
       expect(res.body.length).toBe(3)
