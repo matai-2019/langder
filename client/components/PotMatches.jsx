@@ -3,10 +3,14 @@ import { connect } from 'react-redux'
 import { Container, Button, Icon } from 'semantic-ui-react'
 import Profile from './Profile'
 
-import { likePotMatch, nextPotMatch } from '../actions/potMatches'
+import { likePotMatch, nextPotMatch, fetchPotMatches } from '../actions/potMatches'
 
 class PotMatches extends React.Component {
   handleChange = (e, { id, user }) => this.setState({ [id]: user })
+
+  componentDidMount () {
+    this.props.dispatch(fetchPotMatches())
+  }
 
   render () {
     const { activePot, nextPot, dispatch } = this.props
