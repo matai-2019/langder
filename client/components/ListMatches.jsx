@@ -1,35 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import { getMatches } from '../actions/listMatches'
+import { Grid } from 'semantic-ui-react'
+import MatchListItem from './MatchListItem'
 
 class ListMatches extends Component {
   state = {
-    matches: []
-  }
-
-  componentDidMount () {
-    const { match, dispatch } = this.props
-    const matches = match.params.matches
-    matches
-      ? this.props.dispatch(getMatches( { ????.id })) // ??
-      : dispatch(redirect()) //???
+    matches: [{ userId: '1', profileId: '1', name: 'A' }, { matchId: '2', profileId: '2', name: 'Noel' }, { matchId: '3', profileId: '3', name: 'Mankee' }]
   }
 
   render () {
-    const { matches } = this.props
+    console.log(this.state.matches[0].name)
     return (
-      <>
-        {matches.map(match =>
-          <Profile key={match.user2id} match={match} />)}
-      </>
+      <Grid centered style={{ marginTop: '75px' }}>
+        {this.state.matches.map((match, index) => (
+          <Grid.Row key={index}>
+            <MatchListItem name={match.name}/>
+          </Grid.Row>))}
+      </Grid>
     )
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    users: state.users
   }
 }
 
