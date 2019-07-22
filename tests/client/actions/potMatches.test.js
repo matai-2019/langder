@@ -6,9 +6,9 @@ import {
   POTENTIAL_MATCHES_SUCCESS,
   rejectPotMatch,
   REJECT_POTENTIAL_MATCH
-} from '../../../client/actions/potentialMatches'
+} from '../../../client/actions/potMatches'
 
-test('Rejecting potential match dispatches the correct action', () => {
+test('Rejecting pot match dispatches the correct action', () => {
   const action = rejectPotMatch()
   const expected = {
     type: REJECT_POTENTIAL_MATCH
@@ -17,7 +17,7 @@ test('Rejecting potential match dispatches the correct action', () => {
 })
 
 // describe('actioins', () => {
-//   it.skip('create successful potentialMatches get action', () => {
+//   it.skip('create successful potMatches get action', () => {
 //     const testMatches = { users:  users }
 //     const action = updateProfileSuccess(testUpdate)
 //     const expected = {
