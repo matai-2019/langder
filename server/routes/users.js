@@ -48,6 +48,18 @@ router.post('/', (req, res) => {
 
 // delete route to delete user (has ticket)
 
+router.delete('/:id', (req, res) => {
+  const userId = Number(req.params.id)
+
+  db.deleteUser(userId)
+    .then(() => {
+      res.status(200).json({ Okay: true })
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
+
 router.get('/:id/languages', (req, res) => {
   db.getUserLanguages(req.params.id)
     .then(langs => {

@@ -24,10 +24,11 @@ jest.mock('../../../server/db/db.js', () => ({
     return Promise.resolve(filteredList)
   },
   getUserLanguages: (id) => Promise.resolve([
-    { id: 1, userId: id, langId: 1 },
-    { id: 2, userId: id, langId: 2 },
-    { id: 3, userId: id, langId: 5 }
+    { id: 1, userId: 1, langId: 1 },
+    { id: 1, userId: 1, langId: 2 },
+    { id: 1, userId: 1, langId: 5 }
   ]),
+  deleteUser: (id) => Promise.resolve({ id }),
   getUserLikes: (id) => Promise.resolve([
     { id: 1, userId: id, likeId: 2 },
     { id: 2, userId: id, likeId: 3 },
@@ -106,5 +107,16 @@ test('GET /users/:id/likes returns user likes', () => {
     .expect(200)
     .then(res => {
       expect(res.body.length).toBe(3)
+    })
+})
+
+test('DELETE /:id deletes a specific user', done => {
+  const userId = 2
+  return request(server)
+    .delete(`/api/v1/users/${userId}`)
+    .then(res => {
+      expect(res.status).toBe(200)
+      expect(res.body.Okay).toBe(true)
+      done()
     })
 })
