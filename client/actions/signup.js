@@ -30,7 +30,9 @@ export function addUser (user) {
     request
       .post('/api/v1/users')
       .send(user)
-      .then(res => dispatch(addUserSuccess(res.body)))
+      .then(res => {
+        return dispatch(addUserSuccess(res.body))
+      })
       .catch(err => dispatch(addUserError(err.message)))
   }
 }
