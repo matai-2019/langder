@@ -1,4 +1,5 @@
 const connection = require('./connection')
+
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
@@ -9,10 +10,14 @@ function hashPassword (plainPassword) {
     })
 }
 
+async function validatePassword (password, hash) {
+  return bcrypt.compare(password, hash)
+    .then(result => result)
+}
+
 function login (loginData, db = connection) {
   return db('users')
     .select()
-    .where('password', loginData.password)
     .where('email', loginData.email)
     .first()
 }
@@ -134,10 +139,10 @@ async function addUserLanguage (userId, langIds, db = connection) {
 
 // delete user language (has ticket)
 
-async function deleteUserLanguage (userId, langId, db = connection) {
+function deleteUserLanguage (userId, langIds, db = connection) {
   return db('userLanguages')
     .where('userId', userId)
-    .where('langId', langId)
+    .whereIn('langId', langIds)
     .del()
 }
 
@@ -237,5 +242,6 @@ module.exports = {
   getUserMatches,
   getAllMatches,
   addUserMatch,
-  getUserLikes
+  getUserLikes,
+  validatePassword
 }
