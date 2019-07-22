@@ -21,6 +21,7 @@ describe('like potential match', () => {
   it('sends post to api', () => {
     // expect(true).toBe(false)
   })
+})
 
 describe('reject potential match', () => {
   it('dispatches the correct action', () => {
@@ -45,18 +46,3 @@ describe('reject potential match', () => {
 // })
 
 // Can't test matches without mocked apis and auth keys/tokens
-
-// test.skip('registering for an event dispatches the correct actions', () => {
-//   const dispatch = jest.fn()
-//   const pendingPotentialMatches = {
-//     profileId: 1,
-//     users: 2,
-//     profileId: 'test user'
-//   }
-//   return PotentialMatchesSuccess(true, registration)(dispatch)
-//     .then(() => {
-//       expect(dispatch.mock.calls[0][0].type).toBe(PENDING_POTENTIAL_MATCHES)
-//       expect(dispatch.mock.calls[1][0].type).toBe(POTENTIAL_MATCHES_SUCCESS)
-//       expect(dispatch.mock.calls[2][0].type).toBe(CLEAR_ERROR)
-//     })
-// })
