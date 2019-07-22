@@ -1,11 +1,12 @@
 import {
-  REJECT_POTENTIAL_MATCH,
+  NEXT_POTENTIAL_MATCH,
   PENDING_POTENTIAL_MATCHES,
   POTENTIAL_MATCHES_SUCCESS,
-  POTENTIAL_MATCHES_ERROR
+  POTENTIAL_MATCHES_ERROR,
+  ADD_LIKE_ERROR
 } from '../actions/potentialMatches'
 
-export default function potentialMatches (state = {}, action) {
+export default function potMatches (state = [], action) {
   let poppedPotMatches = []
   switch (action.type) {
     case PENDING_POTENTIAL_MATCHES:
@@ -15,17 +16,21 @@ export default function potentialMatches (state = {}, action) {
       }
     case POTENTIAL_MATCHES_SUCCESS:
       return {
-        potentialMatches: action.users
+        potMatches: action.potMatches
       }
     case POTENTIAL_MATCHES_ERROR:
       return {
         error: action.error
       }
-    case REJECT_POTENTIAL_MATCH:
+    case NEXT_POTENTIAL_MATCH:
       poppedPotMatches = state.potentialMatches
       poppedPotMatches.pop()
       return {
-        potentialMatches: poppedPotMatches
+        potMatches: poppedPotMatches
+      }
+    case ADD_LIKE_ERROR:
+      return {
+        error: action.error
       }
     default:
       return state

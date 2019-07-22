@@ -1,10 +1,31 @@
 import {
-  rejectPotMatch
+  potentialMatchesSuccess,
+  addLikeError,
+  nextPotMatch
 } from '../../../client/actions/potentialMatches'
 
 import potMatches from '../../../client/reducers/potentialMatches'
 
-// Need Mock store?
+describe('next potential match', () => {
+  it('removes one person from pot matches', () => {
+    const initialState = {
+      potentialMatches: [
+        { name: 'keith' },
+        { name: 'noel' },
+        { name: 'ruslan' }
+      ]
+    }
+    const expected = {
+      potentialMatches: [
+        { name: 'keith' },
+        { name: 'noel' }
+      ]
+    }
+    const actual = potMatches(initialState, nextPotMatch())
+    expect(actual).toStrictEqual(expected)
+    expect(actual.potentialMatches.length).toBe(2)
+  })
+})
 
 // describe('potentialMatchesSuccess', () => {
 //   it('returns potential profileMatches on a successful profile get', () => {
@@ -17,22 +38,3 @@ import potMatches from '../../../client/reducers/potentialMatches'
 //     expect(actual).toEqual(expected)
 //   })
 // })
-
-test('reject potential match removes a user from potentialMatches', () => {
-  const initialState = {
-    potentialMatches: [
-      { name: 'keith' },
-      { name: 'noel' },
-      { name: 'ruslan' }
-    ]
-  }
-  const expected = {
-    potentialMatches: [
-      { name: 'keith' },
-      { name: 'noel' }
-    ]
-  }
-  const actual = potMatches(initialState, rejectPotMatch())
-  expect(actual).toStrictEqual(expected)
-  expect(actual.potentialMatches.length).toBe(2)
-})
