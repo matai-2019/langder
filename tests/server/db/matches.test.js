@@ -31,6 +31,14 @@ test('db.addUserMatch adds a match to matches table', () => {
 })
 
 test('db.getUserMatches list all user matches', () => {
-  return db.getUserMatches(3, testDb)
-    .then(console.log)
+  expect.assertions(2)
+
+  const userId = 3
+  const expected = 1
+  const expectedLen = 1
+  return db.getUserMatches(userId, testDb)
+    .then(actual => {
+      expect(actual).toHaveLength(expectedLen)
+      expect(actual[0].userId).toBe(expected)
+    })
 })
