@@ -2,8 +2,7 @@ import React from 'react'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 
-import Login from './Login'
-import SignUp from './SignUp'
+import Landing from './Landing'
 import Profile from './Profile'
 import PotMatches from './PotMatches'
 import Navbar from './Navbar'
@@ -14,12 +13,10 @@ class App extends React.Component {
       <Router>
         <>
         <Navbar />
-          <Container >
+          <Container style={{ display: 'flex' }} >
             <Switch>
-              {/* <Route exact path='/' component={welcome}/> */}
+              <Route exact path='/landing' component={Landing} />
               <Route exact path='/pot' component={PotMatches}/>
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/signup' component={SignUp} />
               <Route exact path='/profile' component={Profile} />
             </Switch>
           </Container>
