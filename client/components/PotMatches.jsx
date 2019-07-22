@@ -31,7 +31,7 @@ class PotMatches extends React.Component {
             name='reject'
             onClick={() => dispatch(nextPotMatch())}
           >
-            <Icon name='like'/>
+            <Icon name='close'/>
           </Button>
         </Container>
       </>
