@@ -6,10 +6,8 @@ import Profile from './Profile'
 import { potMatches } from '../actions/potMatches'
 
 class PotMatches extends React.Component {
-  handleChange = (e, { id, user }) => this.setState({ [id]: user })
 
   render () {
-    const testarray = ['4', 'strings', 'another', 'string']
     const {activePot, nextPot} = this.props
     return (
       <>
