@@ -85,13 +85,28 @@ router.post('/:id', (req, res) => {
   const userId = Number(req.params.id)
   const languages = req.body
   db.addUserLanguage(userId, languages)
-    .then((langs) => res.status(201).send(langs))
+    .then((langs) => res.status(201).json(langs))
     .catch(err => {
       res.status(500).json(err)
     })
 })
 
 // del route to delete user languages (has ticket)
+router.put('/:id/languages', (req, res) => {
+  const userId = Number(req.params.id)
+  const languages = req.body
+  // REFACTOR TO deleteUserLanguages & addUserLanguages => will break everything but then fix it
+  db.deleteUserLanguage(userId)
+    .then(() => {
+      return db.addUserLanguage(userId, languages)
+    })
+    .then((langIds) => {
+      res.status(200).json({ Okay: true, langIds })
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
 
 router.get('/:id/likes', (req, res) => {
   const id = req.params.id
