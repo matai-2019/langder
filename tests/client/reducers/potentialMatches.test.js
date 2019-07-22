@@ -19,3 +19,7 @@ import {
 //     expect(actual).toEqual(expected)
 //   })
 // })
+
+test('reject potential match removes a user from potentialMatches', () => {
+  const 
+})
