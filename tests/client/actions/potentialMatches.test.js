@@ -1,10 +1,17 @@
 import '../mocks/api'
 // import '../mocks/save-auth-token'
 
-import { PotentialMatchesSuccess, POTENTIAL_MATCHES_SUCCESS, likePotentialMatch, LIKE_POTENTIAL_MATCH } from '../../../client/actions/potentialMatches'
+import {
+  PotentialMatchesSuccess,
+  POTENTIAL_MATCHES_SUCCESS,
+  rejectPotMatch,
+  REJECT_POTENTIAL_MATCH,
+  likePotentialMatch,
+  LIKE_POTENTIAL_MATCH
+} from '../../../client/actions/potentialMatches'
 
-describe('actions', () => {
-  it('create successful action', () => {
+describe('like potential match', () => {
+  it('dispatch correct action', () => {
     const action = likePotentialMatch()
     const expected = {
       type: LIKE_POTENTIAL_MATCH
@@ -13,6 +20,15 @@ describe('actions', () => {
   })
   it('sends post to api', () => {
     // expect(true).toBe(false)
+  })
+
+describe('reject potential match', () => {
+  it('dispatches the correct action', () => {
+    const action = rejectPotMatch()
+    const expected = {
+      type: REJECT_POTENTIAL_MATCH
+    }
+    expect(action).toEqual(expected)
   })
 })
 
