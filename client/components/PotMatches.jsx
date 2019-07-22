@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Container, Button, Icon } from 'semantic-ui-react'
 import Profile from './Profile'
-
+ 
 import { potMatches } from '../actions/potMatches'
 
 class PotMatches extends React.Component {
