@@ -15,7 +15,7 @@ class Login extends Component {
 
   handleSubmit = () => {
     this.setState({ redirect: true })
-    this.props.dispatch(login(this.state.user))
+    this.props.dispatch(login({ email: this.state.email, password: this.state.password }))
   }
 
   renderRedirect = () => {
