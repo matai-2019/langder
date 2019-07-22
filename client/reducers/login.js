@@ -4,7 +4,7 @@ import {
   LOGIN_ERROR
 } from '../actions/login'
 
-// put to the side 
+// put to the side
 export default function login (state = {}, action) {
   switch (action.type) {
     case PENDING_LOGIN:
@@ -22,20 +22,18 @@ export default function login (state = {}, action) {
       return {
         error: action.error
       }
-                  //delete for later
-    // case userConstants.DELETE_REQUEST:
-    //   return {
-    //     ...state,
-    //     items: state.items.map(user =>
-    //       user.id === action.id
-    //           ? { ...user, deleting: true }
-    //           : user
-    //       )
-    //     }
+      // delete for later
+      // case userConstants.DELETE_REQUEST:
+      //   return {
+      //     ...state,
+      //     items: state.items.map(user =>
+      //       user.id === action.id
+      //           ? { ...user, deleting: true }
+      //           : user
+      //       )
+      //     }
 
     default:
       return state
   }
 }
-
-
