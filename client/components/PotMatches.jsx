@@ -3,38 +3,24 @@ import { connect } from 'react-redux'
 import { Container, Button, Icon } from 'semantic-ui-react'
 import Profile from './Profile'
 
-import { potentialMatches } from '../actions/potentialMatches'
+import { fetchPotMatches } from '../actions/potMatches'
 
 class PotMatches extends React.Component {
-  state = {
-    profileId: '',
-    name: '',
-    description: '',
-    languages: []
-  }
-
-  componentDidMount () {
-    this.props.dispatch(potentialMatches())
-  }
-
   handleChange = (e, { id, user }) => this.setState({ [id]: user })
 
-  handleSubmit = () => this.setState({
-    profileId: '',
-    name: '',
-    description: '',
-    languages: []
-  })
+  componentDidMount () {
+    this.props.dispatch(fetchPotMatches())
+  }
 
   render () {
-    const testarray = ['4', 'strings', 'another', 'string']
-    const { name, description, languages } = this.state
+    const { activePot, nextPot } = this.props
     return (
       <>
         <Container className='matches'>
-          <h1>Your Matches are all Trixie. sorry.</h1>
-          {testarray.map(user =>
-            <Profile key={user} user={potentialMatches} />)}
+          <h1>Your Matches are all Trixie. nice.</h1>
+          {activePot && <Profile user={activePot} />}
+          {nextPot && <Profile user={nextPot} />}
+          {/* MEssage underneith that says we're all done */}
           <Button name='next' /><Icon name="pencil" />
         </Container>
 
@@ -45,8 +31,9 @@ class PotMatches extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.users,
-    potMatches: state.potMatches
+    potMatches: state.potMatches,
+    activePot: state.potMatches[0],
+    nextPot: state.potMatches[1]
   }
 }
 
