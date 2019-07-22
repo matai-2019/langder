@@ -11,7 +11,7 @@ class Login extends Component {
 
   handleSubmit = () => this.setState({ email: '', password: '' })
 
-  render() {
+  render () {
     const { email, password } = this.state
     const inputStyle = { width: '60vw' }
 

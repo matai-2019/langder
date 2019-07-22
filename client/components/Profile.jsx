@@ -1,5 +1,5 @@
 import React from 'react'
-
+import UpdateProfile from './UpdateProfile'
 import { Label, Flag, Card, Image, Rating, Button } from 'semantic-ui-react'
 
 const props = {
@@ -74,6 +74,25 @@ const theme = {
   }
 }
 
+const handleUpdate = () => {
+  UpdateProfile(this.props.id)
+    .then(() => this.setState({
+      redirect: true
+    }))
+    .catch(err => this.props.UpdateProfileError(err.message))
+}
+
+// This function doesn't exist at that time
+
+/* handleLogout = () => {
+//   Logout(this.props.id)
+//     .then(() => this.setState({
+//       redirect: true
+//     }))
+//     .catch(err => this.props.UpdateProfileError(err.message))
+// }
+*/
+
 function Profile () {
   const mapLanguage = (languages, color) => {
     if (!color) color = 'grey'
@@ -95,7 +114,7 @@ function Profile () {
           as="h2"
           content={props.name}
           style={theme.mainHeader} />
-        <Image src={props.image} style={theme.image}/>
+        <Image src={props.image} style={theme.image} />
         <Card.Content>
           <Card.Header style={theme.header}>
             <span style={theme.span}>Teaching</span>
@@ -112,8 +131,8 @@ function Profile () {
         </Card.Content>
         <Card.Content content={props.description} style={theme.description} />
         <div className="buttonControls" style={theme.controls}>
-          <Button icon='edit' size="massive" circular style={{ ...theme.button, ...theme.editButton }} />
-          <Button icon='log out' size="massive" circular style={{ ...theme.button, ...theme.deleteButton }} />
+          <Button icon='edit' size="massive" circular style={{ ...theme.button, ...theme.editButton }} onClick={this.handleUpdate} />
+          {<Button icon='log out' size="massive" circular style={{ ...theme.button, ...theme.deleteButton }} /* onClick={this.handleLogout} */ />}
         </div>
       </Card>
 
