@@ -1,4 +1,5 @@
 const connection = require('./connection')
+
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
@@ -13,10 +14,10 @@ async function validatePassword (password, hash) {
   return bcrypt.compare(password, hash)
     .then(result => result)
 }
+
 function login (loginData, db = connection) {
   return db('users')
     .select()
-    .where('password', loginData.password)
     .where('email', loginData.email)
     .first()
 }
@@ -241,5 +242,6 @@ module.exports = {
   getUserMatches,
   getAllMatches,
   addUserMatch,
-  getUserLikes
+  getUserLikes,
+  validatePassword
 }
