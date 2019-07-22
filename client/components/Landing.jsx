@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
-import {connect} from 'react-redux'
+import React from 'react'
+import { connect } from 'react-redux'
 import { Form, Button, Grid } from 'semantic-ui-react'
+import { login } from '../actions/login'
+import { signup } from '../actions/signup'
 
 class Landing extends React.Component {
   state = {
@@ -10,39 +12,50 @@ class Landing extends React.Component {
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
-  onClickHandler = (e) => this.setState({ email: '', password: '' })
-
-
-  render() {
+  render () {
     const { email, password } = this.state
-    const {dispatch} = this.props
-    const inputStyle = { width: '60vw' }
+    const { dispatch } = this.props
+    const theme = {
+      grid: { alignSelf: 'center', marginTop: '10vh' }
+    }
 
     return (
-      <Grid style={{ marginTop: '5vh' }} container centered columns={1}>
-        <Grid.Row centered columns={1}>
-          <h1>This can be a title for the App. With image of Trixie etc.</h1>
-          <Form onSubmit={this.handleSubmit}>
+      <Grid textAlign="center" style={theme.grid} padded>
+        <Grid.Row>
+          <h1>Welcome to Langder</h1>
+        </Grid.Row>
+        <Grid.Row>
+          <Form size="large" style={{ width: '80vw' }}>
             <Form.Input
-              style={inputStyle}
               value={email}
               onChange={this.handleChange}
-              placeholder='Email'
-              name='email'
+              label="Email"
+              name="email"
+              placeholder='eg. smarty@smartyface.com'
+              required
             />
             <Form.Input
-              style={inputStyle}
               onChange={this.handleChange}
               value={password}
+              label="Password"
+              name="password"
+              type="password"
               placeholder='Password'
-              name='password'
+              required
             />
-          <div className="ui buttons">
-            <Button onClick={()=> dispatch(this.login(email, password))} className="ui button" type='submit' size="huge">Login</Button>
-              <div className="or" size="massive"></div>
-            <Button onClick={()=>{dispatch(this.signUp(email, password))}} className="ui positive button" type='signup' size="huge">SignUp</Button>
-          </div>
           </Form>
+        </Grid.Row>
+        <Grid.Row>
+          <Button.Group size="huge" >
+            <Button onClick={() => dispatch(login(this.state))}
+              content="Login"
+            />
+            <Button.Or />
+            <Button onClick={() => { dispatch(signup(this.state)) }}
+              content="SignUp"
+              positive
+            />
+          </Button.Group>
         </Grid.Row>
       </Grid>
     )
