@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Icon, Menu } from 'semantic-ui-react'
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   render () {
-    return (
+    return this.props.location.pathname === '/landing' ? (<></>) : (
       <Menu fluid widths={3} compact icon='labeled'>
         <Menu.Item as={Link} to="/profile">
           <Icon name='id card outline' />
@@ -22,3 +22,5 @@ export default class Navbar extends Component {
     )
   }
 }
+
+export default withRouter(Navbar)
