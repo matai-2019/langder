@@ -23,7 +23,7 @@ export default function potMatches (state = [], action) {
         error: action.error
       }
     case NEXT_POTENTIAL_MATCH:
-      poppedPotMatches = state.potentialMatches
+      poppedPotMatches = state.potMatches
       poppedPotMatches.pop()
       return {
         potMatches: poppedPotMatches
