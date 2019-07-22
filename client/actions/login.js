@@ -28,7 +28,7 @@ export function login (user) {
   return dispatch => {
     dispatch(loginPending())
     request
-      .get('/api/v1/auth/login')
+      .post('/api/v1/login')
       .send(user)
       .then(res => dispatch(loginSuccess(res.body)))
       .catch(err => dispatch(loginError(err.message)))
