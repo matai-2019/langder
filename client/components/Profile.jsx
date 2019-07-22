@@ -82,21 +82,24 @@ const handleUpdate = () => {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/updateProfile' />
+      return <Redirect to='/UpdateProfile' />
     }
   }
 }
 
 // This function doesn't exist at that time
 
-/* handleLogout = () => {
-//   Logout(this.props.id)
-//     .then(() => this.setState({
-//       redirect: true
-//     }))
-//     .catch(err => this.props.UpdateProfileError(err.message))
-// }
-*/
+handleLogout = () => {
+  this.setState({
+    redirect: true
+  })
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/Logout' />
+    }
+  }
+}
 
 function Profile () {
   const mapLanguage = (languages, color) => {
