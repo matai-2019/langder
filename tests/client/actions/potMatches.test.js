@@ -6,19 +6,17 @@ import {
   ADD_LIKE_ERROR,
   nextPotMatch,
   addLikeError
-
-} from '../../../client/actions/potentialMatches'
+} from '../../../client/actions/potMatches'
 
 describe('like potential match', () => {
   it('dispatch correct action', () => {
-    const action = addLikeError()
+    const error = ('testing')
+    const action = addLikeError(error)
     const expected = {
+      error,
       type: ADD_LIKE_ERROR
     }
     expect(action).toEqual(expected)
-  })
-  it('sends post to api', () => {
-    // expect(true).toBe(false)
   })
 })
 
