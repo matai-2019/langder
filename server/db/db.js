@@ -9,6 +9,10 @@ function hashPassword (plainPassword) {
     })
 }
 
+async function validatePassword (password, hash) {
+  return bcrypt.compare(password, hash)
+    .then(result => result)
+}
 function login (loginData, db = connection) {
   return db('users')
     .select()
