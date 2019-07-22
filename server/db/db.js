@@ -174,36 +174,29 @@ function getAllLikes (db = connection) {
   return db('likes')
 }
 
-function getUserMatches (userId, db = connection) {
+function getMatchesFirstCol (userId, db = connection) {
   return db
-    .from('matches AS m')
-    .where(function () {
-      this
-        .where('user1Id', userId)
-        .orWhere('user2Id', userId)
-    })
-    .join('profiles AS p1', 'm.user1Id', 'p1.userId')
-    .join('profiles AS p2', 'm.user2Id', 'p2.userId')
-    .select(
-      'p1.userId AS p1UserId',
-      'p1.name as p1Name',
-      'p1.description as p1Description',
-      'p2.userId AS p2UserId',
-      'p2.name as p2Name',
-      'p2.description as p2Description')
-    .map(profile => {
-      if (profile.p1UserId === userId) {
-        delete profile.p1UserId
-        delete profile.p1Name
-        delete profile.p1Description
-      } else {
-        delete profile.p2UserId
-        delete profile.p2Name
-        delete profile.p2Description
-      }
-      console.log(profile)
-      return profile
-    })
+    .from('matches as m')
+    .where('user1Id', userId)
+    .join('profiles AS p', 'm.user2Id', 'p.userId')
+    .select('p.userId', 'p.id AS profileId', 'p.name', 'p.description')
+}
+
+function getMatchesSecondCol (userId, db = connection) {
+  return db
+    .from('matches as m')
+    .where('user2Id', userId)
+    .join('profiles AS p', 'm.user1Id', 'p.userId')
+    .select('p.userId', 'p.id AS profileId', 'p.name', 'p.description')
+}
+
+async function getUserMatches (userId, db = connection) {
+  const data = await getMatchesFirstCol(userId, db)
+  const data2 = await getMatchesSecondCol(userId, db)
+
+  if (data || data2) {
+    return [...data, ...data2]
+  }
 }
 
 function getAllMatches (db = connection) {
