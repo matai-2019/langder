@@ -3,20 +3,23 @@ import { connect } from 'react-redux'
 import { Container, Button, Icon } from 'semantic-ui-react'
 import Profile from './Profile'
 
-import { potMatches } from '../actions/potMatches'
+import { fetchPotMatches } from '../actions/potMatches'
 
 class PotMatches extends React.Component {
   handleChange = (e, { id, user }) => this.setState({ [id]: user })
 
+  componentDidMount () {
+    this.props.dispatch(fetchPotMatches())
+  }
+
   render () {
-    const testarray = ['4', 'strings', 'another', 'string']
-    const {activePot, nextPot} = this.props
+    const { activePot, nextPot } = this.props
     return (
       <>
         <Container className='matches'>
           <h1>Your Matches are all Trixie. nice.</h1>
-          {activePot &&<Profile key={user} user={activePot} />}
-          {nextPot && <Profile key={user} user={nextPot} />}
+          {activePot && <Profile user={activePot} />}
+          {nextPot && <Profile user={nextPot} />}
           {/* MEssage underneith that says we're all done */}
           <Button name='next' /><Icon name="pencil" />
         </Container>
