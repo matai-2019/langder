@@ -49,6 +49,10 @@ class PotMatches extends React.Component {
   }
 }
 
+// get users userId on button click? So when you like them it saves their id?
+<Button floated='left' icon='like' size="huge" circular style={{ ...theme.button }}
+            onClick={() => dispatch(likePotMatch(activePot))} />
+
 const mapStateToProps = state => {
   return {
     user: state.user,
