@@ -4,18 +4,30 @@ import { Form, Button, Grid, Dropdown, Card, TextArea } from 'semantic-ui-react'
 import { updateProfile } from '../actions/updateProfile'
 
 class UpdateProfile extends Component {
-  state = this.props.user
+  state = {
+    userId: 1,
+    profileId: 1,
+    name: '',
+    description: '',
+    languages: []
+  }
+  // state = {
+  //   name: this.props.profile.name,
+  //   description: this.props.profile.description,
+  //   languages: this.props.languages
+  // }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit = () => {
-    this.props.dispatch(updateProfile(this.state.profileId))
+    this.props.dispatch(updateProfile(this.state))
   }
 
   render () {
-    const { name, email, know, description } = this.state
+    console.log('render', this.state)
+    const { name, languages, description } = this.state
 
-    const languages = [{ key: 0, text: 'Japanese', value: 'jp' }, { key: 2, text: 'English', value: 'en' }, { key: 4, text: 'Clingon', value: 'cg' }]
+    const testlanguages = [{ key: 0, text: 'Japanese', value: 1 }, { key: 2, text: 'English', value: 2 }, { key: 4, text: 'Clingon', value: 5 }]
 
     return (
       <Grid style={{ height: '100vh', width: '100%' }} columns={1}>
@@ -30,13 +42,6 @@ class UpdateProfile extends Component {
                   placeholder='Your name'
                   name='name'
                   label='Name'
-                />
-                <Form.Input
-                  value={email}
-                  onChange={this.handleChange}
-                  placeholder='email@example.com'
-                  name='email'
-                  label='Email'
                 />
                 <Form.Input
                   placeholder='Tell us about yourself'
@@ -55,8 +60,8 @@ class UpdateProfile extends Component {
                   selection
                   multiple
                   onChange={this.handleChange}
-                  options={languages}
-                  value={know}
+                  options={testlanguages}
+                  value={languages}
                 />
                 <Button type='submit'>Submit</Button>
               </Form>
@@ -68,9 +73,10 @@ class UpdateProfile extends Component {
   }
 }
 
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = ({ profile, languages }) => {
   return {
-    user
+    profile,
+    languages
   }
 }
 
