@@ -1,34 +1,21 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Form, Button, Grid, Dropdown, Card, TextArea } from 'semantic-ui-react'
+import { updateProfile } from '../actions/updateProfile'
 
 class UpdateProfile extends Component {
-  state = {
-    id: '',
-    profileId: '',
-    name: '',
-    email: '',
-    description: '',
-    toKnow: [],
-    know: []
-  }
+  state = this.props.user
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
-  handleSubmit = () => this.setState({
-    id: '',
-    profileId: '',
-    name: '',
-    email: '',
-    description: '',
-    toKnow: [],
-    know: []
-  })
+  handleSubmit = () => {
+    this.props.dispatch(updateProfile(this.state.profileId))
+  }
 
   render () {
-    const { name, email, toKnow, know, description } = this.state
+    const { name, email, know, description } = this.state
 
     const languages = [{ key: 0, text: 'Japanese', value: 'jp' }, { key: 2, text: 'English', value: 'en' }, { key: 4, text: 'Clingon', value: 'cg' }]
-    const langKnow = [{ key: 0, text: 'Chinese', value: 'ch' }]
 
     return (
       <Grid style={{ height: '100vh', width: '100%' }} columns={1}>
@@ -62,25 +49,14 @@ class UpdateProfile extends Component {
                 />
                 <Form.Field
                   placeholder="e.g English"
-                  label='Languages I know'
-                  name="know"
-                  control={Dropdown}
-                  selection
-                  multiple
-                  onChange={this.handleChange}
-                  options={langKnow}
-                  value={know}
-                />
-                <Form.Field
-                  label='Languages I want to learn'
-                  placeholder="e.g Chinese"
-                  name="toKnow"
+                  label='Languages I want to learn / learning'
+                  name="languages"
                   control={Dropdown}
                   selection
                   multiple
                   onChange={this.handleChange}
                   options={languages}
-                  value={toKnow}
+                  value={know}
                 />
                 <Button type='submit'>Submit</Button>
               </Form>
@@ -92,4 +68,10 @@ class UpdateProfile extends Component {
   }
 }
 
-export default UpdateProfile
+const mapStateToProps = ({ user }) => {
+  return {
+    user
+  }
+}
+
+export default connect(mapStateToProps)(UpdateProfile)
