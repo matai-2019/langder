@@ -4,7 +4,6 @@ import { Container } from 'semantic-ui-react'
 
 import Landing from './Landing'
 import ProfilePage from './ProfilePage'
-// import Profile from './Profile'
 import PotMatches from './PotMatches'
 import Navbar from './Navbar'
 import ListMatches from './ListMatches'
