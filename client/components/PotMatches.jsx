@@ -17,7 +17,6 @@ const theme = {
   },
 }
 
-
 class PotMatches extends React.Component {
   componentDidMount () {
     this.props.dispatch(fetchPotMatches())
@@ -39,7 +38,7 @@ class PotMatches extends React.Component {
 
           <Button floated='right' icon='close' size="huge" circular style={{ ...theme.button }} 
             onClick={() => dispatch(nextPotMatch())} />
-            
+
 {/*<Button fix='center' icon='cloud download' size="huge" circular style={{ ...theme.button }} onClick={() => dispatch(fetchPotMatches())} /> */}
         
         </Container>
@@ -48,7 +47,6 @@ class PotMatches extends React.Component {
     )
   }
 }
-
 
 const mapStateToProps = state => {
   return {
