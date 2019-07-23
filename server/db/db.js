@@ -95,7 +95,7 @@ async function getUserLanguages (userId, db = connection) {
 
   const languages = await db('languages')
     .whereIn('id', ids)
-    .select('name', 'countryCode')
+    .select()
 
   return languages
 }
