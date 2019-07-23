@@ -24,11 +24,12 @@ export function updateProfileError (message) {
   }
 }
 
-export function updateProfile (profileId) {
+export function updateProfile (profile) {
   return dispatch => {
     dispatch(pendingUpdateProfile())
 
-    request.put(`/api/v1/user/${profileId}`)
+    request.put(`/api/v1/profiles/${profile.profileId}`)
+      .send(profile)
       .then(res => dispatch(updateProfileSuccess(res.body)))
       .catch(err => dispatch(updateProfileError(err.mesage)))
   }
