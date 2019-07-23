@@ -3,24 +3,27 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Form, Button, Grid, Dropdown, Card, TextArea } from 'semantic-ui-react'
 import { updateProfile } from '../actions/updateProfile'
+import { getAllLanguages } from '../actions/languages'
 
 class UpdateProfile extends Component {
   state = {
     userId: 1,
     profileId: 1,
-    name: '',
-    description: '',
-    languages: [],
+    name: this.props.profile.name,
+    description: this.props.profile.description,
+    languages: this.props.languages.map((lang) => { // add user skill level => STRETCH
+      return {
+        key: lang.id,
+        text: lang.name,
+        value: lang.name
+      }
+    }),
     redirect: false
   }
 
-  // waiting for getprofile() ticket to be merged
-  // will set default values in form:
-  // state = {
-  //   name: this.props.profile.name,
-  //   description: this.props.profile.description,
-  //   languages: this.props.languages
-  // }
+  componentDidMount () {
+    this.props.dispatch(getAllLanguages())
+  }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value, updated: true })
 
@@ -37,9 +40,8 @@ class UpdateProfile extends Component {
 
   render () {
     const { name, languages, description } = this.state
-
-    const testlanguages = [{ key: 0, text: 'Japanese', value: 1 }, { key: 2, text: 'English', value: 2 }, { key: 4, text: 'Clingon', value: 5 }]
-
+    const { allLanguages } = this.props
+    console.log('render', languages)
     return (
       <>
       {this.renderRedirect()}
@@ -65,17 +67,28 @@ class UpdateProfile extends Component {
                   value={description}
                   onChange={this.handleChange}
                 />
-                <Form.Field
-                  placeholder="e.g English"
-                  label='Languages I want to learn / learning'
-                  name="languages"
-                  control={Dropdown}
-                  selection
-                  multiple
-                  onChange={this.handleChange}
-                  options={testlanguages}
-                  value={languages}
-                />
+                {
+                  allLanguages && <Form.Field
+                    placeholder="e.g English"
+                    label='Languages I want to learn / learning'
+                    name="languages"
+                    control={Dropdown}
+                    selection
+                    multiple
+                    onChange={this.handleChange}
+                    options={allLanguages.map(lang => {
+                      return {
+                        key: lang.id,
+                        text: lang.name,
+                        value: lang.name,
+                        active: true,
+                        selected: true
+                      }
+                    })}
+                    value={languages}
+                  />
+                }
+
                 <Button type='submit'>Submit</Button>
               </Form>
             </Card.Content>
@@ -87,10 +100,11 @@ class UpdateProfile extends Component {
   }
 }
 
-const mapStateToProps = ({ profile, languages }) => {
+const mapStateToProps = ({ getProfile: { profile, languages }, languages: { user } }) => {
   return {
     profile,
-    languages
+    languages,
+    allLanguages: user
   }
 }
 
