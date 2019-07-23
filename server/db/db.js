@@ -174,9 +174,9 @@ function deleteProfile (id, db = connection) {
     .del()
 }
 
-function addUserLike (userLike, db = connection) {
+function addUserLike (userId, likedId, db = connection) {
   return db('likes')
-    .insert(userLike)
+    .insert({ userId, likedId })
 }
 
 function getAllLikes (db = connection) {
