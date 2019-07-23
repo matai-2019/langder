@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import UpdateProfile from './UpdateProfile'
 // import Logout from './Logout'
 import { Label, Flag, Card, Image, Rating, Button } from 'semantic-ui-react'
+import { getProfile } from '../actions/getProfile'
 
 const props = {
   id: 1,
@@ -79,6 +80,11 @@ const theme = {
 class Profile extends React.Component {
   state = {
     redirect: false
+  }
+
+  componentDidMount () {
+    const id = Number(this.props.profile.params.id)
+    this.props.dispatch(getProfile(id))
   }
 
   handleUpdate = () => {
