@@ -13,6 +13,9 @@ class UpdateProfile extends Component {
     languages: [],
     redirect: false
   }
+
+  // waiting for getprofile() ticket to be merged
+  // will set default values in form:
   // state = {
   //   name: this.props.profile.name,
   //   description: this.props.profile.description,
