@@ -15,9 +15,7 @@ export default function potMatches (state = [], action) {
         completed: false
       }
     case POTENTIAL_MATCHES_SUCCESS:
-      return {
-        potMatches: action.potMatches
-      }
+      return action.potMatches
     case POTENTIAL_MATCHES_ERROR:
       return {
         error: action.error
