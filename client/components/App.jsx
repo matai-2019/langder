@@ -3,7 +3,8 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 
 import Landing from './Landing'
-import Profile from './Profile'
+import ProfilePage from './ProfilePage'
+// import Profile from './Profile'
 import PotMatches from './PotMatches'
 import Navbar from './Navbar'
 import ListMatches from './ListMatches'
@@ -19,7 +20,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path='/landing' component={Landing} />
               <Route exact path='/pot' component={PotMatches}/>
-              <Route exact path='/profile' component={Profile} />
+              <Route exact path='/profile' component={ProfilePage} />
               <Route exact path='/matches' component={ListMatches} />
               <Route exact path='/update' component={UpdateProfile} />
             </Switch>
