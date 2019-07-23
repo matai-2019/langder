@@ -1,13 +1,11 @@
-import { logoutSuccess, LOGOUT_SUCCESS } from '../../../client/actions/logout'
+import { LOGOUT, logout } from '../../../client/actions/logout'
 
 describe('actions', () => {
-  it('should create a successful logout action', () => {
-    const testUser = { userName: 'balls', password: 'password' }
-    const action = logoutSuccess(testUser)
+  it('should create a successful `logout` action', () => {
+    const action = logout()
     const expected = {
-      type: LOGOUT_SUCCESS,
-      user: { userName: 'balls', password: 'password' }
+      type: LOGOUT
     }
-    expected(action).toEqual(expected)
+    expect(action).toEqual(expected)
   })
 })
