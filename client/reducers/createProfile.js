@@ -8,7 +8,7 @@ export default function createProfile (state = {}, action) {
   switch (action.type) {
     case PENDING_CREATE_PROFILE:
       return {
-        loading: true,
+        pending: true,
         completed: false
       }
     case CREATE_PROFILE_SUCCESS:
