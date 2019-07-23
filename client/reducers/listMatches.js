@@ -7,13 +7,12 @@ export default function listMatches (state = [], action) {
   switch (action.type) {
     case PENDING_LIST_MATCHES:
       return {
-        loading: true,
+        pending: true,
         completed: false
       }
     case LIST_MATCHES_SUCCESS:
-      return {
-        matches: action.matches
-      }
+      return action.matches
+
     case LIST_MATCHES_ERROR:
       return {
         error: action.error
