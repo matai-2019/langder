@@ -18,7 +18,7 @@ class Landing extends React.Component {
   }
 
   hanleSignUp = () => {
-    this.props.dispatch(addUser(this.state))
+    this.props.dispatch(addUser(this.state)) // broken ************************** (has ticket)
   }
 
   renderRedirect = () => {
