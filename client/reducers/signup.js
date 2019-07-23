@@ -11,12 +11,11 @@ export default function addUser (state = {}, action) {
         pending: true
       }
     case ADDUSER_SUCCESS:
-      return {
-        user: action.user
-      }
+      return action.user
 
     case ADDUSER_ERROR:
       return {
+        pending: false,
         error: action.error
       }
 
