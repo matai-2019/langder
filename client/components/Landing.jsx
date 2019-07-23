@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { Form, Button, Grid } from 'semantic-ui-react'
 import { login } from '../actions/login'
-import { signup } from '../actions/signup'
+import { addUser } from '../actions/signup'
 
 class Landing extends React.Component {
   state = {
@@ -12,14 +13,32 @@ class Landing extends React.Component {
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
+  handleLogin = () => {
+    this.props.dispatch(login(this.state))
+  }
+
+  hanleSignUp = () => {
+    this.props.dispatch(addUser(this.state)) // broken ************************** (has ticket)
+  }
+
+  renderRedirect = () => {
+    if (this.props.user) {
+      return <Redirect to='/pot' />
+    } else {
+      return <p>auth error</p>
+    }
+  }
+
   render () {
+    console.log('render', this.state)
     const { email, password } = this.state
-    const { dispatch } = this.props
     const theme = {
       grid: { alignSelf: 'center', marginTop: '10vh' }
     }
 
     return (
+      <>
+      {this.renderRedirect()}
       <Grid textAlign="center" style={theme.grid} padded>
         <Grid.Row>
           <h1>Welcome to Langder</h1>
@@ -47,19 +66,25 @@ class Landing extends React.Component {
         </Grid.Row>
         <Grid.Row>
           <Button.Group size="huge" >
-            <Button onClick={() => dispatch(login(this.state))}
+            <Button onClick={this.handleLogin}
               content="Login"
             />
             <Button.Or />
-            <Button onClick={() => { dispatch(signup(this.state)) }}
+            <Button onClick={this.hanleSignUp}
               content="SignUp"
               positive
             />
           </Button.Group>
         </Grid.Row>
       </Grid>
+      </>
     )
   }
 }
+const mapStateToProps = ({ login: { user } }) => {
+  return {
+    user
+  }
+}
 
-export default connect()(Landing)
+export default connect(mapStateToProps)(Landing)
