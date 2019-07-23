@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Label, Flag, Card, Image, Rating, Button } from 'semantic-ui-react'
 import { getProfile } from '../actions/getProfile'
+import { Logout } from '../actions/logout'
 
 const props = {
   id: 1,
@@ -82,8 +83,8 @@ class Profile extends React.Component {
   }
 
   componentDidMount () {
-    // const id = this.props.userId ********************************************** fix redux
-    this.props.dispatch(getProfile(1))
+    const id = this.props.userId
+    this.props.dispatch(getProfile(id))
   }
 
   handleUpdate = () => {
@@ -100,13 +101,11 @@ class Profile extends React.Component {
     }
   }
 
-  // This function doesn't exist at that time
-
   handleLogout = () => {
     this.setState({
       redirect: 'logout'
     })
-    // this.props.dispatch(Logout())
+    this.props.dispatch(Logout())
   }
 
   render () {
@@ -158,7 +157,7 @@ class Profile extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    // userId: state.login.user.id
+    userId: state.user.id
   }
 }
 
