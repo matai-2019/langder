@@ -9,7 +9,7 @@ export default function getProfile (state = {}, action) {
   switch (action.type) {
     case PENDING_GET_PROFILE:
       return {
-        loading: true,
+        pending: true,
         completed: false
       }
     case GET_PROFILE_SUCCESS:

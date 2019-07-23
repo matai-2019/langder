@@ -3,9 +3,9 @@ import createProfile from '../../../client/reducers/createProfile'
 
 describe('get profile pending', () => {
   it('returns pending profile on a successful profile get', () => {
-    const initialState = { loading: false }
+    const initialState = { pending: false }
     const expected = {
-      loading: true,
+      pending: true,
       completed: false
     }
     const action = { type: PENDING_CREATE_PROFILE, action: {} }

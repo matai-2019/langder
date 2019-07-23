@@ -3,9 +3,9 @@ import login from '../../../client/reducers/login'
 // put to the side
 describe('login pending', () => {
   it('returns pending login on a successful login', () => {
-    const initialState = { loading: false }
+    const initialState = { pending: false }
     const expected = {
-      loading: true,
+      pending: true,
       completed: false
     }
     const action = { type: PENDING_LOGIN, action: {} }
