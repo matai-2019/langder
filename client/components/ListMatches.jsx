@@ -9,7 +9,6 @@ class ListMatches extends Component {
   }
 
   render () {
-    console.log(this.state.matches[0].name)
     return (
       <Grid centered style={{ marginTop: '75px' }}>
         {this.state.matches.map((match, index) => (
