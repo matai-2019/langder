@@ -4,11 +4,6 @@ require('babel-polyfill')
 const server = require('../../../server/server')
 
 jest.mock('../../../server/db/db.js', () => ({
-  getUsers: () => Promise.resolve([
-    { id: 1, email: 'email@email.com', password: 'password' },
-    { id: 2, email: 'email2@email.com', password: 'password' },
-    { id: 3, email: 'email3@email.com', password: 'password' }
-  ]),
   getUser: (id) => Promise.resolve(
     { id: 2, email: 'email2@email.com', password: 'password' }
   ),
@@ -36,6 +31,16 @@ jest.mock('../../../server/db/db.js', () => ({
     { id: 1, userId: id, likeId: 2 },
     { id: 2, userId: id, likeId: 3 },
     { id: 3, userId: id, likeId: 5 }
+  ]),
+  getUsers: () => Promise.resolve([
+    { id: 1, email: 'email@email.com', password: 'password' },
+    { id: 2, email: 'email2@email.com', password: 'password' },
+    { id: 3, email: 'email3@email.com', password: 'password' }
+  ]),
+  getUserMatches: () => Promise.resolve([
+    { id: 1, user1Id: 1, user2Id: 2 },
+    { id: 2, user1Id: 1, user2Id: 3 },
+    { id: 3, user1Id: 4, user2Id: 5 }
   ])
 }))
 
@@ -134,6 +139,17 @@ test('DELETE /:id deletes a specific user', done => {
     .then(res => {
       expect(res.status).toBe(200)
       expect(res.body.Okay).toBe(true)
+      done()
+    })
+})
+
+test('get /:id/matches gets a users matches', done => {
+  const userId = 1
+  return request(server)
+    .get(`/api/v1/users/${userId}/matches`)
+    .then(res => {
+      expect(res.status).toBe(200)
+      expect(res.body).toHaveLength(3)
       done()
     })
 })
