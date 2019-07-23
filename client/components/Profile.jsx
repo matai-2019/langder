@@ -1,8 +1,9 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import UpdateProfile from './UpdateProfile'
-// import Logout from './Logout'
+import { connect } from 'react-redux'
 import { Label, Flag, Card, Image, Rating, Button } from 'semantic-ui-react'
+import { getProfile } from '../actions/getProfile'
+import { Logout } from '../actions/logout'
 
 const props = {
   id: 1,
@@ -81,6 +82,11 @@ class Profile extends React.Component {
     redirect: false
   }
 
+  componentDidMount () {
+    const id = this.props.userId
+    this.props.dispatch(getProfile(id))
+  }
+
   handleUpdate = () => {
     this.setState({
       redirect: 'update'
@@ -95,13 +101,11 @@ class Profile extends React.Component {
     }
   }
 
-  // This function doesn't exist at that time
-
   handleLogout = () => {
     this.setState({
       redirect: 'logout'
     })
-    // this.props.dispatch(Logout())
+    this.props.dispatch(Logout())
   }
 
   render () {
@@ -151,4 +155,10 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile
+const mapStateToProps = state => {
+  return {
+    userId: state.user.id
+  }
+}
+
+export default connect(mapStateToProps)(Profile)

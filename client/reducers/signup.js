@@ -8,7 +8,7 @@ export default function addUser (state = {}, action) {
   switch (action.type) {
     case PENDING_ADDUSER:
       return {
-        loading: true
+        pending: true
       }
     case ADDUSER_SUCCESS:
       return {
