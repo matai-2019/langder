@@ -9,7 +9,7 @@ function MatchListItem ({ id, name }) {
         <Image floated='left' size='mini' src='https://www.placecage.com/100/100' />
         <Card.Header>{name}</Card.Header>
         <Card.Meta>Match</Card.Meta>
-        <Card.Item as={Link} to='/profile'></Card.Item>
+        <Card.Item as={Link} to='/profile'>Profile</Card.Item>
       </Card.Content>
     </Card>
   )
