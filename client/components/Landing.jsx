@@ -22,7 +22,7 @@ class Landing extends React.Component {
   }
 
   renderRedirect = () => {
-    if (this.props.user) {
+    if (this.props.user.auth) {
       return <Redirect to='/pot' />
     } else {
       return <p>auth error</p>
@@ -30,7 +30,6 @@ class Landing extends React.Component {
   }
 
   render () {
-    console.log('render', this.state)
     const { email, password } = this.state
     const theme = {
       grid: { alignSelf: 'center', marginTop: '10vh' }
@@ -81,7 +80,7 @@ class Landing extends React.Component {
     )
   }
 }
-const mapStateToProps = ({ login: { user } }) => {
+const mapStateToProps = ({ user }) => {
   return {
     user
   }
