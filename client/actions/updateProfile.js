@@ -24,13 +24,17 @@ export function updateProfileError (message) {
   }
 }
 
-export function updateProfile (profile) {
+export function updateProfile ({ userId, profileId, languages, name, description }) {
   return dispatch => {
     dispatch(pendingUpdateProfile())
 
-    request.put(`/api/v1/profiles/${profile.profileId}`)
-      .send(profile)
-      .then(res => dispatch(updateProfileSuccess(res.body)))
-      .catch(err => dispatch(updateProfileError(err.mesage)))
+    request.put(`/api/v1/profiles/${profileId}`)
+      .send({ name, description })
+      .then((res) => {
+        request.put(`/api/v1/users/${userId}/languages`)
+          .send(languages)
+          .then(res => dispatch(updateProfileSuccess(res.body)))
+          .catch(err => dispatch(updateProfileError(err.mesage)))
+      })
   }
 }
