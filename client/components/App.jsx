@@ -6,6 +6,7 @@ import Landing from './Landing'
 import Profile from './Profile'
 import PotMatches from './PotMatches'
 import Navbar from './Navbar'
+import ListMatches from './ListMatches'
 import UpdateProfile from './UpdateProfile'
 
 class App extends React.Component {
@@ -14,11 +15,12 @@ class App extends React.Component {
       <Router>
         <>
         <Navbar />
-          <Container style={{ display: 'flex' }} >
+          <Container>
             <Switch>
               <Route exact path='/landing' component={Landing} />
               <Route exact path='/pot' component={PotMatches}/>
               <Route exact path='/profile' component={Profile} />
+              <Route exact path='/matches' component={ListMatches} />
               <Route exact path='/update' component={UpdateProfile} />
             </Switch>
           </Container>
