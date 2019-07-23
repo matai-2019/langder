@@ -1,14 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Container, Button, Icon } from 'semantic-ui-react'
+
+import { Container, Button } from 'semantic-ui-react'
+
 import Profile from './Profile'
-import EditControls from './EditControls'
 
 import { likePotMatch, nextPotMatch, fetchPotMatches } from '../actions/potMatches'
 
 // consistant styles
 const primary = '#b1f0ee'
-const secondary = '#00ffd0'
+// const secondary = '#00ffd0'
 
 const theme = {
   button: {
@@ -46,8 +47,6 @@ class PotMatches extends React.Component {
           <Button floated='right' icon='close' size="huge" circular style={{ ...theme.button }}
             onClick={() => dispatch(nextPotMatch())} />
 
-          {/* <Button fix='center' icon='cloud download' size="huge" circular style={{ ...theme.button }} onClick={() => dispatch(fetchPotMatches())} /> */}
-
         </Container>
 
       </>
@@ -61,7 +60,6 @@ const mapStateToProps = state => {
     potMatches: state.potMatches,
     activePot: state.potMatches[0],
     nextPot: state.potMatches[1]
-
   }
 }
 
