@@ -11,13 +11,7 @@ class UpdateProfile extends Component {
     profileId: 1,
     name: this.props.profile.name,
     description: this.props.profile.description,
-    languages: this.props.languages.map((lang) => { // add user skill level => STRETCH
-      return {
-        key: lang.id,
-        text: lang.name,
-        value: lang.name
-      }
-    }),
+    languages: this.props.languages.map(lang => lang.name),
     redirect: false
   }
 
@@ -41,7 +35,6 @@ class UpdateProfile extends Component {
   render () {
     const { name, languages, description } = this.state
     const { allLanguages } = this.props
-    console.log('render', languages)
     return (
       <>
       {this.renderRedirect()}
@@ -80,15 +73,12 @@ class UpdateProfile extends Component {
                       return {
                         key: lang.id,
                         text: lang.name,
-                        value: lang.name,
-                        active: true,
-                        selected: true
+                        value: lang.name
                       }
                     })}
-                    value={languages}
+                    defaultValue={languages}
                   />
                 }
-
                 <Button type='submit'>Submit</Button>
               </Form>
             </Card.Content>
@@ -100,11 +90,14 @@ class UpdateProfile extends Component {
   }
 }
 
+// need to get user id from redux *****************************
+
 const mapStateToProps = ({ getProfile: { profile, languages }, languages: { user } }) => {
   return {
     profile,
     languages,
     allLanguages: user
+
   }
 }
 
