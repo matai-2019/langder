@@ -31,18 +31,16 @@ class PotMatches extends React.Component {
           <h1>Your Matches are all Trixie. nice.</h1>
           {activePot && <Profile user={activePot} />}
           {nextPot && <Profile user={nextPot} />}
-          <div class="ui placeholder">
-              <div class="image">Nein</div>
-            </div>
-          {/* MEssage underneith that says we're all done */}
+          {<div class="ui fluid button" icon='cloud download'>
+            <div class="cloud download" onClick={() => dispatch(fetchPotMatches())} />Nein. Refresh Matches is all you can do now.</div>}
 
           <Button floated='left' icon='like' size="huge" circular style={{ ...theme.button }}
             onClick={() => dispatch(likePotMatch(activePot))} />
 
           <Button floated='right' icon='close' size="huge" circular style={{ ...theme.button }} 
             onClick={() => dispatch(nextPotMatch())} />
-
-        <Button fix='center' icon='cloud download' size="huge" circular style={{ ...theme.button }} onClick={() => dispatch(fetchPotMatches())} />
+            
+{/*<Button fix='center' icon='cloud download' size="huge" circular style={{ ...theme.button }} onClick={() => dispatch(fetchPotMatches())} /> */}
         
         </Container>
         
