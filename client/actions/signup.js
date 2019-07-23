@@ -1,5 +1,6 @@
 import request from 'superagent'
 
+import { loginSuccess, loginError } from './login'
 export const PENDING_ADDUSER = 'PENDING_ADDUSER'
 export const ADDUSER_SUCCESS = 'ADDUSER_SUCCESS'
 export const ADDUSER_ERROR = 'ADDUSER_ERROR'
@@ -31,7 +32,13 @@ export function addUser (user) {
       .post('/api/v1/users')
       .send(user)
       .then(res => {
-        return dispatch(addUserSuccess(res.body))
+        dispatch(addUserSuccess(res.body))
+        return request
+          .post('/api/v1/login')
+          .send(user)
+          .then(res => {
+            dispatch(loginSuccess(res.body))
+          })
       })
       .catch(err => dispatch(addUserError(err.message)))
   }
