@@ -1,15 +1,15 @@
 import {
-  PENDING_LOGOUT,
+  LOGOUT,
   LOGOUT_SUCCESS,
   LOGOUT_ERROR
 } from '../actions/logout'
 
 export default function logout (state = {}, action) {
   switch (action.type) {
-    case PENDING_LOGOUT:
+    case LOGOUT:
       return {
-        loading: true,
-        completed: false
+        user: null,
+        auth: null
       }
     case LOGOUT_SUCCESS:
       return {
