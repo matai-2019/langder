@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Container, Button, Icon } from 'semantic-ui-react'
 import Profile from './Profile'
+import EditControls from './EditControls'
 
 import { likePotMatch, nextPotMatch, fetchPotMatches } from '../actions/potMatches'
 
@@ -29,8 +30,13 @@ class PotMatches extends React.Component {
       <>
         <Container className='matches'>
           <h1>Your Matches are all Trixie. nice.</h1>
-          {activePot && <Profile user={activePot} />}
-          {nextPot && <Profile user={nextPot} />}
+          {activePot &&
+          <Profile user={activePot} style={{ position: 'absolute' }}
+          >
+          </Profile>}
+          {nextPot &&
+          <Profile user={nextPot} style={{ position: 'absolute' }}
+          />}
           {<div className="ui fluid button" icon='cloud download'>
             <div className="cloud download" onClick={() => dispatch(fetchPotMatches())} />Nein. Refresh Matches is all you can do now.</div>}
 
