@@ -9,6 +9,7 @@ exports.up = (knex, Promise) => {
     table.foreign('user2Id')
       .references('likes.likedId')
       .onDelete('CASCADE')
+    table.unique(['user1Id', 'user2Id'])
   })
 }
 

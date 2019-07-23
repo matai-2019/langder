@@ -174,9 +174,9 @@ function deleteProfile (id, db = connection) {
     .del()
 }
 
-function addUserLike (userLike, db = connection) {
+function addUserLike (userId, likedId, db = connection) {
   return db('likes')
-    .insert(userLike)
+    .insert({ userId, likedId })
 }
 
 function getAllLikes (db = connection) {
@@ -212,9 +212,9 @@ function getAllMatches (db = connection) {
   return db('matches')
 }
 
-function addUserMatch (match, db = connection) {
+function addUserMatch (user1Id, user2Id, db = connection) {
   return db('matches')
-    .insert(match)
+    .insert({ user1Id, user2Id })
 }
 
 function getUserLikes (userId, likedId, db = connection) {
