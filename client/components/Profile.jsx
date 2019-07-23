@@ -1,10 +1,7 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Label, Flag, Card, Image, Rating, Button } from 'semantic-ui-react'
-import { getProfile } from '../actions/getProfile'
-import { Logout } from '../actions/logout'
-
+import { Label, Flag, Card, Rating } from 'semantic-ui-react'
+// import { getProfile } from '../actions/getProfile'
 
 const primary = '#b1f0ee'
 const secondary = '#00ffd0'
@@ -63,38 +60,8 @@ const theme = {
 }
 
 class Profile extends React.Component {
-  state = {
-    redirect: false
-  }
-
-  componentDidMount () {
-    const id = this.props.userId
-    this.props.dispatch(getProfile(id))
-  }
-
-  handleUpdate = () => {
-    this.setState({
-      redirect: 'update'
-    })
-  }
-
-  renderRedirect = () => {
-    if (this.state.redirect === 'update') {
-      return <Redirect to='/update' />
-    } else if (this.state.redirect === 'logout') {
-      return <Redirect to='/Logout' />
-    }
-  }
-
-  handleLogout = () => {
-    this.setState({
-      redirect: 'logout'
-    })
-    this.props.dispatch(Logout())
-  }
-
   render () {
-    const { user: { name, id, profileId, languages, description }, children } = this.props
+    const { user: { name, languages, description }, children } = this.props
 
     const mapLanguage = (languages, color) => {
       if (!color) color = 'grey'
@@ -110,7 +77,6 @@ class Profile extends React.Component {
     }
     return (
       <>
-        {this.renderRedirect()}
         <Card fluid centered style={{ ...theme.card, ...this.props.style }}>
           <Card.Header
             as="h2"
@@ -118,7 +84,7 @@ class Profile extends React.Component {
             style={theme.mainHeader} />
           {/* <Image src={image} style={theme.image} /> */}
           <Card.Content>
-            {mapLanguage(languages, 'teal')}
+            {languages && mapLanguage(languages, 'teal')}
           </Card.Content>
           <Card.Content content={description} style={theme.description} />
           <Card.Header style={theme.header}>
