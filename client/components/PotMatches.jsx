@@ -1,13 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Container, Button, Icon } from 'semantic-ui-react'
+
+import { Container, Button } from 'semantic-ui-react'
+
 import Profile from './Profile'
 
 import { likePotMatch, nextPotMatch, fetchPotMatches } from '../actions/potMatches'
 
 // consistant styles
 const primary = '#b1f0ee'
-const secondary = '#00ffd0'
+// const secondary = '#00ffd0'
 
 const theme = {
   button: {
@@ -29,8 +31,13 @@ class PotMatches extends React.Component {
       <>
         <Container className='matches'>
           <h1>Your Matches are all Trixie. nice.</h1>
-          {activePot && <Profile user={activePot} />}
-          {nextPot && <Profile user={nextPot} />}
+          {activePot &&
+          <Profile user={activePot} style={{ position: 'absolute' }}
+          >
+          </Profile>}
+          {nextPot &&
+          <Profile user={nextPot} style={{ position: 'absolute' }}
+          />}
           {<div className="ui fluid button" icon='cloud download'>
             <div className="cloud download" onClick={() => dispatch(fetchPotMatches())} />Nein. Refresh Matches is all you can do now.</div>}
 
@@ -39,8 +46,6 @@ class PotMatches extends React.Component {
 
           <Button floated='right' icon='close' size="huge" circular style={{ ...theme.button }}
             onClick={() => dispatch(nextPotMatch())} />
-
-          {/* <Button fix='center' icon='cloud download' size="huge" circular style={{ ...theme.button }} onClick={() => dispatch(fetchPotMatches())} /> */}
 
         </Container>
 
@@ -55,7 +60,6 @@ const mapStateToProps = state => {
     potMatches: state.potMatches,
     activePot: state.potMatches[0],
     nextPot: state.potMatches[1]
-
   }
 }
 
