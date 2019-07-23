@@ -144,10 +144,9 @@ async function addUserLanguage (userId, langIds, db = connection) {
 
 // delete user language (has ticket)
 
-function deleteUserLanguage (userId, langIds, db = connection) {
+function deleteUserLanguage (userId, db = connection) {
   return db('userLanguages')
     .where('userId', userId)
-    .whereIn('langId', langIds)
     .del()
 }
 

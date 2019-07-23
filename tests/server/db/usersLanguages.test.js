@@ -40,9 +40,8 @@ test('db.deleteUserLanguage deletes expected rows from userLanguages table', () 
 
   const expected = 2
   const userId = 1
-  const langIds = [2, 3]
 
-  return db.deleteUserLanguage(userId, langIds, testDb)
+  return db.deleteUserLanguage(userId, testDb)
     .then(async () => {
       const actual = await db.getAllUsersLanguages(testDb)
       expect(actual.length).toBe(expected)

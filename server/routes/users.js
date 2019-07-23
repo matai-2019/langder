@@ -95,9 +95,8 @@ router.post('/:id', (req, res) => {
 router.put('/:id/languages', (req, res) => {
   const userId = Number(req.params.id)
   const languages = req.body
-  // REFACTOR TO deleteUserLanguages & addUserLanguages => will break everything but then fix it
   db.deleteUserLanguage(userId)
-    .then(() => {
+    .then((data) => {
       return db.addUserLanguage(userId, languages)
     })
     .then((langIds) => {

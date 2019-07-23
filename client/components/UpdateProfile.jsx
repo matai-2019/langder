@@ -1,36 +1,48 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { Form, Button, Grid, Dropdown, Card, TextArea } from 'semantic-ui-react'
+import { updateProfile } from '../actions/updateProfile'
 
 class UpdateProfile extends Component {
   state = {
-    id: '',
-    profileId: '',
+    userId: 1,
+    profileId: 1,
     name: '',
-    email: '',
     description: '',
-    toKnow: [],
-    know: []
+    languages: [],
+    redirect: false
   }
 
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  // waiting for getprofile() ticket to be merged
+  // will set default values in form:
+  // state = {
+  //   name: this.props.profile.name,
+  //   description: this.props.profile.description,
+  //   languages: this.props.languages
+  // }
 
-  handleSubmit = () => this.setState({
-    id: '',
-    profileId: '',
-    name: '',
-    email: '',
-    description: '',
-    toKnow: [],
-    know: []
-  })
+  handleChange = (e, { name, value }) => this.setState({ [name]: value, updated: true })
+
+  handleSubmit = () => {
+    this.props.dispatch(updateProfile(this.state))
+    this.setState({ redirect: true })
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/profile'/>
+    }
+  }
 
   render () {
-    const { name, email, toKnow, know, description } = this.state
+    const { name, languages, description } = this.state
 
-    const languages = [{ key: 0, text: 'Japanese', value: 'jp' }, { key: 2, text: 'English', value: 'en' }, { key: 4, text: 'Clingon', value: 'cg' }]
-    const langKnow = [{ key: 0, text: 'Chinese', value: 'ch' }]
+    const testlanguages = [{ key: 0, text: 'Japanese', value: 1 }, { key: 2, text: 'English', value: 2 }, { key: 4, text: 'Clingon', value: 5 }]
 
     return (
+      <>
+      {this.renderRedirect()}
       <Grid style={{ height: '100vh', width: '100%' }} columns={1}>
         <Grid.Row style={{ display: 'flex', alignContent: 'center' }}>
           <Card centered style={{ width: '75vw', maxHeight: '85vh' }}>
@@ -45,13 +57,6 @@ class UpdateProfile extends Component {
                   label='Name'
                 />
                 <Form.Input
-                  value={email}
-                  onChange={this.handleChange}
-                  placeholder='email@example.com'
-                  name='email'
-                  label='Email'
-                />
-                <Form.Input
                   placeholder='Tell us about yourself'
                   name='description'
                   label="Bio"
@@ -62,25 +67,14 @@ class UpdateProfile extends Component {
                 />
                 <Form.Field
                   placeholder="e.g English"
-                  label='Languages I know'
-                  name="know"
+                  label='Languages I want to learn / learning'
+                  name="languages"
                   control={Dropdown}
                   selection
                   multiple
                   onChange={this.handleChange}
-                  options={langKnow}
-                  value={know}
-                />
-                <Form.Field
-                  label='Languages I want to learn'
-                  placeholder="e.g Chinese"
-                  name="toKnow"
-                  control={Dropdown}
-                  selection
-                  multiple
-                  onChange={this.handleChange}
-                  options={languages}
-                  value={toKnow}
+                  options={testlanguages}
+                  value={languages}
                 />
                 <Button type='submit'>Submit</Button>
               </Form>
@@ -88,8 +82,16 @@ class UpdateProfile extends Component {
           </Card>
         </Grid.Row>
       </Grid>
+      </>
     )
   }
 }
 
-export default UpdateProfile
+const mapStateToProps = ({ profile, languages }) => {
+  return {
+    profile,
+    languages
+  }
+}
+
+export default connect(mapStateToProps)(UpdateProfile)
