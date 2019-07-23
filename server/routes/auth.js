@@ -20,7 +20,7 @@ router.post('/login', (req, res) => {
           .sign(payload, process.env.SECRET_OR_KEY || 'secret', { expiresIn: '1d' })
 
         res.status(200)
-          .json({ auth: token })
+          .json({ auth: token, ...user })
       } else {
         res.status(401)
           .json({ code: 401, message: 'Username or email is inncorrect' })
