@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, Image } from 'semantic-ui-react'
 
 function MatchListItem ({ id, name }) {
+  console.log(name)
   return (
     <Card href='#'>
       <Card.Content>

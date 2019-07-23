@@ -2,18 +2,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid } from 'semantic-ui-react'
 import MatchListItem from './MatchListItem'
-import { listMatches } from '../actions/listMatches'
 
 class ListMatches extends Component {
-  componentDidMount () {
-    const userId = this.props.user.id
-    this.props.dispatch(listMatches(userId))
+  state = {
+    matches: [{ userId: '1', profileId: '1', name: 'A' }, { matchId: '2', profileId: '2', name: 'Noel' }, { matchId: '3', profileId: '3', name: 'Mankee' }]
   }
 
   render () {
+    console.log(this.state.matches[0].name)
     return (
       <Grid centered style={{ marginTop: '75px' }}>
-        {this.props.matches.length > 0 && this.props.matches.map((match, index) => (
+        {this.state.matches.map((match, index) => (
           <Grid.Row key={index}>
             <MatchListItem name={match.name}/>
           </Grid.Row>))}
@@ -22,11 +21,4 @@ class ListMatches extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-    matches: state.matches
-  }
-}
-
-export default connect(mapStateToProps)(ListMatches)
+export default connect()(ListMatches)

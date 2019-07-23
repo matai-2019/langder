@@ -9,16 +9,17 @@ export default function login (state = {}, action) {
   switch (action.type) {
     case PENDING_LOGIN:
       return {
-        pending: true,
+        loading: true,
         completed: false
       }
 
     case LOGIN_SUCCESS:
-      return action.user
+      return {
+        user: action.user
+      }
 
     case LOGIN_ERROR:
       return {
-        pending: false,
         error: action.error
       }
       // delete for later

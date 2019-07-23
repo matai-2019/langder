@@ -11,7 +11,7 @@ export default function potMatches (state = [], action) {
   switch (action.type) {
     case PENDING_POTENTIAL_MATCHES:
       return {
-        pending: true,
+        loading: true,
         completed: false
       }
     case POTENTIAL_MATCHES_SUCCESS:
