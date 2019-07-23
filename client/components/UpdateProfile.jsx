@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Form, Button, Grid, Dropdown, Card, TextArea } from 'semantic-ui-react'
-import { updateProfile } from '../actions/updateProfile'
+import { updateProfile } from '../actions/profile'
 import { getAllLanguages } from '../actions/languages'
 
 class UpdateProfile extends Component {
