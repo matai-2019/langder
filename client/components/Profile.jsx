@@ -1,7 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import UpdateProfile from './UpdateProfile'
-// import Logout from './Logout'
+import { connect } from 'react-redux'
 import { Label, Flag, Card, Image, Rating, Button } from 'semantic-ui-react'
 import { getProfile } from '../actions/getProfile'
 
@@ -83,8 +82,8 @@ class Profile extends React.Component {
   }
 
   componentDidMount () {
-    const id = Number(this.props.profile.params.id)
-    this.props.dispatch(getProfile(id))
+    // const id = this.props.userId ********************************************** fix redux
+    this.props.dispatch(getProfile(1))
   }
 
   handleUpdate = () => {
@@ -157,4 +156,10 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile
+const mapStateToProps = state => {
+  return {
+    // userId: state.login.user.id
+  }
+}
+
+export default connect(mapStateToProps)(Profile)
