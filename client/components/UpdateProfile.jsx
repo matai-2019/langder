@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { Form, Button, Grid, Dropdown, Card, TextArea } from 'semantic-ui-react'
 import { updateProfile } from '../actions/updateProfile'
 
@@ -9,7 +10,8 @@ class UpdateProfile extends Component {
     profileId: 1,
     name: '',
     description: '',
-    languages: []
+    languages: [],
+    redirect: false
   }
   // state = {
   //   name: this.props.profile.name,
@@ -17,19 +19,27 @@ class UpdateProfile extends Component {
   //   languages: this.props.languages
   // }
 
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  handleChange = (e, { name, value }) => this.setState({ [name]: value, updated: true })
 
   handleSubmit = () => {
     this.props.dispatch(updateProfile(this.state))
+    this.setState({ redirect: true })
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/profile'/>
+    }
   }
 
   render () {
-    console.log('render', this.state)
     const { name, languages, description } = this.state
 
     const testlanguages = [{ key: 0, text: 'Japanese', value: 1 }, { key: 2, text: 'English', value: 2 }, { key: 4, text: 'Clingon', value: 5 }]
 
     return (
+      <>
+      {this.renderRedirect()}
       <Grid style={{ height: '100vh', width: '100%' }} columns={1}>
         <Grid.Row style={{ display: 'flex', alignContent: 'center' }}>
           <Card centered style={{ width: '75vw', maxHeight: '85vh' }}>
@@ -69,6 +79,7 @@ class UpdateProfile extends Component {
           </Card>
         </Grid.Row>
       </Grid>
+      </>
     )
   }
 }
