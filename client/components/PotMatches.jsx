@@ -16,20 +16,27 @@ class PotMatches extends React.Component {
       <>
         <Container className='matches'>
           <h1>Your Matches are all Trixie. nice.</h1>
-          {activePot && <Profile user={activePot} />}
-          {nextPot && <Profile user={nextPot} />}
+          ? {activePot && <Profile user={activePot} />}
+            {nextPot && <Profile user={nextPot} />}
+          : <div class="ui placeholder">
+              <div class="image">Nein</div>
+            </div>
           {/* MEssage underneith that says we're all done */}
           <Button
             name='like'
-            onClick={() => dispatch(likePotMatch(activePot))}
-          >
+            onClick={() => dispatch(likePotMatch(activePot))}>
             <Icon name='like'/>
           </Button>
           <Button
             name='reject'
-            onClick={() => dispatch(nextPotMatch())}
-          >
+            onClick={() => dispatch(nextPotMatch())}>
             <Icon name='close'/>
+          </Button>
+          <Button
+            name='cloud download' name='ui active inline loader'
+            onClick={() => dispatch(fetchPotMatches())}>
+            <Icon name='cloud download'/>
+            <Loader name='ui active inline loader' />
           </Button>
         </Container>
       </>
