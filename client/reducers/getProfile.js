@@ -5,7 +5,7 @@ import {
   GET_LANGUAGES_SUCCESS
 } from '../actions/getProfile'
 
-export default function getProfile (state = [], action) {
+export default function getProfile (state = {}, action) {
   switch (action.type) {
     case PENDING_GET_PROFILE:
       return {
@@ -13,15 +13,13 @@ export default function getProfile (state = [], action) {
         completed: false
       }
     case GET_PROFILE_SUCCESS:
-      return {
-        profile: action.profile
-      }
+      return { profile: action.profile }
     case GET_PROFILE_ERROR:
       return {
         error: action.error
       }
     case GET_LANGUAGES_SUCCESS:
-      return [...state, action.languages]
+      return { profile: state.profile, languages: action.languages }
     default:
       return state
   }

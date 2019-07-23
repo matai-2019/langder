@@ -11,10 +11,10 @@ export function getProfilePending () {
   }
 }
 
-export function getProfileSuccess (user) {
+export function getProfileSuccess (profile) {
   return {
     type: GET_PROFILE_SUCCESS,
-    user
+    profile
   }
 }
 
@@ -25,7 +25,7 @@ export function getProfileError (message) {
   }
 }
 
-export function getLanguages (languages) {
+export function getLanguagesSuccess (languages) {
   return {
     type: GET_LANGUAGES_SUCCESS,
     languages
@@ -38,12 +38,12 @@ export function getProfile (id) {
     request
       .get(`/api/v1/profiles/${id}`)
       .then(res => {
-        request
-          .get(`/api/v1/users/${id}/languages`)
-          .then(langs => dispatch(getLanguages(langs)))
-      })
-      .then(res => {
         dispatch(getProfileSuccess(res.body))
+        return request
+          .get(`/api/v1/users/${id}/languages`)
+          .then(res => {
+            dispatch(getLanguagesSuccess(res.body))
+          })
       })
       .catch(err => dispatch(getProfileError(err.message)))
   }
