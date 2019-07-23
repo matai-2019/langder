@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import { Form, Button, Grid } from 'semantic-ui-react'
 import { addUser } from '../actions/signup'
 
 class SignUp extends Component {
   state = {
     email: '',
-    password: '',
-    redirect: false
+    password: ''
   }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
@@ -16,12 +14,6 @@ class SignUp extends Component {
   handleSubmit = () => {
     this.setState({ redirect: true })
     this.props.dispatch(addUser({ email: this.state.email, password: this.state.password }))
-  }
-
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to = '/login' />
-    }
   }
 
   render () {
