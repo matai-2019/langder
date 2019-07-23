@@ -52,7 +52,7 @@ export function potentialMatchesError (message) {
 export function fetchPotMatches (userId) {
   return dispatch => {
     dispatch(pendingPotentialMatches())
-    request.get(`/api/v1/users/${userId}/matches`)
+    request.get(`/api/v1/users/${userId}/pot`)
       .then(res => dispatch(potentialMatchesSuccess(res.body)))
       .catch(err => dispatch(potentialMatchesError(err.message)))
   }
