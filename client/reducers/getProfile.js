@@ -13,13 +13,13 @@ export default function getProfile (state = {}, action) {
         completed: false
       }
     case GET_PROFILE_SUCCESS:
-      return { profile: action.profile }
+      return { ...state, ...action.profile }
     case GET_PROFILE_ERROR:
       return {
         error: action.error
       }
     case GET_LANGUAGES_SUCCESS:
-      return { profile: state.profile, languages: action.languages }
+      return { ...state, languages: action.languages }
     default:
       return state
   }
