@@ -6,6 +6,7 @@ import user from './login'
 import potMatches from './potMatches'
 import signup from './signup'
 import updateProfile from './updateProfile'
+import getProfile from './getProfile'
 import matches from './listMatches'
 
 export default combineReducers({
@@ -14,6 +15,7 @@ export default combineReducers({
   user,
   potMatches,
   signup,
-  matches,
-  updateProfile
+  updateProfile,
+  getProfile,
+  matches
 })

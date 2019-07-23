@@ -89,10 +89,15 @@ function getAllUsersLanguages (db = connection) {
   return db('userLanguages')
 }
 
-function getUserLanguages (userId, db = connection) {
-  return db('userlanguages')
-    .where({ userId: userId })
-    .select('langId')
+async function getUserLanguages (userId, db = connection) {
+  const langIds = await db('userlanguages').where({ userId }).select('langId')
+  const ids = langIds.map(lang => lang.langId)
+
+  const languages = await db('languages')
+    .whereIn('id', ids)
+    .select('name', 'countryCode')
+
+  return languages
 }
 
 // add a language => stretch
