@@ -8,6 +8,7 @@ import signup from './signup'
 import updateProfile from './updateProfile'
 import getProfile from './getProfile'
 import matches from './listMatches'
+import languages from './languages'
 
 export default combineReducers({
   info,
@@ -17,5 +18,6 @@ export default combineReducers({
   signup,
   updateProfile,
   getProfile,
-  matches
+  matches,
+  languages
 })
