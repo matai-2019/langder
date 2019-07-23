@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Image } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 function MatchListItem ({ id, name }) {
   return (
@@ -8,6 +9,7 @@ function MatchListItem ({ id, name }) {
         <Image floated='left' size='mini' src='https://www.placecage.com/100/100' />
         <Card.Header>{name}</Card.Header>
         <Card.Meta>Match</Card.Meta>
+        <Card.Item as={Link} to='/profile'></Card.Item>
       </Card.Content>
     </Card>
   )
