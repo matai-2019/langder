@@ -10,7 +10,7 @@ import EditControls from './EditControls'
 
 class ProfilePage extends React.Component {
   state = {
-    redirect: false
+    redirect: null
   }
 
   renderRedirect = () => {
@@ -33,6 +33,7 @@ class ProfilePage extends React.Component {
   }
 
  handleLogout = () => {
+   console.log('logging out called')
    this.setState({
      redirect: 'logout'
    })
@@ -40,6 +41,7 @@ class ProfilePage extends React.Component {
  }
 
  render () {
+   console.log('render logging out', this.state)
    const { profile } = this.props
    return (
       <>
