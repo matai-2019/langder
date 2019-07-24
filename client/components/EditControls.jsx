@@ -13,7 +13,8 @@ const theme = {
   button: {
     position: 'absolute',
     backgroundColor: primary,
-    boxShadow: '2px 3px 14px -7px rgba(0,0,0,0.62)'
+    boxShadow: '2px 3px 14px -7px rgba(0,0,0,0.62)',
+    color: 'black'
   },
   editButton: {
     left: '25%'

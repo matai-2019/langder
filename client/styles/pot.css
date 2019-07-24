@@ -1,10 +1,10 @@
 :root{
-  --primary-color: #b1f0ee;
-  --secondary-color: #408381;
+  --primary-color: #4abdac;
+  --secondary-color: #61dfcc;
 }
 
 body {
-  background: var(--secondary-color);
+  background: var(--primary-color);
   position: fixed;
   /* overflow: hidden; */
   width: 100vw;

@@ -38,7 +38,7 @@ class Landing extends React.Component {
       {this.renderRedirect()}
       <Grid textAlign="center" style={theme.grid} padded>
         <Grid.Row>
-          <h1>Welcome to Langder</h1>
+          <h1 style={{ color: 'white' }}>Welcome to Langder</h1>
         </Grid.Row>
         <Grid.Row>
           <Form size="large" style={{ width: '80vw' }}>
