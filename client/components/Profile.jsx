@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Label, Flag, Card, Rating } from 'semantic-ui-react'
+import { Label, Flag, Card } from 'semantic-ui-react'
 
 const primary = '#b1f0ee'
 const secondary = '#00ffd0'
@@ -68,7 +68,7 @@ class Profile extends React.Component {
         return languages && index <= 10
           ? (
             <Label key={index} color={color} style={theme.tag} size="large">
-              <Flag name={lang.country} />
+              <Flag name={lang.countryCode} />
               {lang.name}
             </Label>
           ) : null
@@ -81,14 +81,14 @@ class Profile extends React.Component {
             as="h2"
             content={name}
             style={theme.mainHeader} />
-          {/* <Image src={image} style={theme.image} /> */}
+          <Card.Content style={theme.description}>
+            <Card.Header as="h4" content="Description" />
+            {description ? <p>{description.slice(0, 200)}...</p> : <p>No Description</p>}
+          </Card.Content>
           <Card.Content>
+            <Card.Header as="h4" content="Languages" />
             {languages && mapLanguage(languages, 'teal')}
           </Card.Content>
-          <Card.Content content={description} style={theme.description} />
-          <Card.Header style={theme.header}>
-            <Rating icon="star" defaultRating={5} maxRating={5} size="large" style={theme.icon} disabled />
-          </Card.Header>
           {email && <Card.Content extra>Email: {email}</Card.Content>}
           {children}
         </Card>
