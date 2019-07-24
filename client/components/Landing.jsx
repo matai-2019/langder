@@ -24,8 +24,6 @@ class Landing extends React.Component {
   renderRedirect = () => {
     if (this.props.user.auth) {
       return <Redirect to='/pot' />
-    } else {
-      return <p>auth error</p>
     }
   }
 
