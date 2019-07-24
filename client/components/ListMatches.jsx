@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Card } from 'semantic-ui-react'
 import MatchListItem from './MatchListItem'
 import { listMatches } from '../actions/listMatches'
 
@@ -17,6 +18,15 @@ class ListMatches extends Component {
           <Grid.Row key={index}>
             <MatchListItem name={match.name} id={match.userId}/>
           </Grid.Row>))}
+        {
+          this.props.matches.length === 0 &&
+          <Card link as={Link} to={`/pot`}>
+            <Card.Content>
+              <Card.Header>{'No matches'}</Card.Header>
+              <Card.Meta>Dont worry, keep swiping!!</Card.Meta>
+            </Card.Content>
+          </Card>
+        }
       </Grid>
     )
   }

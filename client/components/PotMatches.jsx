@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button, Card } from 'semantic-ui-react'
+import { Button, Card, Message } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 import Profile from './Profile'
@@ -56,12 +56,12 @@ class PotMatches extends React.Component {
   }
 
   renderUpdateToast = () => {
-    if (!this.props.profile.name || this.props.profile.name === null) {
+    if (!this.props.profile.name) {
       return (
-        <Link to='/update'>
-          <h1 style={{ color: 'white', textAlign: 'center' }}>
-            Update your profile information to get more matches!
-          </h1>
+        <Link to='/update' >
+          <Message floating warning style={{ margin: '2em' }}>
+            <Message.Header style={{ textAlign: 'center' }}>Update your profile information to get more matches!</Message.Header>
+          </Message>
         </Link>
       )
     }
@@ -73,9 +73,9 @@ class PotMatches extends React.Component {
 
     return (
     <>
-    <div>
+    {/* <div> */}
       {this.renderUpdateToast()}
-    </div>
+    {/* </div> */}
       <div className="pot">
         {activePot && <Profile user={activePot[0]} className='active-card'>
           <LikeControls>
@@ -92,10 +92,11 @@ class PotMatches extends React.Component {
         </Profile>}
         {activePot && <Profile user={activePot[1]} className=' next-card' />}
 
-        {activePot &&
-       <Card className="base-card">
-         <Card.Header content="Sorry About that you can swipe another time!" />
-       </Card>
+        {
+          activePot &&
+            <Card className="base-card">
+              <Card.Header content="Sorry About that you can swipe another time!" />
+            </Card>
         }
       </div>
 
