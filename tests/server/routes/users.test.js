@@ -91,7 +91,7 @@ test('PUT /:id/languages refreshes user languages', () => {
 test('POST / adds a user language', () => {
   const testUL = [{ langId: 1 }, { langId: 3 }]
   return request(server)
-    .post('/api/v1/users/3')
+    .post('/api/v1/users/3/languages')
     .send(testUL)
     .then(res => {
       expect(res.status).toBe(201)
