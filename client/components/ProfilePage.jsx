@@ -16,7 +16,7 @@ class ProfilePage extends React.Component {
   renderRedirect = () => {
     if (this.state.redirect === 'update') {
       return <Redirect to='/update' />
-    } else if (this.state.redirect === 'logout') {
+    } else if (this.state.redirect === 'logout' && this.props.user === 'logged out') {
       return <Redirect to='/landing' />
     }
   }
@@ -40,7 +40,6 @@ class ProfilePage extends React.Component {
  }
 
  render () {
-   console.log('render logging out', this.state)
    const { profile } = this.props
    return (
       <>

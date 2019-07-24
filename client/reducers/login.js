@@ -23,7 +23,7 @@ export default function login (state = {}, action) {
         error: action.error
       }
     case LOGOUT:
-      return null
+      return 'logged out'
       // delete for later
       // case userConstants.DELETE_REQUEST:
       //   return {

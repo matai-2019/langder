@@ -6,11 +6,9 @@ describe('logout pending', () => {
     const initialState = {
       user: {}
     }
-    const expected = {
-      user: null
-    }
+    const expected = 'logged out'
     const action = { type: LOGOUT }
     const actual = logout(initialState, action)
-    expect(actual).toBe(expected.user)
+    expect(actual).toBe(expected)
   })
 })
