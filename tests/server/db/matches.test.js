@@ -18,15 +18,18 @@ test('db.getAllMatches returns all matches', () => {
     })
 })
 
-test('db.addUserMatch adds a match to matches table', () => {
-  const match = {
-    user1Id: 3,
-    user2Id: 2
-  }
-  return db.addUserMatch(match, testDb)
+test('db.addUserMatch adds a match to matches table', done => {
+  const user1Id = 3
+  const user2Id = 2
+
+  return db.addUserMatch(user1Id, user2Id, testDb)
     .then(async () => {
       const matches = await db.getAllMatches(testDb)
       expect(matches.length).toBe(3)
+      done()
+    }).catch(err => {
+      expect(err).toBeNull()
+      done()
     })
 })
 
