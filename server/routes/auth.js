@@ -12,8 +12,10 @@ router.post('/login', (req, res) => {
     .then(async user => {
       const match = await db.validatePassword(loginData.password, user.password)
       if (match && user.passport === req.body.passport) {
+        const matches = await db.getUserMatches(user.id)
         const payload = {
           sub: user.id,
+          aud: matches.map(match => match.userId),
           iat: moment().unix()
         }
         const token = jwt
