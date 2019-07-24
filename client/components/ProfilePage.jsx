@@ -33,7 +33,6 @@ class ProfilePage extends React.Component {
   }
 
  handleLogout = () => {
-   console.log('logging out called')
    this.setState({
      redirect: 'logout'
    })

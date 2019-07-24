@@ -3,15 +3,13 @@ import {
   LOGOUT_SUCCESS,
   LOGOUT_ERROR
 } from '../actions/logout'
-import appReducer from '../reducers/index'
 
 export default function logout (state = {}, action) {
   switch (action.type) {
     case LOGOUT:
       return {
         user: null,
-        auth: null,
-        appReducer
+        auth: null
       }
     case LOGOUT_SUCCESS:
       return {
