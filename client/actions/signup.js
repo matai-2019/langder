@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-import { loginSuccess, loginError } from './login'
+import { loginSuccess } from './login'
 export const PENDING_ADDUSER = 'PENDING_ADDUSER'
 export const ADDUSER_SUCCESS = 'ADDUSER_SUCCESS'
 export const ADDUSER_ERROR = 'ADDUSER_ERROR'
