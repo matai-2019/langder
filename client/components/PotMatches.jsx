@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button, Card } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 import Profile from './Profile'
 import LikeControls from './LikeControls'
 
 import { likePotMatch, nextPotMatch, fetchPotMatches } from '../actions/potMatches'
+import { getProfile } from '../actions/profile'
 
 import '../styles/pot.css'
 import { listMatches } from '../actions/listMatches'
@@ -19,6 +21,7 @@ class PotMatches extends React.Component {
     const userId = this.props.user.id
     this.props.dispatch(listMatches(userId))
     this.props.dispatch(fetchPotMatches(userId))
+    this.props.dispatch(getProfile(userId))
   }
 
   filterPotMatches = (potMatches) => {
@@ -52,13 +55,27 @@ class PotMatches extends React.Component {
     return false
   }
 
+  renderUpdateToast = () => {
+    if (!this.props.profile.name || this.props.profile.name === null) {
+      return (
+        <Link to='/update'>
+          <h1 style={{ color: 'white', textAlign: 'center' }}>
+            Update your profile information to get more matches!
+          </h1>
+        </Link>
+      )
+    }
+  }
+
   render () {
     const { dispatch, user: { id } } = this.props
     const activePot = this.unbox(this.props.potMatches)
-    // console.log('filtered pots render', activePot)
 
     return (
     <>
+    <div>
+      {this.renderUpdateToast()}
+    </div>
       <div className="pot">
         {activePot && <Profile user={activePot[0]} className='active-card'>
           <LikeControls>
@@ -81,6 +98,7 @@ class PotMatches extends React.Component {
        </Card>
         }
       </div>
+
     </>
     )
   }
@@ -90,7 +108,8 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     potMatches: state.potMatches,
-    matches: state.matches
+    matches: state.matches,
+    profile: state.profile
   }
 }
 
