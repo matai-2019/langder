@@ -91,11 +91,12 @@ function getAllUsersLanguages (db = connection) {
 
 async function getUserLanguages (userId, db = connection) {
   const langIds = await db('userlanguages').where({ userId }).select('langId')
+
   const ids = langIds.map(lang => lang.langId)
 
   const languages = await db('languages')
     .whereIn('id', ids)
-    .select('name', 'countryCode')
+    .select()
 
   return languages
 }
@@ -133,8 +134,8 @@ function updateLanguage (language, db = connection) {
 // get a user's languages (has ticket)
 
 async function addUserLanguage (userId, langIds, db = connection) {
-  const data = langIds.map(langId => {
-    return { userId: userId, langId: langId }
+  const data = langIds.map(lang => {
+    return { userId: userId, langId: lang.id }
   })
   const result = await db('userLanguages').insert(data)
   return result

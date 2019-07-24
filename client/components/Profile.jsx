@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Label, Flag, Card, Rating } from 'semantic-ui-react'
-// import { getProfile } from '../actions/getProfile'
 
 const primary = '#b1f0ee'
 const secondary = '#00ffd0'
