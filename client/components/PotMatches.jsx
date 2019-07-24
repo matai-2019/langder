@@ -12,7 +12,7 @@ import { listMatches } from '../actions/listMatches'
 require('babel-polyfill')
 class PotMatches extends React.Component {
   state={
-    // pls: this.props.potMatches
+    potMatches: this.props.potMatches
   }
 
   componentDidMount () {
@@ -23,11 +23,17 @@ class PotMatches extends React.Component {
 
   filterPotMatches = (potMatches) => {
     const matches = this.props.matches
+    let filtered = []
     if (!potMatches.pending && Array.isArray(potMatches) && matches) {
       const potFilter = matches.map(profile => profile.userId)
       console.log('asdfasdf', potFilter)
-      return potMatches.filter(match => potFilter.includes(match.userId))
+      filtered = potMatches.filter(match => potFilter.includes(match.userId))
+      this.setState({
+        filtered
+      })
+      return filtered
     }
+
     // if (!potMatches.pending && Array.isArray(potMatches)) {
     //   // console.log('filtering', potMatches)
     //   const filtered = potMatches.filter(potMatch => {
@@ -45,30 +51,52 @@ class PotMatches extends React.Component {
     // }
   }
 
+  handleUpdate = () => {
+    this.props.dispatch(nextPotMatch())
+    // this.forceUpdate()
+  }
+
+  unbox = (state) => {
+    if (!state.pending && typeof state.pot !== 'undefined') {
+      console.log('not pending', state.pot)
+      // const potFilter = this.props.matches.map(profile => profile.userId)
+      // const filtered = state.pot.filter(match => potFilter.includes(match.userId))
+      // console.log('filtered', filtered)
+
+      if (state.pot.length < 0) {
+        return false
+      }
+      return state.pot
+    }
+    return false
+  }
+
   render () {
-    const { activePot, nextPot, dispatch, user: { id } } = this.props
-    // console.log('render', this.state, 'pot:', this.props.potMatches)
-    console.log(this.filterPotMatches(this.props.potMatches))
+    const { dispatch, user: { id } } = this.props
+    console.log('users', this.props.potMatches)
+    const activePot = this.unbox(this.props.potMatches)
+    console.log('unboxed activePot', activePot)
+
     return (
     <>
-    {/* {this.filterPotMatches(this.props.potMatches)} */}
       <div className="pot">
-        {activePot && <Profile user={activePot} className='active-card'>
+        {activePot && <Profile user={activePot[0]} className='active-card'>
           <LikeControls>
             <Button icon='close' size="massive" circular
               color="red"
               className="dislike-button"
-              onClick={() => dispatch(nextPotMatch())} />
+              onClick={this.handleUpdate}
+            />
             <Button icon='like' size="massive" circular
               color="pink"
               className="like-button"
-              onClick={() => dispatch(likePotMatch(id, activePot.userId))} />
+              onClick={() => dispatch(likePotMatch(id, activePot[0].userId))} />
           </LikeControls>
         </Profile>}
-        {nextPot && <Profile user={nextPot} className=' next-card' />}
+        {activePot && <Profile user={activePot[1]} className=' next-card' />}
 
-        {this.props.potMatches.length > 0 &&
-       <Card className="base-card" onClick={() => dispatch(fetchPotMatches())}>
+        {activePot &&
+       <Card className="base-card">
          <Card.Header content="Sorry About that you can swipe another time!" />
        </Card>
         }
@@ -77,15 +105,11 @@ class PotMatches extends React.Component {
     )
   }
 }
-// filter through pot matches
-// return if potmatch.name !== match.name
 
 const mapStateToProps = state => {
   return {
     user: state.user,
     potMatches: state.potMatches,
-    activePot: state.potMatches[0],
-    nextPot: state.potMatches[1],
     matches: state.matches
   }
 }

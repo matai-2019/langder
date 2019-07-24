@@ -6,24 +6,38 @@ import {
   ADD_LIKE_ERROR
 } from '../actions/potMatches'
 
-export default function potMatches (state = [], action) {
-  let poppedPotMatches = []
+const initialState = {
+  pending: false,
+  initial: true
+}
+
+export default function potMatches (state = initialState, action) {
+  let newPotMatches = []
+  let activePotMatch = {}
   switch (action.type) {
     case PENDING_POTENTIAL_MATCHES:
       return {
         pending: true,
-        completed: false
+        initial: false
       }
     case POTENTIAL_MATCHES_SUCCESS:
-      return action.potMatches
+      return {
+        pending: false,
+        pot: action.potMatches
+      }
     case POTENTIAL_MATCHES_ERROR:
       return {
         error: action.error
       }
     case NEXT_POTENTIAL_MATCH:
-      poppedPotMatches = state
-      poppedPotMatches.shift(0, 1)
-      return poppedPotMatches
+      // console.log('dispatch before', state.pot.length)
+      newPotMatches = state.pot
+      activePotMatch = newPotMatches.shift()
+      // console.log('dispatch after', newPotMatches.length)
+      return {
+        pending: false,
+        pot: newPotMatches
+      }
     case ADD_LIKE_ERROR:
       return {
         error: action.error
