@@ -10,13 +10,13 @@ import EditControls from './EditControls'
 
 class ProfilePage extends React.Component {
   state = {
-    redirect: false
+    redirect: null
   }
 
   renderRedirect = () => {
     if (this.state.redirect === 'update') {
       return <Redirect to='/update' />
-    } else if (this.state.redirect === 'logout') {
+    } else if (this.state.redirect === 'logout' && this.props.user === 'logged out') {
       return <Redirect to='/landing' />
     }
   }
