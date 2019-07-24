@@ -21,11 +21,9 @@ export default function potMatches (state = [], action) {
         error: action.error
       }
     case NEXT_POTENTIAL_MATCH:
-      poppedPotMatches = state.potMatches
-      poppedPotMatches.pop()
-      return {
-        potMatches: poppedPotMatches
-      }
+      poppedPotMatches = state
+      poppedPotMatches.shift(0, 1)
+      return poppedPotMatches
     case ADD_LIKE_ERROR:
       return {
         error: action.error
