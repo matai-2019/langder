@@ -84,9 +84,6 @@ export function updateProfile ({ userId, profileId, languages, name, description
           .send(languages)
           .then(res => dispatch(updateProfileSuccess(res.body)))
           .catch(err => dispatch(updateProfileError(err.mesage)))
-          .then(() => {
-            dispatch(getProfile(userId))
-          })
       })
   }
 }
