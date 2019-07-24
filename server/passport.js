@@ -20,7 +20,7 @@ const jwtStrategy = new JWTStrategy(opts,
     db.getUser(jwtPayload.sub)
       .then(user => {
         if (user) {
-          return done(null, user)
+          return done(null, user, jwtPayload)
         } else {
           return done(null, false)
         }
@@ -44,3 +44,5 @@ passport.deserializeUser(function (id, done) {
       if (err) return done(err)
     })
 })
+
+module.exports = passport
