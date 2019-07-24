@@ -72,7 +72,7 @@ class UpdateProfile extends Component {
                 {
                   allLanguages && <Form.Field
                     placeholder="e.g English"
-                    label='Languages I want to learn / learning'
+                    label='Languages I am interested in'
                     name="languages"
                     control={Dropdown}
                     selection
