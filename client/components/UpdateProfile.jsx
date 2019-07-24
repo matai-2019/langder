@@ -89,7 +89,7 @@ class UpdateProfile extends Component {
                   />
                 }
                 <Button
-                  disabled={languages.length === 0}
+                  disabled={languages && languages.length === 0}
                   type='submit'
                 >Submit</Button>
               </Form>
