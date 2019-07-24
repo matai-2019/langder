@@ -10,7 +10,7 @@ exports.seed = function (knex) {
         { id: 4, userId: 4, img: 4, name: 'Zena', description: 'I do not know what to say. I am too shy' },
         { id: 5, userId: 5, img: 5, name: 'Nina', description: 'Is this a good way to learn?' },
         { id: 6, userId: 6, img: 6, name: 'Terry', description: 'I know a lot and can teach a lot for those that need help' },
-        { id: 7, userId: 7, img: 7, name: 'Gerry', description: 'Do I have to delete "test description" in my bio? How yous all doing!' },img: 8, 
+        { id: 7, userId: 7, img: 7, name: 'Gerry', description: 'Do I have to delete "test description" in my bio? How yous all doing!' },
         { id: 8, userId: 8, img: 8, name: 'Merry', description: 'I was a teacher and love language exchanges' },
         { id: 9, userId: 9, img: 9, name: 'Lerry', description: 'I cannt spel so this is had' },
         { id: 10, userId: 10, img: 10, name: 'Rolly', description: 'I cannt spel so this is had' },
