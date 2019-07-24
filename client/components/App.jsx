@@ -16,7 +16,6 @@ class App extends React.Component {
       <Router>
         <>
         <Navbar />
-          <Container>
             <Switch>
               <Route exact path='/landing' component={Landing} />
               <Route exact path='/pot' component={PotMatches}/>
@@ -25,7 +24,6 @@ class App extends React.Component {
               <Route exact path='/update' component={UpdateProfile} />
               <Route exact path='/:id/matchProfile' render={(props) => <MatchProfile {...props}/>}/>
             </Switch>
-          </Container>
         </>
       </Router>
     )
