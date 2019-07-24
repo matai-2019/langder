@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/:id/likes', (req, res) => {
   const userId = Number(req.params.id)
-  const likedId = Number(req.body.userId)
+  const likedId = Number(req.body.likedId)
 
   db.getUserLikes(userId, likedId)
     .then(like => {
