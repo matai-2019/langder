@@ -3,7 +3,7 @@ import { Card, Image } from 'semantic-ui-react'
 
 function MatchListItem ({ id, name, img }) {
   return (
-    <Card href='#'>
+    <Card href={`/${id}/matchProfile`}>
       <Card.Content>
         <Image floated='left' size='mini' src={`/public/images/user_${id}.jpg`} />
         <Card.Header>{name}</Card.Header>
