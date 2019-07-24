@@ -22,43 +22,23 @@ class PotMatches extends React.Component {
   }
 
   filterPotMatches = (potMatches) => {
-    const matches = this.props.matches
-    let filtered = []
-    if (!potMatches.pending && Array.isArray(potMatches) && matches) {
-      const potFilter = matches.map(profile => profile.userId)
-      console.log('asdfasdf', potFilter)
-      filtered = potMatches.filter(match => potFilter.includes(match.userId))
-      this.setState({
-        filtered
-      })
-      return filtered
-    }
-
-    // if (!potMatches.pending && Array.isArray(potMatches)) {
-    //   // console.log('filtering', potMatches)
-    //   const filtered = potMatches.filter(potMatch => {
-    //     // console.log('pot match', potMatch)
-    //     this.props.matches.forEach(match => {
-    //       // console.log('match', match)
-    //       if (potMatch.userId !== match.userId) {
-    //         console.log('passed', potMatch)
-    //         return potMatch
-    //       }
-    //     })
-    //   })
-    //   console.log('filtered', filtered)
-    //   return filtered
+    // const matches = this.props.matches
+    // console.log('about to filter', potMatches)
+    // if (potMatches) {
+    //   const potFilter = matches.map(profile => profile.userId)
+    //   console.log('asdfasdf', potFilter)
+    //   console.log('filtering', potMatches)
+    //   return potMatches.filter(match => potFilter.includes(match.userId))
     // }
+    // return false
   }
 
   handleUpdate = () => {
     this.props.dispatch(nextPotMatch())
-    // this.forceUpdate()
   }
 
   unbox = (state) => {
     if (!state.pending && typeof state.pot !== 'undefined') {
-      console.log('not pending', state.pot)
       // const potFilter = this.props.matches.map(profile => profile.userId)
       // const filtered = state.pot.filter(match => potFilter.includes(match.userId))
       // console.log('filtered', filtered)
@@ -66,16 +46,16 @@ class PotMatches extends React.Component {
       if (state.pot.length < 0) {
         return false
       }
-      return state.pot
+      const filteredOutMe = state.pot.filter(e => e.userId !== this.props.user.id)
+      return filteredOutMe
     }
     return false
   }
 
   render () {
     const { dispatch, user: { id } } = this.props
-    console.log('users', this.props.potMatches)
     const activePot = this.unbox(this.props.potMatches)
-    console.log('unboxed activePot', activePot)
+    // console.log('filtered pots render', activePot)
 
     return (
     <>
