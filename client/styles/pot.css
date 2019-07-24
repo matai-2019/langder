@@ -1,0 +1,73 @@
+:root{
+  --primary-color: #b1f0ee;
+  --secondary-color: #408381;
+}
+
+body {
+  background: var(--secondary-color);
+  position: fixed;
+  /* overflow: hidden; */
+  width: 100vw;
+  height: 100vh;
+}
+
+.pot {
+  position: absolute;
+  width: 100vw;
+  height: 80vh;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pot > .card {
+  position: absolute;
+  padding: 5px;
+  background-color: white;
+  background-size: auto 85%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 300px;
+  max-width: 300px;
+  min-height: 330px;
+  max-height: 570px;
+  will-change: transform;
+  border-radius: 10px;
+}
+
+.buttonControls{
+  display: flex;
+  width: inherit;
+  height: 35px;
+  padding: 1em;
+}
+
+.buttonControls > button {
+  position: absolute;
+  box-shadow: 2px 3px 14px -7px rgba(0,0,0,0.62);
+}
+
+.like-button {
+  right: 25%;
+}
+
+.dislike-button {
+  left: 25%;
+}
+
+.next-card{
+  z-index: 10;
+}
+
+.active-card:hover{
+  cursor: pointer;
+}
+
+.active-card{
+  z-index: 11;
+}
+
+.base-card{
+  z-index: 0;
+}

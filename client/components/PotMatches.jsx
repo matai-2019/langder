@@ -1,24 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-import { Container, Button } from 'semantic-ui-react'
+import { Button, Card } from 'semantic-ui-react'
 
 import Profile from './Profile'
+import LikeControls from './LikeControls'
 
 import { likePotMatch, nextPotMatch, fetchPotMatches } from '../actions/potMatches'
 
-// consistant styles
-const primary = '#b1f0ee'
-// const secondary = '#00ffd0'
-
-const theme = {
-  button: {
-    position: 'flex',
-    backgroundColor: primary,
-    boxShadow: '2px 3px 14px -7px rgba(0,0,0,0.62)'
-  }
-}
-
+import '../styles/pot.css'
 class PotMatches extends React.Component {
   componentDidMount () {
     const userId = this.props.user.id
@@ -28,27 +17,29 @@ class PotMatches extends React.Component {
   render () {
     const { activePot, nextPot, dispatch, user: { id } } = this.props
     return (
-      <>
-        <Container className='matches'>
-          {
-            activePot && <Profile user={activePot} style={{ position: 'absolute' }}/>
-          }
-          {
-            nextPot && <Profile user={nextPot} style={{ position: 'absolute' }}/>
-          }
-          <div className="ui fluid button" icon='cloud download'>
-            <div className="cloud download"/>No more users</div>
-          <div/>
+    <>
+      <div className="pot">
+        {activePot && <Profile user={activePot} className='active-card'>
+          <LikeControls>
+            <Button icon='close' size="massive" circular
+              color="red"
+              className="dislike-button"
+              onClick={() => dispatch(nextPotMatch())} />
+            <Button icon='like' size="massive" circular
+              color="pink"
+              className="like-button"
+              onClick={() => dispatch(likePotMatch(id, activePot.userId))} />
+          </LikeControls>
+        </Profile>}
+        {nextPot && <Profile user={nextPot} className=' next-card' />}
 
-          <Button floated='left' icon='like' size="huge" circular style={{ ...theme.button }}
-            onClick={() => dispatch(likePotMatch(id, activePot.userId))} />
-
-          <Button floated='right' icon='close' size="huge" circular style={{ ...theme.button }}
-            onClick={() => dispatch(nextPotMatch())} />
-
-        </Container>
-
-      </>
+        {this.props.potMatches.length > 0 &&
+       <Card className="base-card" onClick={() => dispatch(fetchPotMatches())}>
+         <Card.Header content="Sorry About that you can swipe another time!" />
+       </Card>
+        }
+      </div>
+    </>
     )
   }
 }
