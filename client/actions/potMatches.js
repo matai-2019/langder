@@ -20,7 +20,6 @@ export function addLikeError (err) {
 }
 
 export function likePotMatch (userId, likedUser) {
-  console.log('action', userId, 'likes', likedUser)
   return dispatch => {
     request
       .post(`/api/v1/users/${userId}/likes`)
