@@ -26,23 +26,22 @@ class PotMatches extends React.Component {
   }
 
   render () {
-    const { activePot, nextPot, dispatch } = this.props
+    const { activePot, nextPot, dispatch, user: { id } } = this.props
     return (
       <>
         <Container className='matches'>
-          <h1>Your Matches are all Trixie. nice.</h1>
-          {activePot &&
-          <Profile user={activePot} style={{ position: 'absolute' }}
-          >
-          </Profile>}
-          {nextPot &&
-          <Profile user={nextPot} style={{ position: 'absolute' }}
-          />}
-          {<div className="ui fluid button" icon='cloud download'>
-            <div className="cloud download" onClick={() => dispatch(fetchPotMatches())} />Nein. Refresh Matches is all you can do now.</div>}
+          {
+            activePot && <Profile user={activePot} style={{ position: 'absolute' }}/>
+          }
+          {
+            nextPot && <Profile user={nextPot} style={{ position: 'absolute' }}/>
+          }
+          <div className="ui fluid button" icon='cloud download'>
+            <div className="cloud download"/>No more users</div>
+          <div/>
 
           <Button floated='left' icon='like' size="huge" circular style={{ ...theme.button }}
-            onClick={() => dispatch(likePotMatch(activePot))} />
+            onClick={() => dispatch(likePotMatch(id, activePot))} />
 
           <Button floated='right' icon='close' size="huge" circular style={{ ...theme.button }}
             onClick={() => dispatch(nextPotMatch())} />
