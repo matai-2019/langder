@@ -71,6 +71,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
+    "passport-jwt": "^4.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",

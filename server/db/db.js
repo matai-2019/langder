@@ -153,8 +153,9 @@ function deleteUserLanguage (userId, db = connection) {
 
 function getProfile (profileId, db = connection) {
   return db('profiles')
-    .select()
-    .where('id', profileId)
+    .select('profiles.id', 'name', 'userId', 'email', 'description')
+    .join('users', 'profiles.userId', 'users.id')
+    .where('profiles.id', profileId)
     .first()
 }
 

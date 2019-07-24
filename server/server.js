@@ -13,6 +13,7 @@ server.use(express.json())
 server.use(express.static(path.join(__dirname, './public')))
 server.use(passport.initialize())
 server.use(passport.session())
+require('./passport')
 
 // Routes Here
 server.use('/api/v1', auth)

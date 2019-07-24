@@ -60,7 +60,8 @@ const theme = {
 
 class Profile extends React.Component {
   render () {
-    const { user: { name, languages, description }, children } = this.props
+    console.log(this.props.user.email)
+    const { user: { name, languages, description, email }, children } = this.props
 
     const mapLanguage = (languages, color) => {
       if (!color) color = 'grey'
@@ -89,6 +90,7 @@ class Profile extends React.Component {
           <Card.Header style={theme.header}>
             <Rating icon="star" defaultRating={5} maxRating={5} size="large" style={theme.icon} disabled />
           </Card.Header>
+          {email && <Card.Content extra>Email: {email}</Card.Content>}
           {children}
         </Card>
       </>
