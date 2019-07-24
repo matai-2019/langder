@@ -7,11 +7,11 @@ import { getAllLanguages } from '../actions/languages'
 
 class UpdateProfile extends Component {
   state = {
-    userId: 1,
-    profileId: 1,
+    userId: this.props.userId,
+    profileId: this.props.profile.id,
     name: this.props.profile.name,
     description: this.props.profile.description,
-    languages: this.props.languages.map(lang => lang.name),
+    languages: this.props.profile.languages,
     redirect: false
   }
 
@@ -22,12 +22,21 @@ class UpdateProfile extends Component {
   handleChange = (e, { name, value }) => this.setState({ [name]: value, updated: true })
 
   handleSubmit = () => {
-    this.props.dispatch(updateProfile(this.state))
+    this.props.dispatch(updateProfile({
+      ...this.state,
+      languages: this.state.languages.map(lang => {
+        if (typeof lang === 'object') {
+          return { id: lang.id }
+        } else {
+          return { id: lang }
+        }
+      })
+    }))
     this.setState({ redirect: true })
   }
 
   renderRedirect = () => {
-    if (this.state.redirect) {
+    if (this.state.redirect && !this.props.profile.pending) {
       return <Redirect to='/profile'/>
     }
   }
@@ -73,10 +82,10 @@ class UpdateProfile extends Component {
                       return {
                         key: lang.id,
                         text: lang.name,
-                        value: lang.name
+                        value: lang.id
                       }
                     })}
-                    defaultValue={languages}
+                    defaultValue={languages.map(lang => lang.id)}
                   />
                 }
                 <Button type='submit'>Submit</Button>
@@ -90,14 +99,11 @@ class UpdateProfile extends Component {
   }
 }
 
-// need to get user id from redux *****************************
-
-const mapStateToProps = ({ getProfile: { profile, languages }, languages: { user } }) => {
+const mapStateToProps = ({ profile, languages, user: { id } }) => {
   return {
+    userId: id,
     profile,
-    languages,
-    allLanguages: user
-
+    allLanguages: languages
   }
 }
 

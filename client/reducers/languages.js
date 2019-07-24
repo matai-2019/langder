@@ -3,12 +3,10 @@ import {
   GET_ALL_LANGUAGES_SUCCESS
 } from '../actions/languages'
 
-export default function createProfile (state = {}, action) {
+export default function languages (state = [], action) {
   switch (action.type) {
     case GET_ALL_LANGUAGES_SUCCESS:
-      return {
-        user: action.languages
-      }
+      return action.languages
     case GET_ALL_LANGUAGES_ERROR:
       return {
         error: action.error
