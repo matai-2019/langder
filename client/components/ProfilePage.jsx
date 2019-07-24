@@ -44,7 +44,7 @@ class ProfilePage extends React.Component {
    return (
       <>
         {this.renderRedirect()}
-        <Profile user={profile}>
+        <Profile redirect={false} user={profile}>
           <EditControls handleLogout={this.handleLogout} handleUpdate={this.handleUpdate}/>
         </Profile>
       </>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Label, Flag, Card } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import { Label, Flag, Card, Button } from 'semantic-ui-react'
 
 const primary = '#b1f0ee'
 const secondary = '#00ffd0'
@@ -74,13 +75,18 @@ class Profile extends React.Component {
           ) : null
       })
     }
+
     return (
       <>
         <Card fluid centered className={className} style={{ ...theme.card, ...this.props.style }}>
+
+          {this.props.redirect === 'matches' && <Card.Header> <Link to='/matches'><Button>x</Button></Link></Card.Header>}
+
           <Card.Header
             as="h2"
             content={name}
-            style={theme.mainHeader} />
+            style={theme.mainHeader}>
+          </Card.Header>
           <Card.Content style={theme.description}>
             <Card.Header as="h4" content="Description" />
             {description ? <p>{description.slice(0, 200)}...</p> : <p>No Description</p>}

@@ -12,7 +12,7 @@ class MatchProfile extends Component {
   render () {
     return (
       <>
-         {this.props.profile.userId && <Profile user={ this.props.profile }/>}
+         {this.props.profile.userId && <Profile redirect={'matches'} user={ this.props.profile }/>}
       </>
     )
   }
