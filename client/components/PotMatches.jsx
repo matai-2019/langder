@@ -9,9 +9,10 @@ import { likePotMatch, nextPotMatch, fetchPotMatches } from '../actions/potMatch
 
 import '../styles/pot.css'
 import { listMatches } from '../actions/listMatches'
+require('babel-polyfill')
 class PotMatches extends React.Component {
   state={
-    // potMatches: this.props.potMatches.filter(potMatches)
+    // pls: this.props.potMatches
   }
 
   componentDidMount () {
@@ -20,10 +21,37 @@ class PotMatches extends React.Component {
     this.props.dispatch(fetchPotMatches(userId))
   }
 
+  filterPotMatches = (potMatches) => {
+    const matches = this.props.matches
+    if (!potMatches.pending && Array.isArray(potMatches) && matches) {
+      const potFilter = matches.map(profile => profile.userId)
+      console.log('asdfasdf', potFilter)
+      return potMatches.filter(match => potFilter.includes(match.userId))
+    }
+    // if (!potMatches.pending && Array.isArray(potMatches)) {
+    //   // console.log('filtering', potMatches)
+    //   const filtered = potMatches.filter(potMatch => {
+    //     // console.log('pot match', potMatch)
+    //     this.props.matches.forEach(match => {
+    //       // console.log('match', match)
+    //       if (potMatch.userId !== match.userId) {
+    //         console.log('passed', potMatch)
+    //         return potMatch
+    //       }
+    //     })
+    //   })
+    //   console.log('filtered', filtered)
+    //   return filtered
+    // }
+  }
+
   render () {
     const { activePot, nextPot, dispatch, user: { id } } = this.props
+    // console.log('render', this.state, 'pot:', this.props.potMatches)
+    console.log(this.filterPotMatches(this.props.potMatches))
     return (
     <>
+    {/* {this.filterPotMatches(this.props.potMatches)} */}
       <div className="pot">
         {activePot && <Profile user={activePot} className='active-card'>
           <LikeControls>
@@ -49,6 +77,8 @@ class PotMatches extends React.Component {
     )
   }
 }
+// filter through pot matches
+// return if potmatch.name !== match.name
 
 const mapStateToProps = state => {
   return {
