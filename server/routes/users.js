@@ -36,40 +36,6 @@ router.get('/:id', (req, res) => {
     })
 })
 
-router.post('/:id/likes', (req, res) => {
-  const userId = Number(req.params.id)
-  const likedId = Number(req.body.userId)
-
-  db.getUserLikes(userId, likedId)
-    .then(like => {
-      if (userId === likedId) {
-        throw new Error('ALREADY_MATCHED')
-      }
-      if (like) {
-        return db.addUserMatch(userId, likedId)
-      } else {
-        return db.addUserLike(userId, likedId)
-      }
-    })
-    .then(result => {
-      if (result) res.status(200).send('OK')
-    })
-    .catch(err => {
-      console.log(err)
-      switch (err.code || err.message) {
-        case 'SQLITE_CONSTRAINT':
-          res.status(409).json({ code: '409', message: 'Already Matched with user' })
-          break
-        case 'ALREADY_MATCHED':
-          res.status(400)
-            .json({ code: 400, message: 'Bad Request' })
-          break
-        default:
-          res.status(500).json(err)
-      }
-    })
-})
-
 router.post('/', (req, res) => {
   db.addUser(req.body)
     .then(() => res.status(201).send())
