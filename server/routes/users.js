@@ -81,7 +81,7 @@ router.get('/:id/languages', (req, res) => {
 })
 
 // post route to add user languages (has ticket)
-router.post('/:id', (req, res) => {
+router.post('/:id/languages', (req, res) => {
   const userId = Number(req.params.id)
   const languages = req.body
   db.addUserLanguage(userId, languages)
