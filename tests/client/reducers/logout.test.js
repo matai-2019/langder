@@ -1,18 +1,14 @@
 import { LOGOUT } from '../../../client/actions/logout'
-import logoutReducer from '../../../client/reducers/logout'
+import logout from '../../../client/reducers/login'
 
 describe('logout pending', () => {
   it('returns pending logout on a successful logout', () => {
     const initialState = {
-      user: 'null',
-      auth: 'null'
+      user: {}
     }
-    const expected = {
-      user: null,
-      auth: null
-    }
+    const expected = 'logged out'
     const action = { type: LOGOUT }
-    const actual = logoutReducer(initialState, action)
-    expect(actual).toEqual(expected)
+    const actual = logout(initialState, action)
+    expect(actual).toBe(expected)
   })
 })

@@ -3,6 +3,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_ERROR
 } from '../actions/login'
+import { LOGOUT } from '../actions/logout'
 
 // put to the side
 export default function login (state = {}, action) {
@@ -21,6 +22,8 @@ export default function login (state = {}, action) {
         pending: false,
         error: action.error
       }
+    case LOGOUT:
+      return 'logged out'
       // delete for later
       // case userConstants.DELETE_REQUEST:
       //   return {

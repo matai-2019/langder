@@ -15,7 +15,7 @@ class PotMatches extends React.Component {
   }
 
   render () {
-    const { activePot, nextPot, dispatch } = this.props
+    const { activePot, nextPot, dispatch, user: { id } } = this.props
     return (
     <>
       <div className="pot">
@@ -28,7 +28,7 @@ class PotMatches extends React.Component {
             <Button icon='like' size="massive" circular
               color="pink"
               className="like-button"
-              onClick={() => dispatch(likePotMatch(activePot))} />
+              onClick={() => dispatch(likePotMatch(id, activePot.userId))} />
           </LikeControls>
         </Profile>}
         {nextPot && <Profile user={nextPot} className=' next-card' />}
