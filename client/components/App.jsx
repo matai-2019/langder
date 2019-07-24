@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import { Container } from 'semantic-ui-react'
 
 import Landing from './Landing'
 import ProfilePage from './ProfilePage'
@@ -16,7 +15,6 @@ class App extends React.Component {
       <Router>
         <>
         <Navbar />
-          <Container>
             <Switch>
               <Route exact path='/landing' component={Landing} />
               <Route exact path='/pot' component={PotMatches}/>
@@ -25,7 +23,6 @@ class App extends React.Component {
               <Route exact path='/update' component={UpdateProfile} />
               <Route exact path='/:id/matchProfile' render={(props) => <MatchProfile {...props}/>}/>
             </Switch>
-          </Container>
         </>
       </Router>
     )

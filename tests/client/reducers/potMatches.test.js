@@ -8,22 +8,19 @@ import potMatches from '../../../client/reducers/potMatches'
 
 describe('next potential match', () => {
   it('removes one person from pot matches', () => {
-    const initialState = {
-      potMatches: [
-        { name: 'keith' },
-        { name: 'noel' },
-        { name: 'ruslan' }
-      ]
-    }
-    const expected = {
-      potMatches: [
-        { name: 'keith' },
-        { name: 'noel' }
-      ]
-    }
+    const initialState = [
+      { name: 'keith' },
+      { name: 'noel' },
+      { name: 'ruslan' }
+    ]
+    const expected = [
+      { name: 'noel' },
+      { name: 'ruslan' }
+    ]
+
     const actual = potMatches(initialState, nextPotMatch())
     expect(actual).toStrictEqual(expected)
-    expect(actual.potMatches.length).toBe(2)
+    expect(actual.length).toBe(2)
   })
 })
 
