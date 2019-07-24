@@ -8,6 +8,7 @@ import PotMatches from './PotMatches'
 import Navbar from './Navbar'
 import ListMatches from './ListMatches'
 import UpdateProfile from './UpdateProfile'
+import MatchProfile from './MatchProfile'
 
 class App extends React.Component {
   render () {
@@ -22,6 +23,7 @@ class App extends React.Component {
               <Route exact path='/profile' component={ProfilePage} />
               <Route exact path='/matches' component={ListMatches} />
               <Route exact path='/update' component={UpdateProfile} />
+              <Route exact path='/:id/matchProfile' render={(props) => <MatchProfile {...props}/>}/>
             </Switch>
           </Container>
         </>

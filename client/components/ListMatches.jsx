@@ -15,7 +15,7 @@ class ListMatches extends Component {
       <Grid centered style={{ marginTop: '75px' }}>
         {this.props.matches.length > 0 && this.props.matches.map((match, index) => (
           <Grid.Row key={index}>
-            <MatchListItem name={match.name}/>
+            <MatchListItem name={match.name} id={match.userId}/>
           </Grid.Row>))}
       </Grid>
     )
