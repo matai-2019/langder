@@ -8,9 +8,15 @@ import LikeControls from './LikeControls'
 import { likePotMatch, nextPotMatch, fetchPotMatches } from '../actions/potMatches'
 
 import '../styles/pot.css'
+import { listMatches } from '../actions/listMatches'
 class PotMatches extends React.Component {
+  state={
+    // potMatches: this.props.potMatches.filter(potMatches)
+  }
+
   componentDidMount () {
     const userId = this.props.user.id
+    this.props.dispatch(listMatches(userId))
     this.props.dispatch(fetchPotMatches(userId))
   }
 
@@ -49,7 +55,8 @@ const mapStateToProps = state => {
     user: state.user,
     potMatches: state.potMatches,
     activePot: state.potMatches[0],
-    nextPot: state.potMatches[1]
+    nextPot: state.potMatches[1],
+    matches: state.matches
   }
 }
 
