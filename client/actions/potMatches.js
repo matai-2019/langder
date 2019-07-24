@@ -24,7 +24,7 @@ export function likePotMatch (userId, likedUser) {
   return dispatch => {
     request
       .post(`/api/v1/users/${userId}/likes`)
-      .send(likedUser)
+      .send({ likedId: likedUser })
       .then(() => dispatch(nextPotMatch()))
       .catch(err => dispatch(addLikeError(err.message)))
   }

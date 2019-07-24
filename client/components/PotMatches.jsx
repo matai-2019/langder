@@ -41,7 +41,7 @@ class PotMatches extends React.Component {
           <div/>
 
           <Button floated='left' icon='like' size="huge" circular style={{ ...theme.button }}
-            onClick={() => dispatch(likePotMatch(id, activePot))} />
+            onClick={() => dispatch(likePotMatch(id, activePot.userId))} />
 
           <Button floated='right' icon='close' size="huge" circular style={{ ...theme.button }}
             onClick={() => dispatch(nextPotMatch())} />
