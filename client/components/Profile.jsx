@@ -62,7 +62,7 @@ const theme = {
 class Profile extends React.Component {
   render () {
     console.log(this.props.user.email)
-    const { user: { name, languages, description, email }, children } = this.props
+    const { user: { name, languages, description, email }, children, className } = this.props
 
     const mapLanguage = (languages, color) => {
       if (!color) color = 'grey'
@@ -78,7 +78,7 @@ class Profile extends React.Component {
     }
     return (
       <>
-        <Card fluid centered style={{ ...theme.card, ...this.props.style }}>
+        <Card fluid centered className={className} style={{ ...theme.card, ...this.props.style }}>
           <Card.Header
             as="h2"
             content={name}
