@@ -88,7 +88,10 @@ class UpdateProfile extends Component {
                     defaultValue={languages.map(lang => lang.id)}
                   />
                 }
-                <Button type='submit'>Submit</Button>
+                <Button
+                  disabled={languages.length === 0}
+                  type='submit'
+                >Submit</Button>
               </Form>
             </Card.Content>
           </Card>
