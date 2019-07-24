@@ -90,13 +90,13 @@ class PotMatches extends React.Component {
               onClick={() => dispatch(likePotMatch(id, activePot[0].userId))} />
           </LikeControls>
         </Profile>}
-        {activePot && <Profile user={activePot[1]} className=' next-card' />}
+        {/* {activePot && <Profile user={activePot[1]} className=' next-card' />} */}
 
         {
-          activePot &&
-            <Card className="base-card">
-              <Card.Header content="Sorry About that you can swipe another time!" />
-            </Card>
+          // activePot &&
+          //   <Card className="base-card">
+          //     <Card.Header content="Sorry About that you can swipe another time!" />
+          //   </Card>
         }
       </div>
 

@@ -30,10 +30,8 @@ export default function potMatches (state = initialState, action) {
         error: action.error
       }
     case NEXT_POTENTIAL_MATCH:
-      // console.log('dispatch before', state.pot.length)
       newPotMatches = state.pot
       activePotMatch = newPotMatches.shift()
-      // console.log('dispatch after', newPotMatches.length)
       return {
         pending: false,
         pot: newPotMatches
