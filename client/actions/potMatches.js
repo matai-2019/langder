@@ -19,11 +19,12 @@ export function addLikeError (err) {
   }
 }
 
-export function likePotMatch (likedUser) {
+export function likePotMatch (userId, likedUser) {
+  console.log('action', userId, 'likes', likedUser)
   return dispatch => {
     request
-      .post(`/api/v1/users/likes`)
-      .send(likedUser)
+      .post(`/api/v1/users/${userId}/likes`)
+      .send({ likedId: likedUser })
       .then(() => dispatch(nextPotMatch()))
       .catch(err => dispatch(addLikeError(err.message)))
   }

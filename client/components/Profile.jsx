@@ -60,7 +60,7 @@ const theme = {
 
 class Profile extends React.Component {
   render () {
-    console.log(this.props.user.email)
+    // console.log(this.props.user.email)
     const { user: { name, languages, description, email }, children } = this.props
 
     const mapLanguage = (languages, color) => {
