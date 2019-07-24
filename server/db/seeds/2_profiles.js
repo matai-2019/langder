@@ -13,7 +13,7 @@ exports.seed = function (knex) {
         { id: 7, userId: 7, img: 7, name: 'Gerry', description: 'Do I have to delete "test description" in my bio? How yous all doing!' },
         { id: 8, userId: 8, img: 8, name: 'Merry', description: 'I was a teacher and love language exchanges' },
         { id: 9, userId: 9, img: 9, name: 'Lerry', description: 'I cannt spel so this is had' },
-        { id: 10, userId: 10, img: 10, name: 'Rolly', description: 'I cannt spel so this is had' },
+        { id: 10, userId: 10, img: 10, name: 'Rolly', description: 'I saw my firends on this and it looked neat' },
         { id: 11, userId: 11, img: 11, name: 'Trolly', description: 'I am just a typical online troll that needs to learn new words. Please help this horrib... disgus.... abhorr.... yucky troll' }
       ])
     })
