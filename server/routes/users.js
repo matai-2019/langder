@@ -55,7 +55,6 @@ router.post('/:id/likes', (req, res) => {
       if (result) res.status(200).send('OK')
     })
     .catch(err => {
-      console.log(err)
       switch (err.code || err.message) {
         case 'SQLITE_CONSTRAINT':
           res.status(409).json({ code: '409', message: 'Already Matched with user' })
