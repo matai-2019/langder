@@ -6,7 +6,7 @@ function MatchListItem ({ id, name, img }) {
   return (
     <Card link as={Link} to={`/${id}/matchProfile`}>
       <Card.Content>
-        <Image floated='left' size='mini' src={`/public/images/user_${id}.jpg`} />
+        <Image floated='left' size='mini' src='https://www.placecage.com/150/150' />
         <Card.Header>{name}</Card.Header>
         <Card.Meta>Match</Card.Meta>
       </Card.Content>

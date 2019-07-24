@@ -6,7 +6,7 @@ exports.seed = function (knex) {
       return knex('profiles').insert([
         { id: 1, userId: 1, name: 'Tina', description: 'Wants to learn everything' },
         { id: 2, userId: 2, name: 'Gina', description: 'Here for free pie' },
-        { id: 3, userId: 3, name: 'Lina', description: 'I learn the good English you teach good' },
+        { id: 3, userId: 3, name: 'Lina', description: 'I want to learn English' },
         { id: 4, userId: 4, name: 'Zena', description: 'I do not know what to say. I am too shy' },
         { id: 5, userId: 5, name: 'Nina', description: 'Is this a good way to learn?' },
         { id: 6, userId: 6, name: 'Terry', description: 'I know a lot and can teach a lot for those that need help' },
