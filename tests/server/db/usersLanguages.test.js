@@ -16,7 +16,7 @@ test('db.addUserLanguage adds 3 rows to userLanguages table', () => {
 
   const expected = 7
   const userId = 1
-  const languagesArray = [1, 2, 3]
+  const languagesArray = [{ id: 1 }, { id: 2 }, { id: 3 }]
 
   return db.addUserLanguage(userId, languagesArray, testDb)
     .then(async () => {
