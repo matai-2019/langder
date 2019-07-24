@@ -8,18 +8,18 @@ export default function updateProfile (state = {}, action) {
   switch (action.type) {
     case PENDING_UPDATE_PROFILE:
       return {
-        loading: true,
+        pending: true,
         completed: false
       }
     case UPDATE_PROFILE_SUCCESS:
-      return { 
+      return {
         user: action.profile
       }
 
     case UPDATE_PROFILE_ERROR:
       return {
-          error: action.error
-        }  
+        error: action.error
+      }
 
     default:
       return state

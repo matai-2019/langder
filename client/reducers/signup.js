@@ -8,20 +8,18 @@ export default function addUser (state = {}, action) {
   switch (action.type) {
     case PENDING_ADDUSER:
       return {
-        loading: true
+        pending: true
       }
     case ADDUSER_SUCCESS:
-      return { 
-        user: action.user 
-      }
+      return action.user
 
     case ADDUSER_ERROR:
       return {
-          error: action.error
-        }  
+        pending: false,
+        error: action.error
+      }
 
     default:
       return state
   }
 }
-

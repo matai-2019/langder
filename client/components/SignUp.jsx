@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Form, Button, Grid } from 'semantic-ui-react'
+import { addUser } from '../actions/signup'
 
 class SignUp extends Component {
   state = {
@@ -9,13 +11,18 @@ class SignUp extends Component {
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
-  handleSubmit = () => this.setState({ email: '', password: '' })
+  handleSubmit = () => {
+    this.setState({ redirect: true })
+    this.props.dispatch(addUser({ email: this.state.email, password: this.state.password }))
+  }
 
-  render() {
+  render () {
     const { email, password } = this.state
     const inputStyle = { width: '60vw' }
 
     return (
+      <>
+      {this.renderRedirect()}
       <Grid style={{ marginTop: '30vh' }} container centered columns={1}>
         <Grid.Row verticalAlign='middle' centered columns={1}>
           <h1>Sign up</h1>
@@ -38,8 +45,9 @@ class SignUp extends Component {
           </Form>
         </Grid.Row>
       </Grid>
+      </>
     )
   }
 }
 
-export default SignUp
+export default connect()(SignUp)

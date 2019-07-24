@@ -1,23 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { Label, Flag, Card, Rating } from 'semantic-ui-react'
+// import { getProfile } from '../actions/getProfile'
 
-import { Label, Flag, Card, Image, Rating, Button } from 'semantic-ui-react'
-
-const props = {
-  id: 1,
-  name: 'Trixie',
-  image: 'https://ohgodmywifeisgerman.files.wordpress.com/2016/10/donttrusttherabbit-photo-04.jpg?w=507&h=321',
-  toKnow: [
-    { name: 'Japanese', country: 'jp' },
-    { name: 'Creole', country: 'jm' },
-    { name: 'Chinese', country: 'cn' },
-    { name: 'German', country: 'de' }
-  ],
-  know: [{ name: 'Singhalise', country: 'lk' }],
-  description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur possimus itaque commodi quibusdam magni. In velit, quisquam ipsa, doloremque recusandae voluptatem dolor veniam incidunt eos, dolores maxime facere quis ullam.',
-  email: 'test@test.com',
-  ratingLearner: 4,
-  ratingTeacher: 5
-}
 const primary = '#b1f0ee'
 const secondary = '#00ffd0'
 
@@ -74,51 +59,48 @@ const theme = {
   }
 }
 
-function Profile () {
-  const mapLanguage = (languages, color) => {
-    if (!color) color = 'grey'
-    return languages.map((lang, index) => {
-      return languages && index <= 10
-        ? (
-          <Label key={index} color={color} style={theme.tag} size="large">
-            <Flag name={lang.country} />
-            {lang.name}
-          </Label>
-        ) : null
-    })
+class Profile extends React.Component {
+  render () {
+    const { user: { name, languages, description }, children } = this.props
+
+    const mapLanguage = (languages, color) => {
+      if (!color) color = 'grey'
+      return languages.map((lang, index) => {
+        return languages && index <= 10
+          ? (
+            <Label key={index} color={color} style={theme.tag} size="large">
+              <Flag name={lang.country} />
+              {lang.name}
+            </Label>
+          ) : null
+      })
+    }
+    return (
+      <>
+        <Card fluid centered style={{ ...theme.card, ...this.props.style }}>
+          <Card.Header
+            as="h2"
+            content={name}
+            style={theme.mainHeader} />
+          {/* <Image src={image} style={theme.image} /> */}
+          <Card.Content>
+            {languages && mapLanguage(languages, 'teal')}
+          </Card.Content>
+          <Card.Content content={description} style={theme.description} />
+          <Card.Header style={theme.header}>
+            <Rating icon="star" defaultRating={5} maxRating={5} size="large" style={theme.icon} disabled />
+          </Card.Header>
+          {children}
+        </Card>
+      </>
+    )
   }
-
-  return (
-    <>
-      <Card fluid centered style={theme.card}>
-        <Card.Header
-          as="h2"
-          content={props.name}
-          style={theme.mainHeader} />
-        <Image src={props.image} style={theme.image}/>
-        <Card.Content>
-          <Card.Header style={theme.header}>
-            <span style={theme.span}>Teaching</span>
-            <Rating icon="star" defaultRating={props.ratingTeacher} maxRating={5} size="large" style={theme.icon} disabled />
-          </Card.Header>
-          {mapLanguage(props.toKnow, 'teal')}
-        </Card.Content>
-        <Card.Content>
-          <Card.Header style={theme.header}>
-            <span style={theme.span}>Learning</span>
-            <Rating icon="star" defaultRating={props.ratingLearner} maxRating={5} size="large" style={theme.icon} disabled />
-          </Card.Header>
-          {mapLanguage(props.know)}
-        </Card.Content>
-        <Card.Content content={props.description} style={theme.description} />
-        <div className="buttonControls" style={theme.controls}>
-          <Button icon='edit' size="massive" circular style={{ ...theme.button, ...theme.editButton }} />
-          <Button icon='log out' size="massive" circular style={{ ...theme.button, ...theme.deleteButton }} />
-        </div>
-      </Card>
-
-    </>
-  )
 }
 
-export default Profile
+const mapStateToProps = state => {
+  return {
+    userId: state.user.id
+  }
+}
+
+export default connect(mapStateToProps)(Profile)
