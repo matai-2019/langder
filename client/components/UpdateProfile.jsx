@@ -55,7 +55,7 @@ class UpdateProfile extends Component {
               <Form onSubmit={this.handleSubmit} style={{ height: '100%' }}>
                 <Form.Input
                   onChange={this.handleChange}
-                  value={name}
+                  value={name || ''}
                   placeholder='Your name'
                   name='name'
                   label='Name'
@@ -66,7 +66,7 @@ class UpdateProfile extends Component {
                   label="Bio"
                   control={TextArea}
                   style={{ minHeight: 100 }}
-                  value={description}
+                  value={description || ''}
                   onChange={this.handleChange}
                 />
                 {
@@ -85,7 +85,7 @@ class UpdateProfile extends Component {
                         value: lang.id
                       }
                     })}
-                    defaultValue={languages.map(lang => lang.id)}
+                    defaultValue={languages ? languages.map(lang => lang.id) : ''}
                   />
                 }
                 <Button
