@@ -5,10 +5,10 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 export const LOGOUT_ERROR = 'LOGOUT_ERROR'
 export const LOGOUT = 'LOGOUT'
 
-export function logoutSuccess (user) {
+/*
+export function logoutSuccess () {
   return {
-    type: LOGOUT_SUCCESS,
-    user
+    type: LOGOUT_SUCCESS
   }
 }
 
@@ -18,7 +18,8 @@ export function logoutError (message) {
     message
   }
 }
+*/
 
-export function logout (user) {
+export function logout () {
   return { type: LOGOUT }
 }
