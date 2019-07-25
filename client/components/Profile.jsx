@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Label, Flag, Card, Button } from 'semantic-ui-react'
+import { Label, Flag, Card, Button, Image } from 'semantic-ui-react'
 
 const primary = '#b1f0ee'
 const secondary = '#00ffd0'
@@ -87,6 +87,9 @@ class Profile extends React.Component {
             content={name}
             style={theme.mainHeader}>
           </Card.Header>
+          {
+            this.props.img && <Image style={{ width: '250px', height: '150px', margin: 'auto' }} src={this.props.img}/>
+          }
           <Card.Content style={theme.description}>
             <Card.Header as="h4" content="Description" />
             {description ? <p>{description.slice(0, 200)}...</p> : <p>No Description</p>}

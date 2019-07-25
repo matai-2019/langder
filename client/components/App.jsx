@@ -14,6 +14,9 @@ class App extends React.Component {
     return (
       <Router>
         <>
+        {
+          // need to reroute from / => /landing || change landing to /
+        }
         <Navbar />
             <Switch>
               <Route exact path='/landing' component={Landing} />
