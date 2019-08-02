@@ -10,12 +10,10 @@ import { likePotMatch, fetchPotMatches, nextPotMatch } from '../actions/potMatch
 import '../styles/pot.css'
 
 const PotMatches = (props) => {
-  // const { user } = props
   const dispatch = useDispatch()
 
   const user = useSelector(state => state.user)
   const pots = useSelector(state => state.potMatches)
-  // const [pots, setPots] = useState(potMatches)
   const [activePot, setActivePot] = useState(null)
   const [nextPot, setNextPot] = useState(null)
   const [interacted, setInteracted] = useState([])
