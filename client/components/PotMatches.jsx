@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button, Card } from 'semantic-ui-react'
+import {useSpring, animated} from 'react-spring'
 
 import Profile from './Profile'
 import LikeControls from './LikeControls'
