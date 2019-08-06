@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button, Card } from 'semantic-ui-react'
-import {useSpring, animated} from 'react-spring'
-
+import { useSpring, animated } from 'react-spring'
 import Profile from './Profile'
 import LikeControls from './LikeControls'
 
@@ -43,29 +42,43 @@ const PotMatches = (props) => {
     }
 
     setInteracted([...interacted, activePot])
-    // setPots(pots.slice(0, 2))
     setActivePot(pots[0])
     setNextPot(pots[1])
+  }
+
+  const onDrag = (e) => {
+    e.preventDefault()
+    const bb = e.target.getBoundingClientRect()
+    console.log('drag', bb, e.clientX)
+  }
+
+  const onDragEnd = e => {
+    e.preventDefault()
+    const bb = e.target.getBoundingClientRect()
+    console.log('mouse Up', bb, e.clientX)
   }
 
   return (
     <>
       <div className="pot">
         {activePot &&
-          <Profile user={activePot} className='active-card'>
-            <LikeControls>
-              <Button icon='close' size="massive" circular
-                color="red"
-                name="dislike-button"
-                className="dislike-button"
-                onClick={cycleCards()} />
-              <Button icon='like' size="massive" circular
-                color="pink"
-                name="like-button"
-                className="like-button"
-                onClick={cycleCards(user.id)} />
-            </LikeControls>
-          </Profile>}
+          <animated.div draggable className="wrapper" onDrag={onDrag} onDragEnd={onDragEnd}>
+            <Profile user={activePot} className='active-card' isAnimated={true}>
+              <LikeControls>
+                <Button icon='close' size="massive" circular
+                  color="red"
+                  name="dislike-button"
+                  className="dislike-button"
+                  onClick={cycleCards()} />
+                <Button icon='like' size="massive" circular
+                  color="pink"
+                  name="like-button"
+                  className="like-button"
+                  onClick={cycleCards(user.id)} />
+              </LikeControls>
+            </Profile>
+          </animated.div>
+        }
         {nextPot ? <Profile user={nextPot} className=' next-card' />
           : (<Card className="base-card" onClick={() => dispatch(fetchPotMatches(user.id))}>
             <Card.Header content="Sorry About that you can swipe another time!" />
