@@ -1,5 +1,5 @@
-import request from 'superagent'
-
+import * as profilesAPI from '../api/profiles.api'
+import * as usersAPI from '../api/users.api'
 export const PENDING_UPDATE_PROFILE = 'PENDING_UPDATE_PROFILE'
 export const UPDATE_PROFILE_SUCCESS = 'UPDATE_PROFILE_SUCCESS'
 export const UPDATE_PROFILE_ERROR = 'UPDATE_PROFILE_ERROR'
@@ -39,12 +39,10 @@ export function getLanguagesSuccess (languages) {
 export function getProfile (id) {
   return dispatch => {
     dispatch(getProfilePending())
-    request
-      .get(`/api/v1/profiles/${id}`)
+    profilesAPI.getProfile(id)
       .then(res => {
         dispatch(getProfileSuccess(res.body))
-        return request
-          .get(`/api/v1/users/${id}/languages`)
+        return usersAPI.getLanguages(id)
           .then(res => {
             dispatch(getLanguagesSuccess(res.body))
           })
@@ -73,17 +71,16 @@ export function updateProfileError (message) {
   }
 }
 
-export function updateProfile ({ userId, profileId, languages, name, description }) {
+export function updateProfile (data) {
+  console.log('zee data', data)
+
   return dispatch => {
     dispatch(pendingUpdateProfile())
-
-    request.put(`/api/v1/profiles/${profileId}`)
-      .send({ name, description })
-      .then((res) => {
-        request.put(`/api/v1/users/${userId}/languages`)
-          .send(languages)
+    profilesAPI.updateProfile(data)
+      .then(() =>
+        usersAPI.updateLanguages(data)
           .then(res => dispatch(updateProfileSuccess(res.body)))
-          .catch(err => dispatch(updateProfileError(err.mesage)))
-      })
+      )
+      .catch(err => dispatch(updateProfileError(err.mesage)))
   }
 }
