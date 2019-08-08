@@ -26,7 +26,7 @@ export function listMatchesError (message) {
 export function listMatches (userId) {
   return dispatch => {
     dispatch(listMatchesPending())
-    usersAPI.getPotMatches(userId)
+    usersAPI.getMatches(userId)
       .then(res => dispatch(listMatchesSuccess(res.body)))
       .catch(err => dispatch(listMatchesError(err.message)))
   }
