@@ -16,7 +16,7 @@ class App extends React.Component {
         <>
         <Navbar />
             <Switch>
-              <Route exact path='/landing' component={Landing} />
+              <Route exact path='/' component={Landing} />
               <Route exact path='/pot' component={PotMatches}/>
               <Route exact path='/profile' component={ProfilePage} />
               <Route exact path='/matches' component={ListMatches} />
