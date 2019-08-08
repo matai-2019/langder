@@ -12,3 +12,7 @@ export function like (userId, likedId) {
 export function getLanguages (id) {
   return request.get(`/api/v1/users/${id}/languages`)
 }
+
+export function getMatches (id) {
+  return request.get(`/api/v1/users/${id}/matches`)
+}
