@@ -5,8 +5,7 @@ export function getPotMatches (userId) {
 }
 
 export function like (userId, likedId) {
-  request
-    .post(`/api/v1/users/${userId}/likes`)
+  request.post(`/api/v1/users/${userId}/likes`)
     .send({ likedId })
 }
 
