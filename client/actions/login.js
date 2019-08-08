@@ -1,4 +1,4 @@
-import request from 'superagent'
+import * as loginAPI from '../api/login.api'
 
 export const PENDING_LOGIN = 'PENDING_LOGIN'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -27,9 +27,7 @@ export function loginError (message) {
 export function login (user) {
   return dispatch => {
     dispatch(loginPending())
-    request
-      .post('/api/v1/login')
-      .send(user)
+    loginAPI.login(user)
       .then(res => dispatch(loginSuccess(res.body)))
       .catch(err => dispatch(loginError(err.message)))
   }
