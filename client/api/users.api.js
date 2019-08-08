@@ -9,3 +9,7 @@ export function like (userId, likedId) {
     .post(`/api/v1/users/${userId}/likes`)
     .send({ likedId })
 }
+
+export function getLanguages (id) {
+  return request.get(`/api/v1/users/${id}/languages`)
+}
