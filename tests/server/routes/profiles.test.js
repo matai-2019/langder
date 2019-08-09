@@ -4,7 +4,7 @@ const server = require('../../../server/server')
 
 const mockError500 = new Error({ code: 500, message: 'Sever error' })
 
-jest.mock('../../../server/db/db', () => ({
+jest.mock('../../../server/db/profiles.db.js', () => ({
   updateProfile: (profileId, profile) => {
     if (profileId === 1) {
       return Promise.resolve(profileId, profile)
