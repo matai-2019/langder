@@ -1,6 +1,6 @@
 require('babel-polyfill')
 const env = require('./test-environment')
-const db = require('../../../server/db/db')
+const likesDB = require('../../../server/db/likes.db')
 
 let testDb = null
 
