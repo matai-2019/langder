@@ -1,15 +1,13 @@
 const express = require('express')
-const passport = require('passport')
-const db = require('../db/db')
+const profilesDB = require('../db/profiles.db')
 
 const router = express.Router()
-
 // post route to get profile (has ticket)
 router.get('/:id',
   (req, res) => {
     const profileId = Number(req.params.id)
 
-    db.getProfile(profileId)
+    profilesDB.getProfile(profileId)
       .then(profile => {
         if (profile) {
           res.status(200).json(profile)
@@ -24,7 +22,7 @@ router.get('/:id',
 router.put('/:id', (req, res) => {
   const newProfile = req.body
   const profileId = Number(req.params.id)
-  db.updateProfile(profileId, newProfile)
+  profilesDB.updateProfile(profileId, newProfile)
     .then(() => {
       res.status(200).send()
     })
@@ -36,7 +34,7 @@ router.put('/:id', (req, res) => {
 // delete route to delete profile (has ticket)
 router.delete('/:id', (req, res) => {
   const profileId = Number(req.params.id)
-  db.deleteProfile(profileId)
+  profilesDB.deleteProfile(profileId)
     .then(() => {
       res.status(200).json({ Okay: true })
     })
