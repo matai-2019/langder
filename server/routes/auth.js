@@ -2,6 +2,8 @@ const express = require('express')
 const jwt = require('jsonwebtoken')
 const moment = require('moment')
 const authDB = require('../db/auth.db')
+const matchesDB = require('../db/matches.db')
+
 require('babel-polyfill')
 
 const router = express.Router()
@@ -14,8 +16,9 @@ router.post('/login', (req, res) => {
         loginData.password,
         user.password)
 
-      if (match && user.passport === req.body.passport) {
-        const matches = await authDB.getUserMatches(user.id)
+      if (match) {
+        const matches = await matchesDB.getUserMatches(user.id)
+
         const payload = {
           sub: user.id,
           aud: matches.map(match => match.userId),
@@ -24,7 +27,6 @@ router.post('/login', (req, res) => {
         const token = jwt
           .sign(payload, process.env.SECRET_OR_KEY ||
             'secret', { expiresIn: '1d' })
-
         res.status(200)
           .json({ auth: token, ...user })
       } else {
