@@ -1,5 +1,5 @@
 // const connection = require('./db/connection')
-const db = require('./db/db')
+const usersDB = require('./db/users.db')
 
 const passport = require('passport')
 const JWTStrategy = require('passport-jwt').Strategy
@@ -17,7 +17,7 @@ const jwtStrategy = new JWTStrategy(opts,
       return done(null, false, { code: 403, message: 'Login expired.' })
     }
 
-    db.getUser(jwtPayload.sub)
+    usersDB.getUser(jwtPayload.sub)
       .then(user => {
         if (user) {
           return done(null, user, jwtPayload)
@@ -36,7 +36,7 @@ passport.serializeUser(function (user, done) {
 })
 
 passport.deserializeUser(function (id, done) {
-  db.getUser(id)
+  usersDB.getUser(id)
     .then(user => {
       if (user) return done(null, user)
     })
