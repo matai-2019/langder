@@ -3,15 +3,20 @@ import request from 'supertest'
 require('babel-polyfill')
 const server = require('../../../server/server')
 
-jest.mock('../../../server/db/db.js', () => ({
-  getUser: (id) => Promise.resolve(
-    { id: 2, email: 'email2@email.com', password: 'password' }
-  ),
-  deleteUserLanguage: (id) => Promise.resolve({ id }),
+jest.mock('../../../server/db/userLanguages.db.js', () => ({
+  getUserLanguages: (id) => Promise.resolve([
+    { id: 1, userId: 1, langId: 1 },
+    { id: 1, userId: 1, langId: 2 },
+    { id: 1, userId: 1, langId: 5 }
+  ]),
+  addUserLanguage: (id, languages) => Promise.resolve([
+    { langId: 1 },
+    { langId: 3 }
+  ]),
+  deleteUserLanguage: (id) => Promise.resolve({ id })
+}))
 
-  addUser: (user) => Promise.resolve(user),
-
-  addUserLanguage: (id, languages) => Promise.resolve([{ langId: 1 }, { langId: 3 }]),
+jest.mock('../../../server/db/pots.db.js', () => ({
   getPotentialMatches: async userId => {
     const list = [
       { id: 1, name: 'A', userId: 1, description: 'I am A' },
@@ -20,28 +25,36 @@ jest.mock('../../../server/db/db.js', () => ({
     ]
     const filteredList = await list.filter(profile => profile.userId !== userId)
     return Promise.resolve(filteredList)
-  },
-  getUserLanguages: (id) => Promise.resolve([
-    { id: 1, userId: 1, langId: 1 },
-    { id: 1, userId: 1, langId: 2 },
-    { id: 1, userId: 1, langId: 5 }
-  ]),
-  deleteUser: (id) => Promise.resolve({ id }),
-  getUserLikes: (id) => Promise.resolve([
-    { id: 1, userId: id, likeId: 2 },
-    { id: 2, userId: id, likeId: 3 },
-    { id: 3, userId: id, likeId: 5 }
-  ]),
-  getUsers: () => Promise.resolve([
-    { id: 1, email: 'email@email.com', password: 'password' },
-    { id: 2, email: 'email2@email.com', password: 'password' },
-    { id: 3, email: 'email3@email.com', password: 'password' }
-  ]),
+  }
+}))
+
+jest.mock('../../../server/db/matches.db.js', () => ({
   getUserMatches: () => Promise.resolve([
     { id: 1, user1Id: 1, user2Id: 2 },
     { id: 2, user1Id: 1, user2Id: 3 },
     { id: 3, user1Id: 4, user2Id: 5 }
   ])
+}))
+
+jest.mock('../../../server/db/likes.db.js', () => ({
+  getUserLikes: (id) => Promise.resolve([
+    { id: 1, userId: id, likeId: 2 },
+    { id: 2, userId: id, likeId: 3 },
+    { id: 3, userId: id, likeId: 5 }
+  ])
+}))
+
+jest.mock('../../../server/db/users.db.js', () => ({
+  getUsers: () => Promise.resolve([
+    { id: 1, email: 'email@email.com', password: 'password' },
+    { id: 2, email: 'email2@email.com', password: 'password' },
+    { id: 3, email: 'email3@email.com', password: 'password' }
+  ]),
+  getUser: (id) => Promise.resolve(
+    { id: 2, email: 'email2@email.com', password: 'password' }
+  ),
+  addUser: (user) => Promise.resolve(user),
+  deleteUser: (id) => Promise.resolve({ id })
 }))
 
 test('POST / adds a user', () => {

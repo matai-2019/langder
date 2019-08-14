@@ -1,13 +1,13 @@
 const express = require('express')
 
-const db = require('../db/db')
+const langDB = require('../db/languages.db')
 
 const router = express.Router()
 
 // get route to get all languages (has ticket)
 
 router.get('/', (req, res) => {
-  db.getAllLanguages()
+  langDB.getAllLanguages()
     .then(languages => {
       res.status(200).json(languages)
     })
