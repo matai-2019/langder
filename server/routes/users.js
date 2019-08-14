@@ -71,7 +71,7 @@ router.post('/:id/likes', (req, res) => {
 
 router.post('/', (req, res) => {
   db.addUser(req.body)
-    .then(() => res.status(201).send())
+    .then(id => res.status(201).send(id))
     .catch(err => {
       res.status(500).json(err)
     })

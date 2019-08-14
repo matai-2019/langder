@@ -67,6 +67,7 @@ async function addUser (user, db = connection) {
       const userId = idArray[0]
       return db('profiles')
         .insert({ userId })
+        .then(user[0])
     })
 }
 
