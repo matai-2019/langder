@@ -1,4 +1,5 @@
-import request from 'superagent'
+import * as usersAPI from '../api/users.api'
+import * as loginAPI from '../api/login.api'
 
 import { loginSuccess } from './login'
 export const PENDING_ADDUSER = 'PENDING_ADDUSER'
@@ -28,17 +29,18 @@ export function addUserError (message) {
 export function addUser (user) {
   return dispatch => {
     dispatch(addUserPending())
-    request
-      .post('/api/v1/users')
-      .send(user)
+    usersAPI.addUser(user)
       .then(res => {
-        dispatch(addUserSuccess(res.body))
-        return request
-          .post('/api/v1/login')
-          .send(user)
-          .then(res => {
-            dispatch(loginSuccess(res.body))
-          })
+        const userId = res.body
+        if (userId) {
+          dispatch(addUserSuccess(user))
+          return loginAPI.login(user)
+        } else {
+          throw new Error('No New User Added')
+        }
+      })
+      .then(res => {
+        dispatch(loginSuccess(res.body))
       })
       .catch(err => dispatch(addUserError(err.message)))
   }
