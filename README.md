@@ -13,14 +13,14 @@ We all know that best way to learn a anything is to keep practice and the best w
   npm i
 ```
 
-### Runing Programme 
+### Runing Program
 ```npm run start```
 
 ### Wiki
 Refer to this [wiki](https://github.com/tehnools/polyglota/wiki) for more information
 
 ### Contributors
-* Ash Forster
+* Ash Foster
 * David Nichols
 * Tamari Gray
 * Noel Soong
