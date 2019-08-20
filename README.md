@@ -13,7 +13,7 @@ We all know that best way to learn a anything is to keep practice and the best w
   npm i
 ```
 
-### Runnig Programme 
+### Runing Programme 
 ```npm run start```
 
 ### Wiki
