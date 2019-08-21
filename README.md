@@ -13,8 +13,13 @@ We all know that best way to learn a anything is to keep practice and the best w
   npm i
 ```
 
-### Runing Program
+### Running Program
 ```npm run start```
+### Running with watch
+```npm run dev```
+
+### Reset Database
+```npm run db:reset```
 
 ### Wiki
 Refer to this [wiki](https://github.com/tehnools/polyglota/wiki) for more information
