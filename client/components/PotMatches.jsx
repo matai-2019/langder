@@ -5,15 +5,16 @@ import { Label, Flag, Card, Button } from 'semantic-ui-react'
 import SwipeCard from './SwipeCard'
 import SwipeCards from './SwipeCards'
 import LikeControls from './LikeControls'
-import { like, dislike } from './actions/swipe'
+import { like, dislike } from '../actions/swipe'
 import { fetchPotMatches } from '../actions/potMatches'
 const PotMatches = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-  const potMatches = useSelector(state => state.pots, shallowEqual)
-
+  const potMatches = useSelector(state => state.potMatches, shallowEqual)
   useEffect(() => {
-    dispatch(fetchPotMatches(user.id))
+    if (pots.length <= 0) {
+      dispatch(fetchPotMatches(user.id))
+    }
   }, [])
 
   const displayEmpty = () => <p>Sorry no more cards</p>
@@ -39,6 +40,7 @@ const PotMatches = () => {
     <div className="pot">
       <SwipeCards onEnd={displayEmpty}>
         {potMatches &&
+        // potMatches.length > 0 &&
           potMatches.map((pot, index) => {
             const data = { index, userId: user.id, subjectId: pot.id }
             const [name, email, description, languages] = pot

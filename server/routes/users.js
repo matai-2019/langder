@@ -1,13 +1,17 @@
 const express = require('express')
 
-const db = require('../db/db')
+const usersDB = require('../db/users.db')
+const potsDB = require('../db/pots.db')
+const matchesDB = require('../db/matches.db')
+const likesDB = require('../db/likes.db')
+const userLangsDB = require('../db/userLanguages.db')
 
 const router = express.Router()
 
 router.get('/:id/pot', (req, res) => {
   const userId = Number(req.params.id)
   // TODO Stretch Add query params in requests for filtering
-  db.getPotentialMatches(userId)
+  potsDB.getPotentialMatches(userId)
     .then(potMatches => {
       res.status(200).json(potMatches)
     }).catch(err => {
@@ -16,7 +20,7 @@ router.get('/:id/pot', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-  db.getUsers()
+  usersDB.getUsers()
     .then(users => {
       res.status(200).json(users)
     })
@@ -27,7 +31,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id)
-  db.getUser(id)
+  usersDB.getUser(id)
     .then(user => {
       res.status(200).json(user)
     })
@@ -40,15 +44,15 @@ router.post('/:id/likes', (req, res) => {
   const userId = Number(req.params.id)
   const likedId = Number(req.body.likedId)
 
-  db.getUserLikes(userId, likedId)
+  likesDB.getUserLikes(userId, likedId)
     .then(like => {
       if (userId === likedId) {
         throw new Error('ALREADY_MATCHED')
       }
       if (like) {
-        return db.addUserMatch(userId, likedId)
+        return matchesDB.addUserMatch(userId, likedId)
       } else {
-        return db.addUserLike(userId, likedId)
+        return likesDB.addUserLike(userId, likedId)
       }
     })
     .then(result => {
@@ -70,7 +74,7 @@ router.post('/:id/likes', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  db.addUser(req.body)
+  usersDB.addUser(req.body)
     .then(() => res.status(201).send())
     .catch(err => {
       res.status(500).json(err)
@@ -84,7 +88,7 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
   const userId = Number(req.params.id)
 
-  db.deleteUser(userId)
+  usersDB.deleteUser(userId)
     .then(() => {
       res.status(200).json({ Okay: true })
     })
@@ -95,7 +99,7 @@ router.delete('/:id', (req, res) => {
 
 router.get('/:id/matches', (req, res) => {
   const userId = Number(req.params.id)
-  db.getUserMatches(userId)
+  matchesDB.getUserMatches(userId)
     .then(matches => {
       res.status(200).json(matches)
     })
@@ -105,7 +109,7 @@ router.get('/:id/matches', (req, res) => {
 })
 
 router.get('/:id/languages', (req, res) => {
-  db.getUserLanguages(req.params.id)
+  userLangsDB.getUserLanguages(req.params.id)
     .then(langs => {
       res.status(200).json(langs)
     }).catch(err => {
@@ -117,7 +121,7 @@ router.get('/:id/languages', (req, res) => {
 router.post('/:id/languages', (req, res) => {
   const userId = Number(req.params.id)
   const languages = req.body
-  db.addUserLanguage(userId, languages)
+  userLangsDB.addUserLanguage(userId, languages)
     .then((langs) => res.status(201).json(langs))
     .catch(err => {
       res.status(500).json(err)
@@ -128,9 +132,9 @@ router.post('/:id/languages', (req, res) => {
 router.put('/:id/languages', (req, res) => {
   const userId = Number(req.params.id)
   const languages = req.body
-  db.deleteUserLanguage(userId)
+  userLangsDB.deleteUserLanguage(userId)
     .then((data) => {
-      return db.addUserLanguage(userId, languages)
+      return userLangsDB.addUserLanguage(userId, languages)
     })
     .then((langIds) => {
       res.status(200).json({ Okay: true, langIds })
@@ -142,7 +146,7 @@ router.put('/:id/languages', (req, res) => {
 
 router.get('/:id/likes', (req, res) => {
   const id = req.params.id
-  db.getUserLikes(id)
+  likesDB.getUserLikes(id)
     .then(likes => {
       res.status(200).json(likes)
     })

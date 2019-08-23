@@ -1,4 +1,4 @@
-import request from 'superagent'
+import * as usersAPI from '../api/users.api'
 
 export const PENDING_POTENTIAL_MATCHES = 'PENDING_POTENTIAL_MATCHES'
 export const POTENTIAL_MATCHES_SUCCESS = 'POTENTIAL_MATCHES_SUCCESS'
@@ -16,6 +16,14 @@ export function addLikeError (err) {
   return {
     type: ADD_LIKE_ERROR,
     error: err
+  }
+}
+
+export function likePotMatch (userId, likedId) {
+  return dispatch => {
+    usersAPI.like(userId, likedId)
+      .then(() => dispatch(nextPotMatch()))
+      .catch(err => dispatch(addLikeError(err.message)))
   }
 }
 
@@ -42,7 +50,7 @@ export function potentialMatchesError (message) {
 export function fetchPotMatches (userId) {
   return dispatch => {
     dispatch(pendingPotentialMatches())
-    request.get(`/api/v1/users/${userId}/pot`)
+    usersAPI.getPotMatches(userId)
       .then(res => dispatch(potentialMatchesSuccess(res.body)))
       .catch(err => dispatch(potentialMatchesError(err.message)))
   }

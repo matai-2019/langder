@@ -1,6 +1,6 @@
 require('babel-polyfill')
 const env = require('./test-environment')
-const db = require('../../../server/db/db')
+const userLangsDB = require('../../../server/db/userLanguages.db')
 
 let testDb = null
 
@@ -18,9 +18,9 @@ test('db.addUserLanguage adds 3 rows to userLanguages table', () => {
   const userId = 1
   const languagesArray = [{ id: 1 }, { id: 2 }, { id: 3 }]
 
-  return db.addUserLanguage(userId, languagesArray, testDb)
+  return userLangsDB.addUserLanguage(userId, languagesArray, testDb)
     .then(async () => {
-      const actual = await db.getAllUsersLanguages(testDb)
+      const actual = await userLangsDB.getAllUsersLanguages(testDb)
       expect(actual.length).toBe(expected)
     })
 })
@@ -28,7 +28,7 @@ test('db.addUserLanguage adds 3 rows to userLanguages table', () => {
 test('db.getUserLanguages get a specific users languages', (done) => {
   const userId = 1
 
-  db.getUserLanguages(userId, testDb)
+  userLangsDB.getUserLanguages(userId, testDb)
     .then(userlanguages => {
       expect(userlanguages.length).toBe(2)
       done()
@@ -41,9 +41,9 @@ test('db.deleteUserLanguage deletes expected rows from userLanguages table', () 
   const expected = 2
   const userId = 1
 
-  return db.deleteUserLanguage(userId, testDb)
+  return userLangsDB.deleteUserLanguage(userId, testDb)
     .then(async () => {
-      const actual = await db.getAllUsersLanguages(testDb)
+      const actual = await userLangsDB.getAllUsersLanguages(testDb)
       expect(actual.length).toBe(expected)
     })
 })

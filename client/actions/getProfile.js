@@ -1,4 +1,5 @@
-import request from 'superagent'
+import * as profilesAPI from '../api/profiles.api'
+import * as usersAPI from '../api/users.api'
 
 export const PENDING_GET_PROFILE = 'PENDING_GET_PROFILE'
 export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS'
@@ -35,12 +36,10 @@ export function getLanguagesSuccess (languages) {
 export function getProfile (id) {
   return dispatch => {
     dispatch(getProfilePending())
-    request
-      .get(`/api/v1/profiles/${id}`)
+    profilesAPI.getProfile(id)
       .then(res => {
         dispatch(getProfileSuccess(res.body))
-        return request
-          .get(`/api/v1/users/${id}/languages`)
+        return usersAPI.getLanguages(id)
           .then(res => {
             dispatch(getLanguagesSuccess(res.body))
           })

@@ -1,5 +1,4 @@
-import request from 'superagent'
-
+import * as usersAPI from '../api/users.api'
 export const PENDING_LIST_MATCHES = 'PENDING_LIST_MATCHES'
 export const LIST_MATCHES_SUCCESS = 'LIST_MATCHES_SUCCESS'
 export const LIST_MATCHES_ERROR = 'LIST_MATCHES_ERROR'
@@ -27,8 +26,7 @@ export function listMatchesError (message) {
 export function listMatches (userId) {
   return dispatch => {
     dispatch(listMatchesPending())
-    request
-      .get(`/api/v1/users/${userId}/matches`)
+    usersAPI.getMatches(userId)
       .then(res => dispatch(listMatchesSuccess(res.body)))
       .catch(err => dispatch(listMatchesError(err.message)))
   }

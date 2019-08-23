@@ -1,7 +1,7 @@
 import request from 'supertest'
 const server = require('../../../server/server')
 
-jest.mock('../../../server/db/db.js', () => ({
+jest.mock('../../../server/db/languages.db.js', () => ({
   getAllLanguages: () => Promise.resolve([
     { id: 1, name: 'japanese', countryCode: 'jp' },
     { id: 2, name: 'chinese', countryCode: 'ch' },

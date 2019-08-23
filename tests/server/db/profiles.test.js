@@ -1,5 +1,5 @@
 const env = require('./test-environment')
-const db = require('../../../server/db/db')
+const profilesDB = require('../../../server/db/profiles.db')
 
 let testDb = null
 
@@ -14,7 +14,7 @@ test('db.getProfile function should get a user of given id', () => {
   const profileId = 1
   const expected = 'A'
 
-  db.getProfile(profileId, testDb)
+  profilesDB.getProfile(profileId, testDb)
     .then(profile => {
       const actual = profile.name
       expect(actual).toBe(expected)
@@ -22,7 +22,7 @@ test('db.getProfile function should get a user of given id', () => {
 })
 
 test('db.deleteProfile runs a successful delete', () => {
-  return db.deleteProfile(1, testDb)
+  return profilesDB.deleteProfile(1, testDb)
     .then(wasDeleteSuccessful => {
       expect(wasDeleteSuccessful).toBeTruthy()
     })
