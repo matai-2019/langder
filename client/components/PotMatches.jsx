@@ -12,7 +12,8 @@ const PotMatches = () => {
   const user = useSelector(state => state.user)
   const potMatches = useSelector(state => state.potMatches, shallowEqual)
   useEffect(() => {
-    if (pots.length <= 0) {
+    if (potMatches.length === 0) {
+      console.log('fetchign pots', user.id)
       dispatch(fetchPotMatches(user.id))
     }
   }, [])
@@ -40,7 +41,7 @@ const PotMatches = () => {
     <div className="pot">
       <SwipeCards onEnd={displayEmpty}>
         {potMatches &&
-        // potMatches.length > 0 &&
+          // potMatches.length > 0 &&
           potMatches.map((pot, index) => {
             const data = { index, userId: user.id, subjectId: pot.id }
             const [name, email, description, languages] = pot
