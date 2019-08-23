@@ -26,7 +26,7 @@ Refer to this [wiki](https://github.com/tehnools/polyglota/wiki) for more inform
 
 ### Contributors
 * Ash Foster
-* David Nichols
+* David Nicholson
 * Tamari Gray
 * Noel Soong
 * Rahul Lal
