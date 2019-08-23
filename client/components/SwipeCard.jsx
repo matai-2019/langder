@@ -59,19 +59,20 @@ function SwipeCard ({ children, as, onSwipeLeft, onSwipeRight, onSwipeUp, onSwip
   const handleDragEnd = e => {
     const [deltaX, deltaY] = calcDelta(e.clientX, e.clientY, poo)
     e.target.style.transform = defaultOrigin
-    handleActions({ x: deltaX, y: deltaY })
+    delegateSwipe({ x: deltaX, y: deltaY })
   }
 
   const handleTouchEnd = e => {
+    const touchLocation = e.changedTouches[0]
     const [deltaX, deltaY] = calcDelta(
-      e.changedTouches[0].clientX,
-      e.changedTouches[0].clientY,
+      touchLocation.clientX,
+      touchLocation.clientY,
       poo)
     e.target.style.transform = defaultOrigin
-    handleActions({ x: deltaX, y: deltaY })
+    delegateSwipe({ x: deltaX, y: deltaY })
   }
 
-  const handleActions = endCoords => {
+  const delegateSwipe = endCoords => {
     const deltaXPercent = endCoords.x / 330 * 100
     if (deltaXPercent > 50) {
       onSwipeRight()
