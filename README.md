@@ -29,4 +29,4 @@ Refer to this [wiki](https://github.com/tehnools/polyglota/wiki) for more inform
 * David Nichols
 * Tamari Gray
 * Noel Soong
-* Rahul Lah
+* Rahul Lal
