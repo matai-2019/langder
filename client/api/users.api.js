@@ -13,7 +13,7 @@ export function addUser (user) {
 }
 
 export function like (userId, likedId) {
-  request.post(`${uri}/${userId}/likes`)
+  return request.post(`${uri}/${userId}/likes`)
     .send({ likedId })
 }
 
